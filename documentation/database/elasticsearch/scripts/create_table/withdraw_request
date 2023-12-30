@@ -1,0 +1,20 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+			"walletAddress": {
+				"type": "keyword"
+			},
+			"token": {
+				"type": "keyword"
+			},
+			"requestDate":{
+				"type": "long"
+			},
+			"withdrawReason":{
+				"type": "keyword"
+			},
+			"ammount": {
+				"type": "double"
+			}
+		}
+	}

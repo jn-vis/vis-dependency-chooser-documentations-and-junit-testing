@@ -1,0 +1,21 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+			"walletReceiver": {
+				"type": "keyword"
+			},
+			"withdrawDate":{
+				"type": "long"
+			},
+			"withdrawReason":{
+				"type": "keyword"
+			},
+			"walletPayer":{
+				"type": "keyword"
+			},
+			"ammount": {
+				"type": "double"
+			}
+		}
+	}
+}

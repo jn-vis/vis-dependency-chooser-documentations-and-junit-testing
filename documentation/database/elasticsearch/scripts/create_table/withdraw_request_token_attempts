@@ -1,0 +1,21 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+		"properties": {
+		
+			"walletAddress": {
+				"type": "keyword"
+			},
+			"tries": {
+				"type": "integer"
+			},
+			"ip":{
+				"type": "ip"
+			}
+			,
+			"attemptDate":{
+				"type": "long"
+			}
+		}
+	}
+}
