@@ -1,0 +1,1321 @@
+[
+    {
+        "total": 442,
+        "nome": "openshift"
+    },
+    {
+        "total": 445,
+        "nome": "nf-edanfe"
+    },
+    {
+        "total": 453,
+        "nome": "objeto"
+    },
+    {
+        "total": 456,
+        "nome": "non-compliance"
+    },
+    {
+        "total": 457,
+        "nome": "assurance"
+    },
+    {
+        "total": 458,
+        "nome": "cientista"
+    },
+    {
+        "total": 459,
+        "nome": "tributos"
+    },
+    {
+        "total": 461,
+        "nome": "mandatory"
+    },
+    {
+        "total": 461,
+        "nome": "insumos"
+    },
+    {
+        "total": 464,
+        "nome": "projetista"
+    },
+    {
+        "total": 465,
+        "nome": "tabelas"
+    },
+    {
+        "total": 473,
+        "nome": "out-look"
+    },
+    {
+        "total": 474,
+        "nome": "less"
+    },
+    {
+        "total": 482,
+        "nome": "partner"
+    },
+    {
+        "total": 484,
+        "nome": "stakeholders"
+    },
+    {
+        "total": 485,
+        "nome": "flow"
+    },
+    {
+        "total": 485,
+        "nome": "tensor-flow"
+    },
+    {
+        "total": 485,
+        "nome": "sped"
+    },
+    {
+        "total": 493,
+        "nome": "desenvolvimentos"
+    },
+    {
+        "total": 495,
+        "nome": "communication"
+    },
+    {
+        "total": 496,
+        "nome": "storage"
+    },
+    {
+        "total": 497,
+        "nome": "batch"
+    },
+    {
+        "total": 499,
+        "nome": "active-directory"
+    },
+    {
+        "total": 502,
+        "nome": "functions"
+    },
+    {
+        "total": 507,
+        "nome": "source-safe"
+    },
+    {
+        "total": 507,
+        "nome": "computadores"
+    },
+    {
+        "total": 508,
+        "nome": "especialistas"
+    },
+    {
+        "total": 510,
+        "nome": "corporativo"
+    },
+    {
+        "total": 511,
+        "nome": "wcf"
+    },
+    {
+        "total": 512,
+        "nome": "propaganda"
+    },
+    {
+        "total": 516,
+        "nome": "industria"
+    },
+    {
+        "total": 518,
+        "nome": "cnc"
+    },
+    {
+        "total": 519,
+        "nome": "automation"
+    },
+    {
+        "total": 524,
+        "nome": "cofins"
+    },
+    {
+        "total": 528,
+        "nome": "leads"
+    },
+    {
+        "total": 530,
+        "nome": "expert-level"
+    },
+    {
+        "total": 530,
+        "nome": "gerencia"
+    },
+    {
+        "total": 533,
+        "nome": "almoxarifado"
+    },
+    {
+        "total": 534,
+        "nome": "telefonia"
+    },
+    {
+        "total": 534,
+        "nome": "encargos"
+    },
+    {
+        "total": 536,
+        "nome": "talent"
+    },
+    {
+        "total": 542,
+        "nome": "encarregado"
+    },
+    {
+        "total": 542,
+        "nome": "machine"
+    },
+    {
+        "total": 550,
+        "nome": "ansible"
+    },
+    {
+        "total": 553,
+        "nome": "vmwarehyper-v"
+    },
+    {
+        "total": 557,
+        "nome": "hyper-v"
+    },
+    {
+        "total": 561,
+        "nome": "layout"
+    },
+    {
+        "total": 562,
+        "nome": "delivery"
+    },
+    {
+        "total": 563,
+        "nome": "desktop"
+    },
+    {
+        "total": 563,
+        "nome": "customer"
+    },
+    {
+        "total": 570,
+        "nome": "lucro"
+    },
+    {
+        "total": 576,
+        "nome": "usabilidade"
+    },
+    {
+        "total": 577,
+        "nome": "cca"
+    },
+    {
+        "total": 577,
+        "nome": "lgpd"
+    },
+    {
+        "total": 578,
+        "nome": "quality"
+    },
+    {
+        "total": 579,
+        "nome": "administrador"
+    },
+    {
+        "total": 581,
+        "nome": "confluence"
+    },
+    {
+        "total": 581,
+        "nome": "sites"
+    },
+    {
+        "total": 582,
+        "nome": "gitflow"
+    },
+    {
+        "total": 583,
+        "nome": "pis"
+    },
+    {
+        "total": 584,
+        "nome": "icms"
+    },
+    {
+        "total": 589,
+        "nome": "sprint"
+    },
+    {
+        "total": 594,
+        "nome": "bibliotecas"
+    },
+    {
+        "total": 604,
+        "nome": "learning"
+    },
+    {
+        "total": 606,
+        "nome": "driven"
+    },
+    {
+        "total": 607,
+        "nome": "ad"
+    },
+    {
+        "total": 608,
+        "nome": "ad-sync"
+    },
+    {
+        "total": 611,
+        "nome": "photoshop"
+    },
+    {
+        "total": 612,
+        "nome": "nativo"
+    },
+    {
+        "total": 617,
+        "nome": "media-queries"
+    },
+    {
+        "total": 618,
+        "nome": "gestores"
+    },
+    {
+        "total": 618,
+        "nome": "organizacional"
+    },
+    {
+        "total": 626,
+        "nome": "squad"
+    },
+    {
+        "total": 627,
+        "nome": "ajudante"
+    },
+    {
+        "total": 628,
+        "nome": "squads"
+    },
+    {
+        "total": 628,
+        "nome": "knowledge"
+    },
+    {
+        "total": 640,
+        "nome": "dashboards"
+    },
+    {
+        "total": 642,
+        "nome": "backlog"
+    },
+    {
+        "total": 643,
+        "nome": "icms-st"
+    },
+    {
+        "total": 649,
+        "nome": "sqs"
+    },
+    {
+        "total": 659,
+        "nome": "taxa"
+    },
+    {
+        "total": 660,
+        "nome": "ibm"
+    },
+    {
+        "total": 660,
+        "nome": "iteam"
+    },
+    {
+        "total": 660,
+        "nome": "atendente"
+    },
+    {
+        "total": 667,
+        "nome": "agro-industria"
+    },
+    {
+        "total": 673,
+        "nome": "trabalhista"
+    },
+    {
+        "total": 673,
+        "nome": "ims-db"
+    },
+    {
+        "total": 674,
+        "nome": "reports"
+    },
+    {
+        "total": 675,
+        "nome": "requirements"
+    },
+    {
+        "total": 676,
+        "nome": "company"
+    },
+    {
+        "total": 676,
+        "nome": "agendamento"
+    },
+    {
+        "total": 682,
+        "nome": "publicidade"
+    },
+    {
+        "total": 687,
+        "nome": "auditorias"
+    },
+    {
+        "total": 689,
+        "nome": "triagem"
+    },
+    {
+        "total": 691,
+        "nome": "dms-ii"
+    },
+    {
+        "total": 700,
+        "nome": "test-drive"
+    },
+    {
+        "total": 700,
+        "nome": "domain-driven"
+    },
+    {
+        "total": 701,
+        "nome": "platform"
+    },
+    {
+        "total": 701,
+        "nome": "is-u"
+    },
+    {
+        "total": 703,
+        "nome": "comprador"
+    },
+    {
+        "total": 707,
+        "nome": "adobe"
+    },
+    {
+        "total": 707,
+        "nome": "log"
+    },
+    {
+        "total": 722,
+        "nome": "event-driven"
+    },
+    {
+        "total": 722,
+        "nome": "odonto"
+    },
+    {
+        "total": 727,
+        "nome": "architecture"
+    },
+    {
+        "total": 728,
+        "nome": "help-desk"
+    },
+    {
+        "total": 729,
+        "nome": "iso"
+    },
+    {
+        "total": 739,
+        "nome": "obras"
+    },
+    {
+        "total": 747,
+        "nome": "v-model"
+    },
+    {
+        "total": 748,
+        "nome": "lojas"
+    },
+    {
+        "total": 749,
+        "nome": "ctfl-at"
+    },
+    {
+        "total": 757,
+        "nome": "pro-labore"
+    },
+    {
+        "total": 760,
+        "nome": "controladoria"
+    },
+    {
+        "total": 761,
+        "nome": "gateway"
+    },
+    {
+        "total": 767,
+        "nome": "direito"
+    },
+    {
+        "total": 778,
+        "nome": "eletricista"
+    },
+    {
+        "total": 781,
+        "nome": "mvvm"
+    },
+    {
+        "total": 802,
+        "nome": "diretoria"
+    },
+    {
+        "total": 805,
+        "nome": "requisito"
+    },
+    {
+        "total": 813,
+        "nome": "lambda"
+    },
+    {
+        "total": 816,
+        "nome": "recepcionista"
+    },
+    {
+        "total": 820,
+        "nome": "post-production"
+    },
+    {
+        "total": 820,
+        "nome": "postman"
+    },
+    {
+        "total": 837,
+        "nome": "ip-allocation"
+    },
+    {
+        "total": 841,
+        "nome": "forms"
+    },
+    {
+        "total": 841,
+        "nome": "mm-pur"
+    },
+    {
+        "total": 849,
+        "nome": "devs"
+    },
+    {
+        "total": 856,
+        "nome": "comex"
+    },
+    {
+        "total": 858,
+        "nome": "campanhas"
+    },
+    {
+        "total": 858,
+        "nome": "fi-cax"
+    },
+    {
+        "total": 858,
+        "nome": "fi-apar"
+    },
+    {
+        "total": 861,
+        "nome": "cargos"
+    },
+    {
+        "total": 864,
+        "nome": "ibm-mq"
+    },
+    {
+        "total": 872,
+        "nome": "fi-tr"
+    },
+    {
+        "total": 881,
+        "nome": "containers"
+    },
+    {
+        "total": 887,
+        "nome": "consultas"
+    },
+    {
+        "total": 888,
+        "nome": "industriais"
+    },
+    {
+        "total": 895,
+        "nome": "ibm-bpm"
+    },
+    {
+        "total": 905,
+        "nome": "hardware"
+    },
+    {
+        "total": 907,
+        "nome": "redux-saga"
+    },
+    {
+        "total": 915,
+        "nome": "procedures"
+    },
+    {
+        "total": 916,
+        "nome": "fi-gl"
+    },
+    {
+        "total": 917,
+        "nome": "tcp-ip"
+    },
+    {
+        "total": 918,
+        "nome": "vue-router"
+    },
+    {
+        "total": 919,
+        "nome": "entity"
+    },
+    {
+        "total": 931,
+        "nome": "financeiras"
+    },
+    {
+        "total": 936,
+        "nome": "generalista"
+    },
+    {
+        "total": 940,
+        "nome": "interfaces"
+    },
+    {
+        "total": 952,
+        "nome": "co-produtor"
+    },
+    {
+        "total": 956,
+        "nome": "fi-ca"
+    },
+    {
+        "total": 964,
+        "nome": "arquiteturas"
+    },
+    {
+        "total": 973,
+        "nome": "sass"
+    },
+    {
+        "total": 973,
+        "nome": "fluxos"
+    },
+    {
+        "total": 989,
+        "nome": "xml"
+    },
+    {
+        "total": 992,
+        "nome": "fi-tv"
+    },
+    {
+        "total": 994,
+        "nome": "gerenciais"
+    },
+    {
+        "total": 998,
+        "nome": "desenhos"
+    },
+    {
+        "total": 1007,
+        "nome": "chamados"
+    },
+    {
+        "total": 1016,
+        "nome": "cross-platform"
+    },
+    {
+        "total": 1027,
+        "nome": "protocolos"
+    },
+    {
+        "total": 1059,
+        "nome": "fi-ap"
+    },
+    {
+        "total": 1060,
+        "nome": "sass-scss"
+    },
+    {
+        "total": 1080,
+        "nome": "test-driven"
+    },
+    {
+        "total": 1098,
+        "nome": "financeiros"
+    },
+    {
+        "total": 1139,
+        "nome": "ddd"
+    },
+    {
+        "total": 1143,
+        "nome": "visual-age"
+    },
+    {
+        "total": 1144,
+        "nome": "fi-ar"
+    },
+    {
+        "total": 1144,
+        "nome": "controles"
+    },
+    {
+        "total": 1147,
+        "nome": "funcionalidades"
+    },
+    {
+        "total": 1157,
+        "nome": "incidentes"
+    },
+    {
+        "total": 1167,
+        "nome": "abap-cpi"
+    },
+    {
+        "total": 1168,
+        "nome": "totvs"
+    },
+    {
+        "total": 1176,
+        "nome": "pre-sales"
+    },
+    {
+        "total": 1181,
+        "nome": "economia"
+    },
+    {
+        "total": 1181,
+        "nome": "itil"
+    },
+    {
+        "total": 1188,
+        "nome": "externo"
+    },
+    {
+        "total": 1195,
+        "nome": "civil"
+    },
+    {
+        "total": 1242,
+        "nome": "scripts"
+    },
+    {
+        "total": 1250,
+        "nome": "compra"
+    },
+    {
+        "total": 1251,
+        "nome": "cat-m"
+    },
+    {
+        "total": 1251,
+        "nome": "executivo"
+    },
+    {
+        "total": 1254,
+        "nome": "mapeamento"
+    },
+    {
+        "total": 1270,
+        "nome": "abap-fiori"
+    },
+    {
+        "total": 1274,
+        "nome": "sd-wan"
+    },
+    {
+        "total": 1276,
+        "nome": "entrevista"
+    },
+    {
+        "total": 1289,
+        "nome": "relacional"
+    },
+    {
+        "total": 1318,
+        "nome": "fi-aa"
+    },
+    {
+        "total": 1330,
+        "nome": "pspo-i"
+    },
+    {        "total": 1338,
+        "nome": "ms-visio"
+    },
+    {
+        "total": 1352,
+        "nome": "ms-focus"
+    },
+    {
+        "total": 1358,
+        "nome": "management"
+    },
+    {
+        "total": 1370,
+        "nome": "riscos"
+    },
+    {
+        "total": 1383,
+        "nome": "entrevistas"
+    },
+    {
+        "total": 1387,
+        "nome": "ms-exchange"
+    },
+    {
+        "total": 1387,
+        "nome": "faturamento"
+    },
+    {
+        "total": 1409,
+        "nome": "control-m"
+    },
+    {
+        "total": 1424,
+        "nome": "analytics"
+    },
+    {
+        "total": 1431,
+        "nome": "idioma"
+    },
+    {
+        "total": 1447,
+        "nome": "ms-ssis"
+    },
+    {
+        "total": 1450,
+        "nome": "psm-i"
+    },
+    {
+        "total": 1462,
+        "nome": "ms-cluster"
+    },
+    {
+        "total": 1479,
+        "nome": "solid"
+    },
+    {
+        "total": 1490,
+        "nome": "micro-servicos"
+    },
+    {
+        "total": 1507,
+        "nome": "comerciais"
+    },
+    {
+        "total": 1530,
+        "nome": "programas"
+    },
+    {
+        "total": 1568,
+        "nome": "ms-iis"
+    },
+    {
+        "total": 1621,
+        "nome": "ibm-integration"
+    },
+    {
+        "total": 1627,
+        "nome": "script"
+    },
+    {
+        "total": 1672,
+        "nome": "objeto-relacional"
+    },
+    {
+        "total": 1679,
+        "nome": "itil-v"
+    },
+    {
+        "total": 1716,
+        "nome": "designer"
+    },
+    {
+        "total": 1786,
+        "nome": "message-oriented"
+    },
+    {
+        "total": 1795,
+        "nome": "patterns"
+    },
+    {
+        "total": 1799,
+        "nome": "limpeza"
+    },
+    {
+        "total": 1826,
+        "nome": "psicologia"
+    },
+    {
+        "total": 1858,
+        "nome": "hybrid-agile"
+    },
+    {
+        "total": 1862,
+        "nome": "ms-project"
+    },
+    {
+        "total": 1867,
+        "nome": "nsx-t"
+    },
+    {
+        "total": 1872,
+        "nome": "anti-patterns"
+    },
+    {
+        "total": 1954,
+        "nome": "seletivo"
+    },
+    {
+        "total": 1995,
+        "nome": "fiscais"
+    },
+    {
+        "total": 2037,
+        "nome": "element-ui"
+    },
+    {
+        "total": 2041,
+        "nome": "vendedor"
+    },
+    {
+        "total": 2041,
+        "nome": "financeira"
+    },
+    {
+        "total": 2044,
+        "nome": "radix-ui"
+    },
+    {
+        "total": 2053,
+        "nome": "agile-based"
+    },
+    {
+        "total": 2057,
+        "nome": "nao-relacionais"
+    },
+    {
+        "total": 2060,
+        "nome": "plataformas"
+    },
+    {
+        "total": 2095,
+        "nome": "pre-venda"
+    },
+    {
+        "total": 2117,
+        "nome": "pos-venda"
+    },
+    {
+        "total": 2189,
+        "nome": "jax-b"
+    },
+    {
+        "total": 2207,
+        "nome": "industrial"
+    },
+    {
+        "total": 2247,
+        "nome": "demandas"
+    },
+    {
+        "total": 2265,
+        "nome": "fechamento"
+    },
+    {
+        "total": 2265,
+        "nome": "low-code"
+    },
+    {
+        "total": 2271,
+        "nome": "code-reviews"
+    },
+    {
+        "total": 2288,
+        "nome": "internos"
+    },
+    {
+        "total": 2298,
+        "nome": "operador"
+    },
+    {
+        "total": 2299,
+        "nome": "procedimentos"
+    },
+    {
+        "total": 2315,
+        "nome": "infra-estrutura"
+    },
+    {
+        "total": 2329,
+        "nome": "supervisor"
+    },
+    {
+        "total": 2334,
+        "nome": "m-scripts"
+    },
+    {
+        "total": 2362,
+        "nome": "automatizados"
+    },
+    {
+        "total": 2456,
+        "nome": "frameworks"
+    },
+    {
+        "total": 2460,
+        "nome": "rx-js"
+    },
+    {
+        "total": 2465,
+        "nome": "code-view"
+    },
+    {
+        "total": 2486,
+        "nome": "linguagens"
+    },
+    {
+        "total": 2492,
+        "nome": "contabilidade"
+    },
+    {
+        "total": 2515,
+        "nome": "service-oriented"
+    },
+    {
+        "total": 2569,
+        "nome": "service-based"
+    },
+    {
+        "total": 2610,
+        "nome": "modelagem"
+    },
+    {
+        "total": 2678,
+        "nome": "compras"
+    },
+    {
+        "total": 2739,
+        "nome": "contas"
+    },
+    {
+        "total": 2745,
+        "nome": "ios-xr"
+    },
+    {
+        "total": 2764,
+        "nome": "tester-qa"
+    },
+    {
+        "total": 2840,
+        "nome": "ci-scs"
+    },
+    {
+        "total": 2910,
+        "nome": "hp-ux"
+    },
+    {
+        "total": 2961,
+        "nome": "materiais"
+    },
+    {
+        "total": 3011,
+        "nome": "on-premise"
+    },
+    {
+        "total": 3011,
+        "nome": "on-permises"
+    },
+    {
+        "total": 3011,
+        "nome": "on-premisses"
+    },
+    {
+        "total": 3012,
+        "nome": "on-premisse"
+    },
+    {
+        "total": 3014,
+        "nome": "on-premises"
+    },
+    {
+        "total": 3105,
+        "nome": "performance"
+    },
+    {
+        "total": 3158,
+        "nome": "sped-fiscal"
+    },
+    {
+        "total": 3183,
+        "nome": "pagamento"
+    },
+    {
+        "total": 3202,
+        "nome": "mysql"
+    },
+    {
+        "total": 3536,
+        "nome": "material-ui"
+    },
+    {
+        "total": 3707,
+        "nome": "coordenador"
+    },
+    {
+        "total": 3816,
+        "nome": "metodologia"
+    },
+    {
+        "total": 3894,
+        "nome": "up-ux"
+    },
+    {
+        "total": 3942,
+        "nome": "consultoria"
+    },
+    {
+        "total": 4079,
+        "nome": "especialista"
+    },
+    {
+        "total": 4086,
+        "nome": "spring-flux"
+    },
+    {
+        "total": 4092,
+        "nome": "x-path"
+    },
+    {
+        "total": 4292,
+        "nome": "framework"
+    },
+    {
+        "total": 4319,
+        "nome": "x-query"
+    },
+    {
+        "total": 4369,
+        "nome": "entity-framework"
+    },
+    {
+        "total": 4403,
+        "nome": "plataforma"
+    },
+    {
+        "total": 4410,
+        "nome": "tech-designer"
+    },
+    {
+        "total": 4461,
+        "nome": "sub-rede"
+    },
+    {
+        "total": 4516,
+        "nome": "linux-based"
+    },
+    {
+        "total": 4585,
+        "nome": "financeiro"
+    },
+    {
+        "total": 4674,
+        "nome": "jenkins-ci"
+    },
+    {
+        "total": 4722,
+        "nome": "data-warehousing"
+    },
+    {
+        "total": 4886,
+        "nome": "big-data"
+    },
+    {
+        "total": 4970,
+        "nome": "docker-compose"
+    },
+    {
+        "total": 5142,
+        "nome": "metodologias"
+    },
+    {
+        "total": 5672,
+        "nome": "domain-driven-design"
+    },
+    {
+        "total": 5729,
+        "nome": "tfs-azure"
+    },
+    {
+        "total": 5814,
+        "nome": "api-first"
+    },
+    {
+        "total": 6044,
+        "nome": "spring-mvc"
+    },
+    {
+        "total": 6177,
+        "nome": "oracle-weblogic"
+    },
+    {
+        "total": 6287,
+        "nome": "engenharia"
+    },
+    {
+        "total": 6427,
+        "nome": "arquitetura"
+    },
+    {
+        "total": 6567,
+        "nome": "xen-server"
+    },
+    {
+        "total": 6594,
+        "nome": "server-side"
+    },
+    {
+        "total": 6713,
+        "nome": "apm-server"
+    },
+    {
+        "total": 7102,
+        "nome": "rest-assured"
+    },
+    {
+        "total": 7538,
+        "nome": "pos-vendas"
+    },
+    {
+        "total": 7606,
+        "nome": "cross-site"
+    },
+    {
+        "total": 7737,
+        "nome": "assistente"
+    },
+    {
+        "total": 7742,
+        "nome": "controle"
+    },
+    {
+        "total": 7881,
+        "nome": "spring-data"
+    },
+    {
+        "total": 7925,
+        "nome": "comercial"
+    },
+    {
+        "total": 8048,
+        "nome": "cloud-based"
+    },
+    {
+        "total": 8063,
+        "nome": "cloud-oriented"
+    },
+    {
+        "total": 8135,
+        "nome": "cloud-build"
+    },
+    {
+        "total": 8142,
+        "nome": "specialist-cloud"
+    },
+    {
+        "total": 8663,
+        "nome": "web-components"
+    },
+    {
+        "total": 8850,
+        "nome": "t&d"
+    },
+    {
+        "total": 8900,
+        "nome": "git-lab"
+    },
+    {
+        "total": 9026,
+        "nome": "git-flow"
+    },
+    {
+        "total": 9659,
+        "nome": "ams-suporte"
+    },
+    {
+        "total": 10040,
+        "nome": "ferramentas"
+    },
+    {
+        "total": 10191,
+        "nome": "recrutamento"
+    },
+    {
+        "total": 10250,
+        "nome": "pos-banco"
+    },
+    {
+        "total": 14367,
+        "nome": "transact-sql"
+    },
+    {
+        "total": 14398,
+        "nome": "sql-ansi"
+    },
+    {
+        "total": 14414,
+        "nome": "ml-sql"
+    },
+    {
+        "total": 15140,
+        "nome": "ms-sql"
+    },
+    {
+        "total": 15253,
+        "nome": "sql-server"
+    },
+    {
+        "total": 15480,
+        "nome": "java-beans"
+    },
+    {
+        "total": 15493,
+        "nome": "java-ws"
+    },
+    {
+        "total": 16238,
+        "nome": "java-script"
+    },
+    {
+        "total": 25945,
+        "nome": "sp-hi"
+    },
+    {
+        "total": 66663,
+        "nome": "no-sql"
+    },
+    {
+        "total": 100509,
+        "nome": "vrrp"
+    },
+    {
+        "total": 100522,
+        "nome": "nf-e"
+    },
+    {
+        "total": 100609,
+        "nome": "e-social"
+    }
+ ]
