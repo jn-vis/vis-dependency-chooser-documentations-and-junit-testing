@@ -2,7 +2,9 @@ package com.ccp.jn.vis.test.resume;
 
 import org.junit.Test;
 
-public class ResumeStep1DadosGeraisTest {
+import com.ccp.jn.vis.test.asserting.TemplateDeTestes;
+
+public class ResumeStep1DadosGeraisTest extends TemplateDeTestes{
 	/*
 	 * onlyHomeOffice: boolean
 	 * ddds: int[]
@@ -18,6 +20,12 @@ public class ResumeStep1DadosGeraisTest {
 	@Test
 	public void testarFaltandoCampoOnlyHomeOffice() {
 		
+	}
+
+	@Override
+	protected String getMethod() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

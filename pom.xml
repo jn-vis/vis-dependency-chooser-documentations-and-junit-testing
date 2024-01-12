@@ -46,7 +46,12 @@
 			<artifactId>ccp-json-gson</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+			<dependency>
+			<groupId>com.ccp</groupId>
+			<artifactId>ccp-db-crud-elasticsearch</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	
 	</dependencies>
 
 </project>

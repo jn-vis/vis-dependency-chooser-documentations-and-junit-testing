@@ -1,5 +1,12 @@
 package com.ccp.jn.vis.test.position;
 
-public class PositionStepOneTest {
+import com.ccp.jn.vis.test.asserting.TemplateDeTestes;
+
+public class PositionStepOneTest  extends TemplateDeTestes{
+	@Override
+	protected String getMethod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
