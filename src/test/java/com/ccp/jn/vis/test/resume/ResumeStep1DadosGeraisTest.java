@@ -1,5 +1,7 @@
 package com.ccp.jn.vis.test.resume;
 
+import org.junit.Test;
+
 public class ResumeStep1DadosGeraisTest {
 	/*
 	 * onlyHomeOffice: boolean
@@ -13,7 +15,7 @@ public class ResumeStep1DadosGeraisTest {
 	 * 
 	 */
 	
-	@org.junit.Test
+	@Test
 	public void testarFaltandoCampoOnlyHomeOffice() {
 		
 	}
