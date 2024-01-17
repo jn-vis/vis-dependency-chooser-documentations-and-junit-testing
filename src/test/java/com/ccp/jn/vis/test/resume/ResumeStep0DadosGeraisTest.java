@@ -23,12 +23,12 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 	 * disponibility: int
 	 * observations: text
 	 1) Testes genericos:
-	 * A) Teste de presença de todos os fields
-	 * B) Teste de tipagem de todos os fields
-	 * C) Teste do Lenght de todos os campos keyword e text
-	 * D) Teste de não duplicatas dos arrays
+	 * A) Teste de presença de todos os fields(json, fields)
+	 * B) Teste de tipagem de todos os fields(json, key, type)
+	 * C) Teste do Lenght de todos os campos keyword e text (json, maxLenght, fields), (json, minLenght, fields), (json, maxLenght, fields), (json, minLenght, fields), , (json, lenght, fields)
+	 * D) Teste de não duplicatas dos arrays (json, fields)
 	 2) Testes específicos:
-	 * E) Teste de domínio dos DDDs e deficiencias
+	 * E) Teste de domínio dos DDDs e deficiencias (json, domain[], fields), (json, domain[], fields),
 	 * F) Teste de não preenchimento das deficiencias se PCD for false
 	 */
 
