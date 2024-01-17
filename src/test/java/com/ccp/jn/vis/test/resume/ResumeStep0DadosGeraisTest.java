@@ -33,9 +33,32 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 	}
 	
 	@Test
+	public void testeDois () {
+		
+//		CcpJsonRepresentation jsonCompleto = CcpConstants.EMPTY_JSON
+//				.put("onlyHomeOffice", "Onias")
+//				.put("pcd", 1)
+//				.addToList("ddds", 11).addToList("ddds", 55).addToList("ddds", "x")
+//				;
+		
+		CcpJsonRepresentation jsonCompleto = new CcpJsonRepresentation("{"
+				+ "'onlyHomeOffice': 'Onias', 'pcd': 1, 'ddds': [11, 55] }");
+		
+		boolean testeDoOnlyHomeOffice = jsonCompleto.getAsMetadata("onlyHomeOffice").isBoolean() == false;
+		assertTrue(testeDoOnlyHomeOffice);
+		boolean testeDoPcd = jsonCompleto.getAsMetadata("pcd").isBoolean() == false;
+		assertTrue(testeDoPcd);
+		boolean testeDosDdds = jsonCompleto.getAsArrayMetadata("ddds").isLongNumberList();
+		assertTrue(testeDosDdds);
+		
+		
+	}
+	
+	@Test
 	public void testarFaltandoCampoOnlyHomeOffice() {
 
 		Object valorRecebidoParaOCampo = true;
+
 		boolean onlyHomeOffice = false;
 		Integer ddds = null;
 		boolean pcd = false;
@@ -46,7 +69,7 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		
 		String nomeDoCampo = "onlyHomeOffice";
 		
-		if (nomeDoCampo.equals("onlyHomeOffice") && (valorRecebidoParaOCampo instanceof Boolean)) {
+		if ("onlyHomeOffice".equals(nomeDoCampo) && (valorRecebidoParaOCampo instanceof Boolean)) {
 			onlyHomeOffice = (boolean) valorRecebidoParaOCampo;
 		}
 		
