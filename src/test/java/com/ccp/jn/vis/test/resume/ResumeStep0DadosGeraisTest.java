@@ -22,8 +22,14 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 	 * companiesNotAllowed: text[]
 	 * disponibility: int
 	 * observations: text
-	 * 
-	 * 
+	 1) Testes genericos:
+	 * A) Teste de presença de todos os fields
+	 * B) Teste de tipagem de todos os fields
+	 * C) Teste do Lenght de todos os campos keyword e text
+	 * D) Teste de não duplicatas dos arrays
+	 2) Testes específicos:
+	 * E) Teste de domínio dos DDDs e deficiencias
+	 * F) Teste de não preenchimento das deficiencias se PCD for false
 	 */
 
 	// resolvendo o extends TemplateDeTestes
