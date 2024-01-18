@@ -2,6 +2,9 @@ package com.ccp.jn.vis.test.resume;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.junit.Test;
 
 import com.ccp.constantes.CcpConstants;
@@ -18,7 +21,7 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 	 * onlyHomeOffice: boolean
 	 * ddds: int[]
 	 * pcd: boolean
-	 * disability: keyWord[]
+	 * disabilities: keyWord[]
 	 * companiesNotAllowed: text[]
 	 * disponibility: int
 	 * observations: text
@@ -37,97 +40,79 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		CcpDependencyInjection.loadAllDependencies(new CcpGsonJsonHandler(), new CcpElasticSearchDao(),
 				new CcpElasticSearchDbRequest(), new CcpApacheMimeHttp(), new CcpElasticSearchDbSetup());		
 	}
-	
+
 	@Test
-	public void testeDois () {
-		
-//		CcpJsonRepresentation jsonCompleto = CcpConstants.EMPTY_JSON
-//				.put("onlyHomeOffice", "Onias")
-//				.put("pcd", 1)
-//				.addToList("ddds", 11).addToList("ddds", 55).addToList("ddds", "x")
-//				;
-		
-		CcpJsonRepresentation jsonCompleto = new CcpJsonRepresentation("{"
-				+ "'onlyHomeOffice': 'Onias', 'pcd': 1, 'ddds': [11, 55] }");
-		
-		boolean testeDoOnlyHomeOffice = jsonCompleto.getAsMetadata("onlyHomeOffice").isBoolean() == false;
-		assertTrue(testeDoOnlyHomeOffice);
-		boolean testeDoPcd = jsonCompleto.getAsMetadata("pcd").isBoolean() == false;
-		assertTrue(testeDoPcd);
-		boolean testeDosDdds = jsonCompleto.getAsArrayMetadata("ddds").isLongNumberList();
-		assertTrue(testeDosDdds);
+	public void testFieldsPresent() {
+		CcpJsonRepresentation json =  CcpConstants.EMPTY_JSON
+				.put("onlyHomeOffice", true)/// TODO JASSON USE SUA CRIATIVIDADE PARA TESTAR PARA CRIAR O JSON À SUA MANEIRA
+				;
 		
 		
+		boolean x = json.containsAllKeys("onlyHomeOffice", "ddds", "pcd", "disabilities", "companiesNotAllowed",
+				"disponibility", "observations");
+		assertTrue(x);
+	}
+
+	@Test
+	public void testFieldsNonDuplicatedItems() {
+		CcpJsonRepresentation json =  CcpConstants.EMPTY_JSON
+				.put("onlyHomeOffice", true)/// TODO JASSON USE SUA CRIATIVIDADE PARA TESTAR PARA CRIAR O JSON À SUA MANEIRA
+				;
+		
+		
+		boolean x = json.validateTheFollowingFields("ddds", "disabilities", "companiesNotAllowed").asArrays().withHasNotDuplicatedItems();
+		assertTrue(x);
+
+	}
+
+	@Test
+	public void testFieldsRestrictedNumbers() {
+		CcpJsonRepresentation json =  CcpConstants.EMPTY_JSON
+				.put("onlyHomeOffice", true)/// TODO JASSON USE SUA CRIATIVIDADE PARA TESTAR PARA CRIAR O JSON À SUA MANEIRA
+				;
+		
+		
+		Collection<Double> allowed = Arrays.asList(11d, 55d);
+		boolean x = json.validateTheFollowingFields("ddds").withAllowed().numbers().inArrayFields(allowed);
+		assertTrue(x);
+
 	}
 	
 	@Test
-	public void testarFaltandoCampoOnlyHomeOffice() {
+	public void testFieldsRestrictedStrings() {
+		CcpJsonRepresentation json =  CcpConstants.EMPTY_JSON
+				.put("onlyHomeOffice", true)/// TODO JASSON USE SUA CRIATIVIDADE PARA TESTAR PARA CRIAR O JSON À SUA MANEIRA
+				;
+		
+		
+		Collection<String> allowed = Arrays.asList("visual", "auditivo", "motora");
+		
+		boolean x = json.validateTheFollowingFields("disabilities").withAllowed().strings().inArrayFields(allowed);
+		assertTrue(x);
+	}
 
-		Object valorRecebidoParaOCampo = true;
+	@Test
+	public void testFieldsTypes() {
+		CcpJsonRepresentation json =  CcpConstants.EMPTY_JSON
+				.put("onlyHomeOffice", true)/// TODO JASSON USE SUA CRIATIVIDADE PARA TESTAR PARA CRIAR O JSON À SUA MANEIRA
+				;
+		
+		boolean x = json.validateTheFollowingFields("companiesNotAllowed", "disabilities", "ddds").thatTheTypes().areList();
+		boolean y = json.validateTheFollowingFields("pcd", "onlyHomeOffice").thatTheTypes().areBoolean();
+		boolean z = json.validateTheFollowingFields("disponibility").thatTheTypes().areLong();
+		assertTrue(z);
+		assertTrue(y);
+		assertTrue(x);
+	}
 
-		boolean onlyHomeOffice = false;
-		Integer ddds = null;
-		boolean pcd = false;
-		String disability = null;
-		String companiesNotAllowed = null;
-		Integer disponibility = null;
-		String observations = null;
-		
-		String nomeDoCampo = "onlyHomeOffice";
-		
-		if ("onlyHomeOffice".equals(nomeDoCampo) && (valorRecebidoParaOCampo instanceof Boolean)) {
-			onlyHomeOffice = (boolean) valorRecebidoParaOCampo;
-		}
-		
-		if (nomeDoCampo.equals("ddds") && (valorRecebidoParaOCampo instanceof Integer)) {
-			ddds = (int) valorRecebidoParaOCampo;
-		}
-		
-		if (nomeDoCampo.equals("pcd") && (valorRecebidoParaOCampo instanceof Boolean)) {
-			pcd = (boolean) valorRecebidoParaOCampo;
-		}
-		
-		if (nomeDoCampo.equals("disability") && (valorRecebidoParaOCampo instanceof String)) {
-			disability = (String) valorRecebidoParaOCampo;
-		}
-		
-		if (nomeDoCampo.equals("companiesNotAllowed") && (valorRecebidoParaOCampo instanceof String)) {
-			companiesNotAllowed = (String) valorRecebidoParaOCampo;
-		}
-		
-		if (nomeDoCampo.equals("disponibility") && (valorRecebidoParaOCampo instanceof Integer)) {
-			disponibility = (int) valorRecebidoParaOCampo;
-		}
-		
-		if (nomeDoCampo.equals("observations") && (valorRecebidoParaOCampo instanceof String)) {
-			observations = (String) valorRecebidoParaOCampo;
-		}
-		
-		
+	@Test
+	public void testMaxLenght() {
 		CcpJsonRepresentation json = CcpConstants.EMPTY_JSON
-				.put("onlyHomeOffice", onlyHomeOffice)
-				.put("ddds", ddds)
-				.put("pcd", pcd)
-				.put("disability", disability)
-				.put("companiesNotAllowed", companiesNotAllowed)
-				.put("disponibility", disponibility)
-				.put("observations", observations); 
-//		assertTrue(json.containsKey("onlyHomeOffice") == false);
-//		assertTrue(json.containsKey("disponibility") == false);
-		
-//		System.out.println(onlyHomeOffice && "-" &&
-//				.append(ddds);// && "" &&
-//				pcd && "-" &&
-//				disability && "-" &&
-//				companiesNotAllowed && "-" &&
-//				disponibility && "-" &&
-//				observations);
+				.put("onlyHomeOffice", true)/// TODO JASSON USE SUA CRIATIVIDADE PARA TESTAR PARA CRIAR O JSON À SUA MANEIRA
+				;
+		boolean x = json.validateTheFollowingFields("observations").withRange().fromObjects().asStringWithLenght().isLessOrEqualsTo(500);
+		assertTrue(x);
 		
 	}
-
-	protected String getMethod() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }
