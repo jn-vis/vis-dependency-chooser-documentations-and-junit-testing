@@ -110,7 +110,7 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		CcpJsonRepresentation json = CcpConstants.EMPTY_JSON
 				.put("onlyHomeOffice", true)/// TODO JASSON USE SUA CRIATIVIDADE PARA TESTAR PARA CRIAR O JSON À SUA MANEIRA
 				;
-		boolean x = json.validateTheFollowingFields("observations").withRange().fromObjects().asStringWithLenght().isLessOrEqualsTo(500);
+		boolean x = json.validateTheFollowingFields("observations").withRange().fromObjects().asStringWithLenghtThat().isLessOrEqualsTo(500);
 		assertTrue(x);
 		
 	}
