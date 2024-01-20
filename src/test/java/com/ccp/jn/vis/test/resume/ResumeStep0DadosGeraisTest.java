@@ -56,7 +56,7 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
 				;
 		
-		boolean x = giveOneJson.itIsTruthThatTheFollowingFields("ddds", "disabilities", "companiesNotAllowed").ifTheyAreArrayValuesSoEachOne().hasNonDuplicatedItems();
+		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("ddds", "disabilities", "companiesNotAllowed").ifTheyAreArrayValuesThenEachOne().hasNonDuplicatedItems();
 		assertTrue(x);
 	}
 
@@ -65,9 +65,9 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		CcpJsonRepresentation giveOneJson =  CcpConstants.EMPTY_JSON
 				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
 				;
-		boolean x = giveOneJson.itIsTruthThatTheFollowingFields("ddds").ifTheyAreArrayValuesSoEachOne().isNumberAndItIsContainedAtTheList(11d, 55d);
+		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("ddds").ifTheyAreArrayValuesThenEachOne().isNumberAndItIsContainedAtTheList(11d, 55d);
 		assertTrue(x);
-		boolean y = giveOneJson.itIsTruthThatTheFollowingFields("disabilities").ifTheyAreArrayValuesSoEachOne().isTextAndItIsContainedAtTheList("visual", "auditivo", "motora");
+		boolean y = giveOneJson.itIsTrueThatTheFollowingFields("disabilities").ifTheyAreArrayValuesThenEachOne().isTextAndItIsContainedAtTheList("visual", "auditivo", "motora");
 		assertTrue(y);
 	}
 
@@ -76,11 +76,11 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		CcpJsonRepresentation giveOneJson =  CcpConstants.EMPTY_JSON
 				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
 				;
-		boolean x = giveOneJson.itIsTruthThatTheFollowingFields("companiesNotAllowed", "disabilities", "ddds").areOfTheType().list();
+		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("companiesNotAllowed", "disabilities", "ddds").areOfTheType().list();
 		assertTrue(x);
-		boolean y = giveOneJson.itIsTruthThatTheFollowingFields("pcd", "onlyHomeOffice").areOfTheType().bool();
+		boolean y = giveOneJson.itIsTrueThatTheFollowingFields("pcd", "onlyHomeOffice").areOfTheType().bool();
 		assertTrue(y);
-		boolean z = giveOneJson.itIsTruthThatTheFollowingFields("disponibility").areOfTheType().longNumber();
+		boolean z = giveOneJson.itIsTrueThatTheFollowingFields("disponibility").areOfTheType().longNumber();
 		assertTrue(z);
 	}
 
@@ -89,53 +89,53 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		CcpJsonRepresentation giveOneJson = CcpConstants.EMPTY_JSON
 				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
 				;
-		boolean x = giveOneJson.itIsTruthThatTheFollowingFields("observations").ifTheyAre().textsSoEachOneHasTheSizeThatIs().equalsOrLessThan(500);
+		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("observations").ifTheyAre().textsThenEachOneHasTheSizeThatIs().equalsOrLessThan(500);
 		assertTrue(x);
 	}
 	
 	public static void main(String[] args) {
-		CcpJsonRepresentation giveOneJson = CcpConstants.EMPTY_JSON;
+		CcpJsonRepresentation givenOneJson = CcpConstants.EMPTY_JSON;
 		
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").areOfTheType().bool());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").areOfTheType().doubleNumber());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").areOfTheType().json());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").areOfTheType().list());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").areOfTheType().longNumber());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().hasNonDuplicatedItems());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().hasTheSizeThatIs().equalsTo(0));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().hasTheSizeThatIs().equalsOrGreaterThan(1));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().hasTheSizeThatIs().equalsOrLessThan(2));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().hasTheSizeThatIs().greaterThan(3));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().hasTheSizeThatIs().lessThan(4));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isOfTheType().bool());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isOfTheType().doubleNumber());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isOfTheType().json());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isOfTheType().list());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isOfTheType().longNumber());
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isTextAndItIsContainedAtTheList("item1", "item2"));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isTextAnd().hasTheSizeThatIs().equalsTo(0));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isTextAnd().hasTheSizeThatIs().equalsOrGreaterThan(1));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isTextAnd().hasTheSizeThatIs().equalsOrLessThan(2));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isTextAnd().hasTheSizeThatIs().greaterThan(3));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isTextAnd().hasTheSizeThatIs().lessThan(4));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isNumberAndItIsContainedAtTheList(1,2));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isNumberAndItIs().equalsTo(0));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isNumberAndItIs().equalsOrGreaterThan(1));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isNumberAndItIs().equalsOrLessThan(2));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isNumberAndItIs().greaterThan(3));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesSoEachOne().isNumberAndItIs().lessThan(4));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().textsSoEachOneIsContainedAtTheList("item1", "item2"));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().textsSoEachOneHasTheSizeThatIs().equalsTo(0));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().textsSoEachOneHasTheSizeThatIs().equalsOrGreaterThan(1));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().textsSoEachOneHasTheSizeThatIs().equalsOrLessThan(2));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().textsSoEachOneHasTheSizeThatIs().greaterThan(3));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().textsSoEachOneHasTheSizeThatIs().lessThan(4));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().numbersSoEachOneIsContainedAtTheList(1, 2));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().numbersSoEachOneIs().equalsTo(0));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().numbersSoEachOneIs().equalsOrGreaterThan(1));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().numbersSoEachOneIs().equalsOrLessThan(2));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().numbersSoEachOneIs().greaterThan(3));
-		assertTrue(giveOneJson.itIsTruthThatTheFollowingFields("field1", "field2").ifTheyAre().numbersSoEachOneIs().lessThan(4));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").areOfTheType().bool());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").areOfTheType().doubleNumber());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").areOfTheType().json());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").areOfTheType().list());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").areOfTheType().longNumber());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().hasNonDuplicatedItems());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().hasTheSizeThatIs().equalsTo(0));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().hasTheSizeThatIs().equalsOrGreaterThan(1));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().hasTheSizeThatIs().equalsOrLessThan(2));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().hasTheSizeThatIs().greaterThan(3));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().hasTheSizeThatIs().lessThan(4));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isOfTheType().bool());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isOfTheType().doubleNumber());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isOfTheType().json());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isOfTheType().list());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isOfTheType().longNumber());
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isTextAndItIsContainedAtTheList("item1", "item2"));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().equalsTo(0));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().equalsOrGreaterThan(1));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().equalsOrLessThan(2));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().greaterThan(3));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().lessThan(4));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isNumberAndItIsContainedAtTheList(1,2));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isNumberAndItIs().equalsTo(0));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isNumberAndItIs().equalsOrGreaterThan(1));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isNumberAndItIs().equalsOrLessThan(2));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isNumberAndItIs().greaterThan(3));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreArrayValuesThenEachOne().isNumberAndItIs().lessThan(4));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().textsThenEachOneIsContainedAtTheList("item1", "item2"));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().textsThenEachOneHasTheSizeThatIs().equalsTo(0));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().textsThenEachOneHasTheSizeThatIs().equalsOrGreaterThan(1));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().textsThenEachOneHasTheSizeThatIs().equalsOrLessThan(2));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().textsThenEachOneHasTheSizeThatIs().greaterThan(3));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().textsThenEachOneHasTheSizeThatIs().lessThan(4));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().numbersThenEachOneIsContainedAtTheList(1, 2));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().numbersThenEachOneIs().equalsTo(0));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().numbersThenEachOneIs().equalsOrGreaterThan(1));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().numbersThenEachOneIs().equalsOrLessThan(2));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().numbersThenEachOneIs().greaterThan(3));
+		assertTrue(givenOneJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAre().numbersThenEachOneIs().lessThan(4));
 
 	}
 }

@@ -10,7 +10,6 @@ import com.ccp.implementations.db.setup.elasticsearch.CcpElasticSearchDbSetup;
 import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
-import com.ccp.jn.vis.test.asserting.TemplateDeTestes;
 
 public class ResumeStep1DadosDaCarreiraTest {		// extends TemplateDeTestes{
 	
