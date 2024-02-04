@@ -1,0 +1,1 @@
+    properties: "{ 'supportLanguage':'portuguese','urlEmailKey':'https://api.sendgrid.com/v3/mail/send','urlInstantMessengerKey':'https://api.telegram.org/bot','tokenEmailKey':'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','instantMessageBotTokenUser':'','tokenInstantMessengerKey':'1122898762:AAGE69KRQ0P0TBZNPXgAMDqNaJCd7jFP_G0'}"

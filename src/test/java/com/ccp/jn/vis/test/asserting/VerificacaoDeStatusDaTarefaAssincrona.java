@@ -35,7 +35,7 @@ public class VerificacaoDeStatusDaTarefaAssincrona extends TemplateDeTestes{
 		}
 	}
 	
-	@Override
+	
 	protected String getMethod() {
 		return "GET";
 	}

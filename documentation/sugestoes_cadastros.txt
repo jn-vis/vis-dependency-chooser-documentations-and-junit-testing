@@ -1,0 +1,27 @@
+ddds []
+experiencia []
+pj 
+clt
+disponibilidade
+imprenscindíveis []
+
+---------------------------------------------------------------
+sugestão de curriculos nao totalmente aderentes (imprenscíndiveis, pj, clt) 
+
+ordenações de curriculos (pj, clt, desejáveis, experiencia) vai valer tambem pra curriculos futuros que acumularem
+
+cobrar por atualização de lista de curriculos
+
+cobrar do candidato por push de vaga que chegar nele ou listagem de vaga (a vaga tem que ser atrativa)
+---------------------------------------------------------------
+Extração de texto do curriculo (frontend)[elencar palavras chaves, elencar sinonimos, texto indexado, texto extraído]
+
+Validações (front e back)
+
+Enviar curriculo recem alterado/inserido ao recrutador que tiver uma vaga compatível online(na hora que o currículo chega)
+
+Enviar curriculo recem alterado/inserido ao recrutador que tiver uma vaga compatível agendada(hora em hora, horas em horas, dia em dia, semana em semana)[quanto menor a frquencia mais caro fica]
+
+
+
+

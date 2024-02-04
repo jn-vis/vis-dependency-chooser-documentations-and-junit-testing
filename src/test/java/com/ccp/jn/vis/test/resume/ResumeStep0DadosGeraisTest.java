@@ -89,12 +89,65 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		CcpJsonRepresentation giveOneJson = CcpConstants.EMPTY_JSON
 				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
 				;
-		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("observations").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().equalsOrLessThan(500);
+		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("observations").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().equalsOrLessThan(500d);
 		assertTrue(x);
 	}
 	
 	public static void main(String[] args) {
 		CcpJsonRepresentation givenTheJson = CcpConstants.EMPTY_JSON;
+		//@FieldArraysWithSizeEqualsTo(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().equalsTo(0d));
+		//@FieldArraysWithSizeEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().equalsOrGreaterThan(1d));
+		//@FieldArraysWithSizeEqualsOrLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().equalsOrLessThan(2d));
+		//@FieldArraysWithSizeGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().greaterThan(3d));
+		//@FieldArraysWithSizeLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().lessThan(4d));
+		//@FieldArrayTextsWithSizeEqualsOrLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().equalsTo(0d));
+		//@FieldArrayTextsWithSizeEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().equalsOrGreaterThan(1d));
+		//@FieldArrayTextsWithSizeEqualsOrLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().equalsOrLessThan(2d));
+		//@FieldArrayTextsWithSizeGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().greaterThan(3d));
+		//@FieldArrayTexstWithSizeLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().lessThan(4d));
+		//@FieldArrayNumbersWithValueEqualsTo(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().equalsTo(0d));
+		//@FieldArrayNumbersWithValueEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().equalsOrGreaterThan(1d));
+		//@FieldArrayNumbersWithValueEqualsOrLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().equalsOrLessThan(2d));
+		//@FieldArrayNumbersWithValueGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().greaterThan(3d));
+		//@FieldArrayNumbersWithValueLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().lessThan(4d));
+		//@FieldObjectTextsThatAreContainedAtTheList(fields = {"field1","field2"}, list = {"item1", "item2"})
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneIsContainedAtTheList("item1", "item2"));
+		//@FieldObjectTextsWithSizeEqualsTo(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().equalsTo(0d));
+		//@FieldObjectTextsWithSizeEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().equalsOrGreaterThan(1d));
+		//@FieldObjectTextsWithSizeEqualsOrLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().equalsOrLessThan(2d));
+		//@FieldObjectTextsWithSizeGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().greaterThan(3d));
+		//@FieldObjctTextsWithSizeLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().lessThan(4d));
+		//@FieldObjectNumbersWithValueEqualsTo(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().equalsTo(0d));
+		//@FieldObjectNumbersWithValueEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().equalsOrGreaterThan(1d));
+		//@FieldObjectNumbersWithValueEqualsOrLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().equalsOrLessThan(2d));
+		//@FieldObjectNumbersWithValueGreaterThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().greaterThan(3d));
+		//@FieldObjctNumbersWithValueLessThan(fields={"field1","field2"}, limit=100)
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().lessThan(4d));
+
 		//@BooleanFields({"field1","field2"})
 		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").areAllOfTheType().bool());
 		//@DoubleFields({"field1","field2"})
@@ -107,16 +160,6 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").areAllOfTheType().longNumber());
 		//@SetFields({"field1","field2"})
 		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasNonDuplicatedItems());
-		//@FieldArraysWithSizeEqualsTo(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().equalsTo(0));
-		//@FieldArraysWithSizeEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().equalsOrGreaterThan(1));
-		//@FieldArraysWithSizeEqualsOrLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().equalsOrLessThan(2));
-		//@FieldArraysWithSizeGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().greaterThan(3));
-		//@FieldArraysWithSizeLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().lessThan(4));
 		//@BooleanArrayFields({"field1","field2"})
 		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isOfTheType().bool());
 		//@DoubleArrayFields({"field1","field2"})
@@ -129,52 +172,10 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isOfTheType().longNumber());
 		//@FieldArrayTextsThatAreContainedAtTheList(fields = {"field1","field2"}, list = {"item1", "item2"})
 		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAndItIsContainedAtTheList("item1", "item2"));
-		//@FieldArrayTextsWithSizeEqualsOrLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().equalsTo(0));
-		//@FieldArrayTextsWithSizeEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().equalsOrGreaterThan(1));
-		//@FieldArrayTextsWithSizeEqualsOrLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().equalsOrLessThan(2));
-		//@FieldArrayTextsWithSizeGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().greaterThan(3));
-		//@FieldArrayTexstWithSizeLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isTextAnd().hasTheSizeThatIs().lessThan(4));
 		//@FieldArrayNumbersThatAreContainedAtTheList(fields = {"field1","field2"}, list = {1d, 2d})
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIsContainedAtTheList(1,2));
-		//@FieldArrayNumbersWithValueEqualsTo(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().equalsTo(0));
-		//@FieldArrayNumbersWithValueEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().equalsOrGreaterThan(1));
-		//@FieldArrayNumbersWithValueEqualsOrLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().equalsOrLessThan(2));
-		//@FieldArrayNumbersWithValueGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().greaterThan(3));
-		//@FieldArrayNumbersWithValueLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIs().lessThan(4));
-		//@FieldObjectTextsThatAreContainedAtTheList(fields = {"field1","field2"}, list = {"item1", "item2"})
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneIsContainedAtTheList("item1", "item2"));
-		//@FieldObjectTextsWithSizeEqualsTo(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().equalsTo(0));
-		//@FieldObjectTextsWithSizeEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().equalsOrGreaterThan(1));
-		//@FieldObjectTextsWithSizeEqualsOrLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().equalsOrLessThan(2));
-		//@FieldObjectTextsWithSizeGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().greaterThan(3));
-		//@FieldObjctTextsWithSizeLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().lessThan(4));
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIsContainedAtTheList(1d, 2d));
 		//@FieldObjectNumbersThatAreContainedAtTheList(fields = {"field1","field2"}, list = {1d, 2d})
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIsContainedAtTheList(1, 2));
-		//@FieldObjectNumbersWithValueEqualsTo(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().equalsTo(0));
-		//@FieldObjectNumbersWithValueEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().equalsOrGreaterThan(1));
-		//@FieldObjectNumbersWithValueEqualsOrLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().equalsOrLessThan(2));
-		//@FieldObjectNumbersWithValueGreaterThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().greaterThan(3));
-		//@FieldObjctNumbersWithValueLessThan(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIs().lessThan(4));
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAll().numbersThenEachOneIsContainedAtTheList(1d, 2d));
 
 	}
 }
