@@ -93,10 +93,12 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 		assertTrue(x);
 	}
 	
-	public static void main(String[] args) {
+	
+	
+	@Test
+	public void allTests() {
 		CcpJsonRepresentation givenTheJson = CcpConstants.EMPTY_JSON;
-		//@FieldArraysWithSizeEqualsTo(fields={"field1","field2"}, limit=100)
-		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().equalsTo(0d));
+		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().equalsTo(5d));
 		//@FieldArraysWithSizeEqualsOrGreaterThan(fields={"field1","field2"}, limit=100)
 		assertTrue(givenTheJson.itIsTrueThatTheFollowingFields("field1", "field2").ifTheyAreAllArrayValuesThenEachOne().hasTheSizeThatIs().equalsOrGreaterThan(1d));
 		//@FieldArraysWithSizeEqualsOrLessThan(fields={"field1","field2"}, limit=100)
