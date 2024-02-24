@@ -16,3 +16,19 @@ download de texto de curriculo
 enviar curriculo por e-mail
 negativar curriculo 
 avaliar curriculo
+
+A) Codificação do backend do VIS
+B) Documentação das validations
+C) Levantar palavras
+D) Levantar relações entre as palavras
+E) Processo de renovação entre as palavras
+F) Melhor modelo de busca de currículos
+G) Testes de todos os processos
+H) Implementação de front end
+I) Política Devops
+J) Deploy e endereço novo
+K) Consultoria advocatícia
+L) Implementação de LN
+M) Chamar recrutadores
+N) Politica de empréstimos
+O) Política de meio de pagamento
