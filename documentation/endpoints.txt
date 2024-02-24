@@ -1,0 +1,18 @@
+inserir candidato
+ver candidato
+alterar candidato
+excluir candidato
+inativar candidato
+download de arquivo de curriculo do candidato
+download de texto de curriculo do candidato
+inserir vaga
+ver vaga
+alterar vaga
+excluir vaga
+inativar vaga
+lista simplificada de curriculos
+download de arquivo de curriculo
+download de texto de curriculo
+enviar curriculo por e-mail
+negativar curriculo 
+avaliar curriculo
