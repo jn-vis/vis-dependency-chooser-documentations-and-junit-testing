@@ -41,7 +41,7 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 	@Test
 	public void testFieldsPresent() {
 		CcpJsonRepresentation json =  CcpConstants.EMPTY_JSON
-				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
+				.put("onlyHomeOffice", true)
 				;
 		
 		
@@ -53,7 +53,7 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 	@Test
 	public void testFieldsNonDuplicatedItems() {
 		CcpJsonRepresentation giveOneJson =  CcpConstants.EMPTY_JSON
-				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
+				.put("onlyHomeOffice", true)
 				;
 		
 		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("ddds", "disabilities", "companiesNotAllowed").ifTheyAreAllArrayValuesThenEachOne().hasNonDuplicatedItems();
@@ -63,7 +63,7 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 	@Test
 	public void testAllowedValues() {
 		CcpJsonRepresentation giveOneJson =  CcpConstants.EMPTY_JSON
-				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
+				.put("onlyHomeOffice", true)
 				;
 		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("ddds").ifTheyAreAllArrayValuesThenEachOne().isNumberAndItIsContainedAtTheList(11d, 55d);
 		assertTrue(x);
@@ -74,7 +74,7 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 	@Test
 	public void testFieldsTypes() {
 		CcpJsonRepresentation giveOneJson =  CcpConstants.EMPTY_JSON
-				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
+				.put("onlyHomeOffice", true)
 				;
 		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("companiesNotAllowed", "disabilities", "ddds").areAllOfTheType().list();
 		assertTrue(x);
@@ -87,7 +87,7 @@ public class ResumeStep0DadosGeraisTest {		//extends TemplateDeTestes{
 	@Test
 	public void testMaxLenght() {
 		CcpJsonRepresentation giveOneJson = CcpConstants.EMPTY_JSON
-				.put("onlyHomeOffice", true)// TODO JASSON, FAÇA TESTES DE PREENCHIMENTOS VARIADOS DO JSON
+				.put("onlyHomeOffice", true)
 				;
 		boolean x = giveOneJson.itIsTrueThatTheFollowingFields("observations").ifTheyAreAll().textsThenEachOneHasTheSizeThatIs().equalsOrLessThan(500d);
 		assertTrue(x);
