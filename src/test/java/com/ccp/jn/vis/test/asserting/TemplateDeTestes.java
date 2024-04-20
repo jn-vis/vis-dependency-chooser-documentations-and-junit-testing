@@ -64,7 +64,7 @@ public abstract class TemplateDeTestes {
 
 		CcpHttpHandler http = new CcpHttpHandler(expectedStatus);
 		String path = this.ENDPOINT_URL + uri;
-		V executeHttpRequest = http.executeHttpRequest(path, method, headers, body, transformer);
+		V executeHttpRequest = http.executeHttpRequest(this.getClass().getName(), path, method, headers, body, transformer);
 
 		this.logRequestAndResponse(expectedStatus, body, executeHttpRequest);
 
