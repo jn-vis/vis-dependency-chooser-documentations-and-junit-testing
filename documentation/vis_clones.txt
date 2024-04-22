@@ -1,0 +1,9 @@
+git clone git@github.com:jn-vis/vis-business-async.git
+git clone git@github.com:jn-vis/vis-business-sync.git
+git clone git@github.com:jn-vis/vis-dependency-chooser-mensageria-consumer-gcp-pubsub-push-spring.git
+git clone git@github.com:jn-vis/vis-dependency-chooser-mensageria-consumer-gcp-pubsub-pull.git
+git clone git@github.com:jn-vis/vis-dependency-chooser-cron-tasks.git
+git clone git@github.com:jn-vis/vis-dependency-chooser-documentations-and-junit-testing.git
+git clone git@github.com:jn-vis/vis-business-commons.git
+git clone git@github.com:jn-vis/vis-frontend-calistrato.git
+git clone git@github.com:jn-vis/vis-dependency-chooser-sync-endpoints-spring.git
