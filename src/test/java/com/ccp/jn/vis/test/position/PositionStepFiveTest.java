@@ -6,7 +6,6 @@ public class PositionStepFiveTest  extends TemplateDeTestes{
 
 	
 	protected String getMethod() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

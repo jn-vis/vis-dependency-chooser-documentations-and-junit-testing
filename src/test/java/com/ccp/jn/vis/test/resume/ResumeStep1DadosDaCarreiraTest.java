@@ -38,7 +38,6 @@ public class ResumeStep1DadosDaCarreiraTest {		// extends TemplateDeTestes{
 		
 	
 	protected String getMethod() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
