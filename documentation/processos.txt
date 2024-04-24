@@ -2,8 +2,8 @@
 		1) O currículo, juntamente com seus hashes é salvo - Vis.1.1
 		2) O arquivo do currículo é salvo no bucket - Vis.1.2
 		3) O currículo é enviado para vagas aderentes agendadas como instantâneas - Vis.1.3
-		4) Debita-se saldo de recrutador  - Vis.1.4
-		5) Notificar recrutador caso este não tenha saldo para receber currículo imediato. - Vis.1.5
+		4) Notificar recrutador caso este não tenha saldo para receber currículo imediato. - Vis.1.4
+		5) Debita-se saldo de recrutador  - Vis.1.5
 
 		O que acontece quando uma vaga é salva?
 		1) A vaga, juntamente com seus hashes é salva
@@ -24,6 +24,7 @@
 		4) Registra-se a visualização do curriculo
 		
 		
+		Schedule para inativar vaga por prazo de validade
 		
 		/*Agendamento do envio de curriculos
 		 * A) Salvar vaga
