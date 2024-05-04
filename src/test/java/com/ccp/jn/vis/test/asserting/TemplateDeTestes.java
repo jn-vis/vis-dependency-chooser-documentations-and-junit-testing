@@ -10,7 +10,7 @@ import com.ccp.especifications.db.setup.CcpDbSetupCreator;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponseTransform;
 import com.ccp.especifications.http.CcpHttpResponseType;
-import com.ccp.implementations.db.dao.elasticsearch.CcpElasticSearchDao;
+import com.ccp.implementations.db.crud.elasticsearch.CcpElasticSearchCrud;
 import com.ccp.implementations.db.setup.elasticsearch.CcpElasticSearchDbSetup;
 import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
@@ -21,7 +21,7 @@ public abstract class TemplateDeTestes {
 	protected final int caminhoFeliz = 200;
 
 	public TemplateDeTestes() {
-		CcpDependencyInjection.loadAllDependencies(new CcpGsonJsonHandler(), new CcpElasticSearchDao(),
+		CcpDependencyInjection.loadAllDependencies(new CcpGsonJsonHandler(), new CcpElasticSearchCrud(),
 				new CcpElasticSearchDbRequest(), new CcpApacheMimeHttp(), new CcpElasticSearchDbSetup());
 	}
 
