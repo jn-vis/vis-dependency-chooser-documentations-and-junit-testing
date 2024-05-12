@@ -1,34 +1,24 @@
-inserir candidato
-ver candidato
-alterar candidato
-excluir candidato
-inativar candidato
-download de arquivo de curriculo do candidato
-download de texto de curriculo do candidato
-inserir vaga
-ver vaga
-alterar vaga
-excluir vaga
-inativar vaga
+inserir dados do candidato pelo candidato
+alterar dados do candidato pelo candidato
+excluir dados do candidato pelo candidato
+inativar dados do candidato pelo candidato
+ver dados do candidato pelo candidato
+download de arquivo de curriculo do candidato pelo candidato
+download de texto de curriculo do candidato pelo candidato
+inserir vaga pelo recrutador
+ver vaga pelo recrutador
+alterar vaga pelo recrutador
+excluir vaga pelo recrutador
+inativar vaga pelo recrutador
 lista simplificada de curriculos
-download de arquivo de curriculo
-download de texto de curriculo
-enviar curriculo por e-mail
-negativar curriculo 
-avaliar curriculo
-
-A) Codificação do backend do VIS
-B) Documentação das validations
-C) Levantar palavras
-D) Levantar relações entre as palavras
-E) Processo de renovação entre as palavras
-F) Melhor modelo de busca de currículos
-G) Testes de todos os processos
-H) Implementação de front end
-I) Política Devops
-J) Deploy e endereço novo
-K) Consultoria advocatícia
-L) Implementação de LN
-M) Chamar recrutadores
-N) Politica de empréstimos
-O) Política de meio de pagamento
+ver dados do candidato pelo recrutador
+download de arquivo de curriculo pelo recrutador
+download de texto de curriculo pelo recrutador
+enviar curriculo por e-mail pelo recrutador
+negativar curriculo pelo recrutador 
+avaliar curriculo pelo recrutador
+desnegativar curriculo pelo recrutador
+ver anotações do currículo pelo recrutador
+listar currículos negativados pelo recrutador
+listar currículos desnegativados pelo recrutador
+listar palavras chaves da vaga
