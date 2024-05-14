@@ -1,5 +1,6 @@
 inserir dados do candidato pelo candidato
 alterar dados do candidato pelo candidato
+
 excluir dados do candidato pelo candidato
 inativar dados do candidato pelo candidato
 ver dados do candidato pelo candidato
