@@ -3,9 +3,9 @@ alterar dados do candidato pelo candidato
 excluir dados do candidato pelo candidato
 inativar dados do candidato pelo candidato
 ver dados do candidato pelo candidato
-
 download de arquivo de curriculo do candidato pelo candidato
 download de texto de curriculo do candidato pelo candidato
+
 inserir vaga pelo recrutador
 ver vaga pelo recrutador
 alterar vaga pelo recrutador
