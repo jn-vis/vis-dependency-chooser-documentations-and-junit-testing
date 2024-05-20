@@ -1,25 +1,18 @@
-inserir dados do candidato pelo candidato
-alterar dados do candidato pelo candidato
+salvar dados do candidato pelo candidato
 excluir dados do candidato pelo candidato
-inativar dados do candidato pelo candidato
+(re)inativar dados do candidato pelo candidato
 ver dados do candidato pelo candidato
-download de arquivo de curriculo do candidato pelo candidato
-download de texto de curriculo do candidato pelo candidato
+download do curriculo do candidato pelo candidato
 
-inserir vaga pelo recrutador
+salvar vaga pelo recrutador
 ver vaga pelo recrutador
-alterar vaga pelo recrutador
-excluir vaga pelo recrutador
-inativar vaga pelo recrutador
+(re)inativar vaga pelo recrutador
 lista simplificada de curriculos
 ver dados do candidato pelo recrutador
-download de arquivo de curriculo pelo recrutador
-download de texto de curriculo pelo recrutador
+download do curriculo pelo recrutador
 enviar curriculo por e-mail pelo recrutador
-negativar curriculo pelo recrutador 
-avaliar curriculo pelo recrutador
-desnegativar curriculo pelo recrutador
+(des)negativar curriculo pelo recrutador 
+anotar curriculo pelo recrutador
 ver anotações do currículo pelo recrutador
-listar currículos negativados pelo recrutador
-listar currículos desnegativados pelo recrutador
+listar currículos (des)negativados pelo recrutador
 listar palavras chaves da vaga
