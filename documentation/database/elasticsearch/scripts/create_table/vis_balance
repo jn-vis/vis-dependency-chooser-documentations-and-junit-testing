@@ -1,0 +1,13 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+		"properties": {
+			"email": {
+				"type": "keyword"
+			},
+			"balance": {
+				"type": "double"
+			}
+		}
+	}
+}
