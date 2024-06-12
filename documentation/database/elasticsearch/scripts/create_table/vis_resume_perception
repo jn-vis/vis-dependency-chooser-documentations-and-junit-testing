@@ -1,0 +1,19 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+		"properties": {
+			"recruiter": {
+				"type": "keyword"
+			},
+			"email": {
+				"type": "keyword"
+			},
+			"timestamp": {
+				"type": "long"
+			},
+			"date": {
+				"type": "text"
+			}
+		}
+	}
+}

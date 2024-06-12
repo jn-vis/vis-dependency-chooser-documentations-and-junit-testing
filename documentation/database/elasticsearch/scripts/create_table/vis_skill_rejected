@@ -1,0 +1,19 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+		"properties": {
+			"skill": {
+				"type": "keyword"
+			},
+			"synonym": {
+				"type": "keyword"
+			},
+			"prerequiste": {
+				"type": "text"
+			},
+			"ranking": {
+				"type": "long"
+			}
+		}
+	}
+}

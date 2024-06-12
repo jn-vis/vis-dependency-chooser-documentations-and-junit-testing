@@ -1,0 +1,25 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+		"properties": {
+			"recruiter": {
+				"type": "text"
+			},
+			"email": {
+				"type": "keyword"
+			},
+			"status": {
+				"type": "text"
+			},
+			"json": {
+				"type": "text"
+			},
+			"timestamp": {
+				"type": "long"
+			},
+			"date": {
+				"type": "text"
+			}
+		}
+	}
+}
