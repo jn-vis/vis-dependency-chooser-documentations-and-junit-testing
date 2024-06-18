@@ -1,9 +1,9 @@
 {
 	"mappings": {
-		"dynamic": "strict",
+		"dynamic": "true",
 		"properties": {
 			"recruiter": {
-				"type": "text"
+				"type": "keyword"
 			},
 			"email": {
 				"type": "keyword"
@@ -21,10 +21,10 @@
 				"type": "boolean"
 			},
 			"resume": {
-				"type": "text"
+				"type": "json"
 			},
 			"position": {
-				"type": "long"
+				"type": "json"
 			}
 		}
 	}

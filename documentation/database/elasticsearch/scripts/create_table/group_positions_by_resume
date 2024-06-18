@@ -1,6 +1,6 @@
 {
 	"mappings": {
-		"dynamic": "strict",
+		"dynamic": "true",
 		"properties": {
 			"email": {
 				"type": "keyword"
@@ -9,10 +9,10 @@
 				"type": "integer"
 			},
 			"from": {
-				"type": "text"
+				"type": "integer"
 			},
 			"detail": {
-				"type": "text"
+				"type": "json"
 			}
 		}
 	}

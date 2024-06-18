@@ -5,14 +5,8 @@
 			"email": {
 				"type": "keyword"
 			},
-			"listSize": {
-				"type": "integer"
-			},
-			"from": {
-				"type": "text"
-			},
-			"detail": {
-				"type": "text"
+			"balance": {
+				"type": "double"
 			}
 		}
 	}

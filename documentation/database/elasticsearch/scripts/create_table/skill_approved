@@ -9,10 +9,10 @@
 				"type": "keyword"
 			},
 			"prerequiste": {
-				"type": "text"
+				"type": "keyword"
 			},
 			"ranking": {
-				"type": "long"
+				"type": "integer"
 			}
 		}
 	}

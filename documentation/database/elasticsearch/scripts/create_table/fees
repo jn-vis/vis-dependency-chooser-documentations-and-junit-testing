@@ -6,7 +6,7 @@
 				"type": "double"
 			},
 			"service": {
-				"type": "text"
+				"type": "keyword"
 			}
 		}
 	}

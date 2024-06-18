@@ -1,9 +1,9 @@
 {
 	"mappings": {
-		"dynamic": "strict",
+		"dynamic": "true",
 		"properties": {
 			"recruiter": {
-				"type": "text"
+				"type": "keyword"
 			},
 			"email": {
 				"type": "keyword"
@@ -12,7 +12,7 @@
 				"type": "text"
 			},
 			"json": {
-				"type": "text"
+				"type": "json"
 			},
 			"timestamp": {
 				"type": "long"
