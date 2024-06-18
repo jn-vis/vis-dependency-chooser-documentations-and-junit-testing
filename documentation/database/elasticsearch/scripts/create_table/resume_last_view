@@ -1,6 +1,6 @@
 {
 	"mappings": {
-		"dynamic": "true",
+		"dynamic": "strict",
 		"properties": {
 			"recruiter": {
 				"type": "keyword"
@@ -21,10 +21,12 @@
 				"type": "boolean"
 			},
 			"resume": {
-				"type": "json"
+				"dynamic": "true",
+					"properties": {}
 			},
 			"position": {
-				"type": "json"
+				"dynamic": "true",
+					"properties": {}
 			}
 		}
 	}

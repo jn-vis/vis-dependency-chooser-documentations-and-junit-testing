@@ -1,6 +1,6 @@
 {
 	"mappings": {
-		"dynamic": "true",
+		"dynamic": "strict",
 		"properties": {
 			"recruiter": {
 				"type": "keyword"
@@ -12,7 +12,8 @@
 				"type": "text"
 			},
 			"json": {
-				"type": "json"
+				"dynamic": "true",
+					"properties": {}
 			},
 			"timestamp": {
 				"type": "long"
