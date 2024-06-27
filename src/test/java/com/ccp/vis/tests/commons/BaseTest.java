@@ -1,6 +1,7 @@
 package com.ccp.vis.tests.commons;
 
 import com.ccp.constantes.CcpConstants;
+import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.dependency.injection.CcpDependencyInjection;
@@ -10,6 +11,7 @@ import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.mensageria.sender.gcp.pubsub.CcpGcpPubSubMensageriaSender;
 import com.ccp.implementations.mensageria.sender.gcp.pubsub.local.CcpLocalEndpointMensageriaSender;
+import com.ccp.validation.CcpJsonInvalid;
 import com.jn.commons.utils.JnGenerateRandomToken;
 
 public class BaseTest {
@@ -32,5 +34,14 @@ public class BaseTest {
 			.put("ip", "localhost:8080")
 			;
 			
+	
+	protected void saveErrors(CcpFileDecorator file, CcpJsonInvalid e) {
+		String path = file.getPath().replace(".json", "_errors.json");
+		String message = e.getMessage();
+		CcpFileDecorator reset = new CcpStringDecorator(path).file().reset();
+		reset.append(message);
+		throw new RuntimeException(e);
+	}
+
 
 }

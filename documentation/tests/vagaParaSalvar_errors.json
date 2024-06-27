@@ -1,0 +1,272 @@
+{
+  "errors": {
+    "ObjectTextSize.equalsOrGreaterThan": {
+      "bound": 200.0,
+      "wrongFields": [
+        {
+          "name": "description",
+          "value": "vaga para salvar"
+        }
+      ]
+    },
+    "Day.equalsOrGreaterThan": {
+      "bound": 0.0,
+      "wrongFields": [
+        {
+          "name": "expireDate"
+        }
+      ]
+    },
+    "Day.equalsOrLessThan": {
+      "bound": 365.0,
+      "wrongFields": [
+        {
+          "name": "expireDate"
+        }
+      ]
+    },
+    "SimpleObject.requiredFields": {
+      "wrongFields": [
+        {
+          "name": "expireDate"
+        },
+        {
+          "name": "mandatorySkill"
+        },
+        {
+          "name": "desiredSkill"
+        },
+        {
+          "name": "ddd"
+        },
+        {
+          "name": "seniority"
+        },
+        {
+          "name": "disponibility"
+        },
+        {
+          "name": "pcd"
+        },
+        {
+          "name": "sortFields"
+        },
+        {
+          "name": "frequency"
+        },
+        {
+          "name": "channel"
+        },
+        {
+          "name": "showSalaryExpectation"
+        }
+      ]
+    },
+    "SimpleObject.requiredAtLeastOne": {
+      "wrongFields": [
+        {
+          "name": "minClt"
+        },
+        {
+          "name": "minPj"
+        }
+      ]
+    }
+  },
+  "json": {
+    "title": "vaga para salvar",
+    "description": "vaga para salvar",
+    "contactChannel": "email"
+  },
+  "specification": {
+    "featureName": "positionSave",
+    "AllowedValues.arrayWithAllowedNumbers": {
+      "evaluatedFields": [
+        "ddd"
+      ],
+      "restrictedValues": [
+        "10",
+        "61",
+        "62",
+        "64",
+        "65",
+        "66",
+        "67",
+        "82",
+        "71",
+        "73",
+        "74",
+        "75",
+        "77",
+        "85",
+        "88",
+        "98",
+        "99",
+        "83",
+        "81",
+        "87",
+        "86",
+        "89",
+        "84",
+        "79",
+        "68",
+        "96",
+        "92",
+        "97",
+        "91",
+        "93",
+        "94",
+        "69",
+        "95",
+        "63",
+        "27",
+        "28",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "37",
+        "38",
+        "21",
+        "22",
+        "24",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "51",
+        "53",
+        "54\t",
+        "55",
+        "47",
+        "48",
+        "49"
+      ]
+    },
+    "AllowedValues.objectWithAllowedTexts": {
+      "evaluatedFields": [
+        "frequency"
+      ],
+      "restrictedValues": [
+        "minute",
+        "hourly",
+        "daily",
+        "weekly",
+        "monthly"
+      ]
+    },
+    "AllowedValues.arrayWithAllowedTexts": {
+      "evaluatedFields": [
+        "channel"
+      ],
+      "restrictedValues": [
+        "telegram",
+        "whatsapp",
+        "email",
+        "sms"
+      ]
+    },
+    "Day.equalsOrGreaterThan": {
+      "evaluatedFields": [
+        "expireDate"
+      ],
+      "bound": 0.0
+    },
+    "Day.equalsOrLessThan": {
+      "evaluatedFields": [
+        "expireDate"
+      ],
+      "bound": 365.0
+    },
+    "ObjectNumbers.equalsOrGreaterThan": {
+      "evaluatedFields": [
+        "minBtc",
+        "minClt",
+        "minPj"
+      ],
+      "bound": 1000.0
+    },
+    "ObjectNumbers.equalsOrLessThan": {
+      "evaluatedFields": [
+        "maxBtc",
+        "maxClt",
+        "maxPj"
+      ],
+      "bound": 100000.0
+    },
+    "ObjectTextSize.equalsOrGreaterThan": {
+      "evaluatedFields": [
+        "contactChannel"
+      ],
+      "bound": 3.0
+    },
+    "ObjectTextSize.equalsOrLessThan": {
+      "evaluatedFields": [
+        "contactChannel"
+      ],
+      "bound": 100.0
+    },
+    "Regex": {
+      "evaluatedFields": [
+        "email"
+      ],
+      "value": "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"
+    },
+    "SimpleObject.requiredFields": {
+      "evaluatedFields": [
+        "title",
+        "description",
+        "contactChannel",
+        "expireDate",
+        "mandatorySkill",
+        "desiredSkill",
+        "ddd",
+        "seniority",
+        "disponibility",
+        "pcd",
+        "sortFields",
+        "frequency",
+        "channel",
+        "showSalaryExpectation"
+      ]
+    },
+    "SimpleObject.requiredAtLeastOne": {
+      "evaluatedFields": [
+        "minClt",
+        "minPj"
+      ]
+    },
+    "SimpleObject.nonRepeatedLists": {
+      "evaluatedFields": [
+        "ddd",
+        "channel",
+        "desiredSkill",
+        "mandatorySkill",
+        "sortFields"
+      ]
+    },
+    "SimpleObject.integerFields": {
+      "evaluatedFields": [
+        "disponibility"
+      ]
+    },
+    "SimpleObject.booleanFields": {
+      "evaluatedFields": [
+        "pcd",
+        "showSalaryExpectation"
+      ]
+    }
+  }
+}
