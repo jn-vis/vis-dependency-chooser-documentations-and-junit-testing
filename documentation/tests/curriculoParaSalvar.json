@@ -1,3 +1,16 @@
 {
-	"experience": 50.0
+	"ddd": "11",
+	"disabilities": "Agora",
+	"companiesNotAllowed": "VW",
+	"disponibility": 5,
+    "observations": "Observando o observatório",
+    "resumeBase64": "Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi ",
+    "resumeText": "Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi ",
+	"desiredJob": "trabalho desejado",
+	"lastJob": "último trabalho",
+    "name": "Jasson",
+    "skill": "advogado",	
+	"experience": 50,
+	"clt": 10000.00
 }
+
