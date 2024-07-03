@@ -20,8 +20,7 @@ public class SaveResume extends BaseTest {
 		try {
 			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException(e);
+			super.saveErrors(file, e);
 		}
 	}
 }

@@ -1,0 +1,196 @@
+{
+  "errors": {
+    "SimpleObject.requiredAtLeastOne": {
+      "wrongFields": [
+        {
+          "name": "pj"
+        }
+      ]
+    }
+  },
+  "json": {
+    "ddd": "11",
+    "disabilities": "Agora",
+    "companiesNotAllowed": "VW",
+    "disponibility": 5.0,
+    "observations": "Observando o observatório",
+    "resumeBase64": "Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi ",
+    "resumeText": "Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi ",
+    "desiredJob": "trabalho desejado",
+    "lastJob": "último trabalho",
+    "name": "Jasson",
+    "skill": "advogado",
+    "experience": 50.0,
+    "clt": 10000.0
+  },
+  "specification": {
+    "featureName": "resumeSave",
+    "AllowedValues.arrayWithAllowedNumbers": {
+      "evaluatedFields": [
+        "ddd"
+      ],
+      "restrictedValues": [
+        "10",
+        "61",
+        "62",
+        "64",
+        "65",
+        "66",
+        "67",
+        "82",
+        "71",
+        "73",
+        "74",
+        "75",
+        "77",
+        "85",
+        "88",
+        "98",
+        "99",
+        "83",
+        "81",
+        "87",
+        "86",
+        "89",
+        "84",
+        "79",
+        "68",
+        "96",
+        "92",
+        "97",
+        "91",
+        "93",
+        "94",
+        "69",
+        "95",
+        "63",
+        "27",
+        "28",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "37",
+        "38",
+        "21",
+        "22",
+        "24",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "51",
+        "53",
+        "54\t",
+        "55",
+        "47",
+        "48",
+        "49"
+      ]
+    },
+    "AllowedValues.arrayWithAllowedTexts": {
+      "evaluatedFields": [
+        "disabilities"
+      ],
+      "restrictedValues": [
+        "física/motora",
+        "intelectual/mental",
+        "visual",
+        "auditiva"
+      ]
+    },
+    "ObjectNumbers.equalsOrGreaterThan": {
+      "evaluatedFields": [
+        "btc",
+        "clt",
+        "pj"
+      ],
+      "bound": 1000.0
+    },
+    "ObjectNumbers.equalsOrLessThan": {
+      "evaluatedFields": [
+        "btc",
+        "clt",
+        "pj"
+      ],
+      "bound": 100000.0
+    },
+    "ObjectTextSize.equalsOrLessThan": {
+      "evaluatedFields": [
+        "name"
+      ],
+      "bound": 100.0
+    },
+    "ObjectTextSize.equalsOrGreaterThan": {
+      "evaluatedFields": [
+        "name"
+      ],
+      "bound": 3.0
+    },
+    "Regex": {
+      "evaluatedFields": [
+        "email"
+      ],
+      "value": "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"
+    },
+    "SimpleObject.requiredFields": {
+      "evaluatedFields": [
+        "companiesNotAllowed",
+        "ddd",
+        "desiredJob",
+        "disponibility",
+        "disabilities",
+        "experience",
+        "lastJob",
+        "name",
+        "observations",
+        "resumeBase64",
+        "resumeText",
+        "skill"
+      ]
+    },
+    "SimpleObject.requiredAtLeastOne": {
+      "evaluatedFields": [
+        "clt",
+        "pj"
+      ]
+    },
+    "SimpleObject.nonRepeatedLists": {
+      "evaluatedFields": [
+        "ddd",
+        "disabilities",
+        "companiesNotAllowed",
+        "skill"
+      ]
+    },
+    "SimpleObject.integerFields": {
+      "evaluatedFields": [
+        "disponibility"
+      ]
+    },
+    "Year.equalsOrLessThan": {
+      "evaluatedFields": [
+        "experience"
+      ],
+      "bound": 70.0
+    },
+    "Year.equalsOrGreaterThan": {
+      "evaluatedFields": [
+        "experience"
+      ],
+      "bound": 0.0
+    }
+  }
+}

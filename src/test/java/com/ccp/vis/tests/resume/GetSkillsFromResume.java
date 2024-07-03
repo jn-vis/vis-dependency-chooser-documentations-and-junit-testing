@@ -28,8 +28,6 @@ public class GetSkillsFromResume {
 	
 	@Test
 	public void salvarCurriculoDepoisAlterarCurriculoVerificandoSeSkillsForamAlteradas() {
-		CcpJsonRepresentation oldResumeWithOldSkills = new CcpStringDecorator("documentation\\tests\\resume\\oldResumeWithOldSkills.json").file().asSingleJson();
-		CcpJsonRepresentation newResumeWithNewSkills = new CcpStringDecorator("documentation\\tests\\resume\\newResumeWithNewSkills.json").file().asSingleJson();
 		
 	}
 	

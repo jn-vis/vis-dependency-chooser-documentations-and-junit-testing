@@ -5,23 +5,30 @@ import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.dependency.injection.CcpDependencyInjection;
+import com.ccp.implementations.cache.gcp.memcache.CcpGcpMemCache;
 import com.ccp.implementations.db.crud.elasticsearch.CcpElasticSearchCrud;
 import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.mensageria.sender.gcp.pubsub.CcpGcpPubSubMensageriaSender;
-import com.ccp.implementations.mensageria.sender.gcp.pubsub.local.CcpLocalEndpointMensageriaSender;
+import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.validation.CcpJsonInvalid;
+import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
 import com.jn.commons.utils.JnGenerateRandomToken;
 
 public class BaseTest {
 	static {
 		boolean localEnviroment = new CcpStringDecorator("c:\\rh").file().exists();
 
-		CcpDependencyInjection.loadAllDependencies(new CcpGsonJsonHandler(), new CcpElasticSearchCrud(),
-				new CcpElasticSearchDbRequest(), new CcpApacheMimeHttp(),
-				localEnviroment ? new CcpLocalEndpointMensageriaSender() : new CcpGcpPubSubMensageriaSender()
-
+		CcpVisAsyncBusinessFactory businessInstanceProvider = new CcpVisAsyncBusinessFactory();
+		
+		CcpDependencyInjection.loadAllDependencies(
+				new CcpApacheMimeHttp(), 
+				new CcpGsonJsonHandler(), 
+				new CcpElasticSearchCrud(),
+				new CcpElasticSearchDbRequest(),
+				localEnviroment ? CcpLocalInstances.cache.getLocalImplementation(businessInstanceProvider) : new CcpGcpMemCache(),
+				localEnviroment ? CcpLocalInstances.mensageriaSender.getLocalImplementation(businessInstanceProvider) : new CcpGcpPubSubMensageriaSender()
 				);	
 	}
 
