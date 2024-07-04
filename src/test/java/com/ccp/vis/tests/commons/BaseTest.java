@@ -5,7 +5,9 @@ import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.dependency.injection.CcpDependencyInjection;
+import com.ccp.especifications.db.utils.CcpDbRequester;
 import com.ccp.implementations.cache.gcp.memcache.CcpGcpMemCache;
+import com.ccp.implementations.db.bulk.elasticsearch.CcpElasticSerchDbBulk;
 import com.ccp.implementations.db.crud.elasticsearch.CcpElasticSearchCrud;
 import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
@@ -30,6 +32,17 @@ public class BaseTest {
 				localEnviroment ? CcpLocalInstances.cache.getLocalImplementation(businessInstanceProvider) : new CcpGcpMemCache(),
 				localEnviroment ? CcpLocalInstances.mensageriaSender.getLocalImplementation(businessInstanceProvider) : new CcpGcpPubSubMensageriaSender()
 				);	
+		
+		CcpDependencyInjection.loadAllDependencies(new CcpGsonJsonHandler(), new CcpElasticSearchCrud(),
+				new CcpElasticSearchDbRequest(), new CcpApacheMimeHttp(),
+				new CcpElasticSerchDbBulk());
+		
+		String pathToCreateEntityScript = "documentation\\database\\elasticsearch\\scripts\\entities\\create";
+		String pathToJavaClasses = "..\\vis-business-commons\\src\\main\\java\\com\\vis\\commons\\entities";
+		String mappingJnEntitiesErrors = "c:\\logs\\mappingJnEntitiesErrors.json";
+		String insertErrors = "c:\\logs\\insertErrors.json";
+		CcpDbRequester database = CcpDependencyInjection.getDependency(CcpDbRequester.class);
+		database.createTables(pathToCreateEntityScript, pathToJavaClasses, mappingJnEntitiesErrors, insertErrors);
 	}
 
 	public final static String SESSION_TOKEN = CcpConstants.EMPTY_JSON.getTransformed(
@@ -40,8 +53,6 @@ public class BaseTest {
 			.put("sessionToken", SESSION_TOKEN)
 			.put("ip", "localhost:8080")
 			;
-			
-	
 	protected void saveErrors(CcpFileDecorator file, CcpJsonInvalid e) {
 		String path = file.getPath().replace(".json", "_errors.json");
 		String message = e.getMessage();
@@ -49,6 +60,4 @@ public class BaseTest {
 		reset.append(message);
 		throw new RuntimeException(e);
 	}
-
-
 }

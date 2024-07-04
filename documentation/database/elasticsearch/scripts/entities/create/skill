@@ -1,0 +1,58 @@
+{
+    "mappings": {
+        "dynamic": "strict",
+        "properties": {
+            "parent": {
+                "type": "keyword"
+            },
+            "preRequisite": {
+                "dynamic": "strict",
+                "properties": {
+                    "word": {
+                        "type": "keyword"
+                    },
+                    "gemini": {
+                        "type": "boolean"
+                    },
+                    "vagas": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "similar": {
+                "dynamic": "strict",
+                "properties": {
+                    "word": {
+                        "type": "keyword"
+                    },
+                    "gemini": {
+                        "type": "boolean"
+                    },
+                    "vagas": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "skill": {
+                "type": "keyword"
+            },
+            "synonym": {
+                "dynamic": "strict",
+                "properties": {
+                    "skill": {
+                        "type": "keyword"
+                    },
+                    "positionsCount": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "positionsCount": {
+                "type": "integer"
+            },
+            "ranking": {
+                "type": "integer"
+            }
+        }
+    }
+}

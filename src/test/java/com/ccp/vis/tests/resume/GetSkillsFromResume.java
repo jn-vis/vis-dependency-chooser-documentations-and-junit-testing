@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
-import com.jn.vis.commons.entities.VisEntityResume;
 import com.jn.vis.commons.utils.VisCommonsUtils;
+import com.vis.commons.entities.VisEntityResume;
 
 public class GetSkillsFromResume {
 

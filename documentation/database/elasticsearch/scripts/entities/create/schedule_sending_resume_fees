@@ -1,0 +1,13 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+		"properties": {
+			"fee": {
+				"type": "double"
+			},
+			"service": {
+				"type": "keyword"
+			}
+		}
+	}
+}

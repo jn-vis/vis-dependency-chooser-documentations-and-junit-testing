@@ -1,0 +1,26 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+		"properties": {
+			"email": {
+				"type": "keyword"
+			},
+			"listSize": {
+				"type": "integer"
+			},
+			"from": {
+				"type": "integer"
+			},
+			"detail": {
+				"dynamic": "true",
+					"properties": {}
+			},
+			"title": {
+				"type": "keyword"
+			},
+			"seniority": {
+				"type": "keyword"
+			}
+		}
+	}
+}

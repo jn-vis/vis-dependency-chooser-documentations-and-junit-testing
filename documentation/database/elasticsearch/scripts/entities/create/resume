@@ -1,0 +1,61 @@
+{
+    "mappings": {
+        "dynamic": "strict",
+        "properties": {
+        	"skill":{
+                "type": "keyword"
+        	},
+            "timestamp": {
+                "type": "long"
+            },
+            "date": {
+                "type": "text"
+            },
+            "name": {
+                "type": "text"
+            },
+            "email": {
+                "type": "keyword"
+            },
+            "ddd": {
+                "type": "integer"
+            },
+            "disabilities": {
+                "type": "keyword"
+            },
+            "companiesNotAllowed": {
+                "type": "keyword"
+            },
+            "disponibility": {
+                "type": "integer"
+            },
+            "observations": {
+                "type": "text"
+            },
+            "resumeBase64": {
+                "type": "text"
+            },
+            "resumeText": {
+                "type": "text"
+            },
+            "desiredJob": {
+                "type": "text"
+            },
+            "lastJob": {
+                "type": "text"
+            },
+            "btc": {
+                "type": "double"
+            },
+            "clt": {
+                "type": "double"
+            },
+            "pj": {
+                "type": "double"
+            },
+            "experience": {
+                "type": "integer"
+            }
+        }
+    }
+}

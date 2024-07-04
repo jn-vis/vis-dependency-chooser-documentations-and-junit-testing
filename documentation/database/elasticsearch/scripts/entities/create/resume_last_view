@@ -1,0 +1,33 @@
+{
+	"mappings": {
+		"dynamic": "strict",
+		"properties": {
+			"recruiter": {
+				"type": "keyword"
+			},
+			"email": {
+				"type": "keyword"
+			},
+			"date": {
+				"type": "text"
+			},
+			"timestamp": {
+				"type": "long"
+			},
+			"negativatedResume": {
+				"type": "boolean"
+			},
+			"inactivePosition": {
+				"type": "boolean"
+			},
+			"resume": {
+				"dynamic": "true",
+					"properties": {}
+			},
+			"position": {
+				"dynamic": "true",
+					"properties": {}
+			}
+		}
+	}
+}
