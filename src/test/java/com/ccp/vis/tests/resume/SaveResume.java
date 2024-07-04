@@ -1,5 +1,10 @@
 package com.ccp.vis.tests.resume;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Map;
+
 import org.junit.Test;
 
 import com.ccp.decorators.CcpFileDecorator;
@@ -25,10 +30,33 @@ public class SaveResume extends BaseTest {
 		}
 	}
 	
+	@Test
+	public void faltandoCampoDisponibilidadeEdeficiencia() {
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDisponibilidadeEdeficiencia.json");
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation resume = file.asSingleJson();
+		try {
+			SyncServiceVisResume.INSTANCE.save(resume);
+		} catch (CcpJsonInvalid e) {
+			CcpJsonRepresentation errorAsJson = e.getErrorAsJson();
+			ArrayList<Map<String, Object>> valueFromPath = errorAsJson
+					.getValueFromPath(new ArrayList<>(), "errors", "SimpleObject.requiredFields", "wrongFields");
+			Map<String, Object> primeiroErro = valueFromPath.get(0);
+			CcpJsonRepresentation json = new CcpJsonRepresentation(primeiroErro);
+			String faltandoDisponibility = json.getAsString("name");
+			Map<String, Object> segundoErro = valueFromPath.get(1);
+			CcpJsonRepresentation jsonDois = new CcpJsonRepresentation(segundoErro);
+			String faltandoDisabilities = jsonDois.getAsString("name");
+
+			assertTrue("disabilities".equals(faltandoDisabilities));
+			assertTrue("disponibility".equals(faltandoDisponibility));
+
+		}		
+	}
 	
 	@Test
 	public void teste() {
-		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/curriculoParaSalvar.json");
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/curriculoParaSalvar.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		VisAsyncBusinessResumeSave.INSTANCE.apply(resume);
