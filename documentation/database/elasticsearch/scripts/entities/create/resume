@@ -2,9 +2,20 @@
     "mappings": {
         "dynamic": "strict",
         "properties": {
-        	"skill":{
-                "type": "keyword"
-        	},
+            "skill": {
+                "dynamic": "strict",
+                "properties": {
+                    "parent": {
+                        "type": "keyword"
+                    },
+                    "synonym": {
+                        "type": "keyword"
+                    },
+                    "skill": {
+                        "type": "keyword"
+                    }
+                }
+            },
             "timestamp": {
                 "type": "long"
             },

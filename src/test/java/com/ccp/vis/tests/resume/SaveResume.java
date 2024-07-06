@@ -19,10 +19,9 @@ public class SaveResume extends BaseTest {
 
 	@Test
 	public void salvarCurriculo() {
-		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/curriculoParaSalvar.json");
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/curriculoParaSalvar.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
-		VisAsyncBusinessResumeSave.INSTANCE.apply(resume);
 		try {
 			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {

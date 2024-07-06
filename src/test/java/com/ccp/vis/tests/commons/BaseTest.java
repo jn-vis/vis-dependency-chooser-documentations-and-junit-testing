@@ -42,7 +42,7 @@ public class BaseTest {
 		String mappingJnEntitiesErrors = "c:\\logs\\mappingJnEntitiesErrors.json";
 		String insertErrors = "c:\\logs\\insertErrors.json";
 		CcpDbRequester database = CcpDependencyInjection.getDependency(CcpDbRequester.class);
-//		database.createTables(pathToCreateEntityScript, pathToJavaClasses, mappingJnEntitiesErrors, insertErrors);
+		database.createTables(pathToCreateEntityScript, pathToJavaClasses, mappingJnEntitiesErrors, insertErrors);
 	}
 
 	public final static String SESSION_TOKEN = CcpConstants.EMPTY_JSON.getTransformed(

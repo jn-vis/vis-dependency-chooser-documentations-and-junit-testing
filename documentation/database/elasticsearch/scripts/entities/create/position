@@ -23,7 +23,7 @@
             "expireDate": {
                 "type": "long"
             },
-            "mandatorySkill": {
+            "requiredSkill": {
                 "type": "keyword"
             },
             "desiredSkill": {
