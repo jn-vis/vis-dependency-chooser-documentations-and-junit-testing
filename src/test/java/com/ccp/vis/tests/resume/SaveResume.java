@@ -60,6 +60,18 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		VisAsyncBusinessResumeSave.INSTANCE.apply(resume);
-		
 	}
+	
+	@Test
+	public void dddIncorreto() {
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/dddIncorreto.json");
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation resume = file.asSingleJson();
+		try {
+			SyncServiceVisResume.INSTANCE.save(resume);
+		} catch (CcpJsonInvalid e) {
+			super.saveErrors(file, e);
+		}
+	}
+
 }

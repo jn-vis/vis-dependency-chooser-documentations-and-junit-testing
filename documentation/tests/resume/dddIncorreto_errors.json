@@ -1,0 +1,203 @@
+{
+  "errors": {
+    "AllowedValues.arrayWithAllowedTexts": {
+      "restrictedValues": [
+        "física/motora",
+        "intelectual/mental",
+        "visual",
+        "auditiva"
+      ],
+      "wrongFields": [
+        {
+          "name": "disabilities",
+          "value": "visual "
+        }
+      ]
+    }
+  },
+  "json": {
+    "ddd": "11",
+    "disabilities": "visual ",
+    "companiesNotAllowed": "VW",
+    "disponibility": 5.0,
+    "observations": "Observando o observatório",
+    "resumeBase64": "Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi ",
+    "resumeText": "Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi Agora preciso dizer um oi ",
+    "desiredJob": "trabalho desejado",
+    "lastJob": "último trabalho",
+    "name": "Jasson",
+    "skill": "advogado",
+    "experience": 50.0,
+    "clt": 10000.0
+  },
+  "specification": {
+    "featureName": "resumeSave",
+    "AllowedValues.arrayWithAllowedNumbers": {
+      "evaluatedFields": [
+        "ddd"
+      ],
+      "restrictedValues": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "21",
+        "22",
+        "24",
+        "27",
+        "28",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "37",
+        "38",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "51",
+        "53",
+        "54",
+        "55",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "71",
+        "73",
+        "74",
+        "75",
+        "77",
+        "79",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "97",
+        "98",
+        "99"
+      ]
+    },
+    "AllowedValues.arrayWithAllowedTexts": {
+      "evaluatedFields": [
+        "disabilities"
+      ],
+      "restrictedValues": [
+        "física/motora",
+        "intelectual/mental",
+        "visual",
+        "auditiva"
+      ]
+    },
+    "ObjectNumbers.equalsOrGreaterThan": {
+      "evaluatedFields": [
+        "btc",
+        "clt",
+        "pj"
+      ],
+      "bound": 1000.0
+    },
+    "ObjectNumbers.equalsOrLessThan": {
+      "evaluatedFields": [
+        "btc",
+        "clt",
+        "pj"
+      ],
+      "bound": 100000.0
+    },
+    "ObjectTextSize.equalsOrLessThan": {
+      "evaluatedFields": [
+        "name"
+      ],
+      "bound": 100.0
+    },
+    "ObjectTextSize.equalsOrGreaterThan": {
+      "evaluatedFields": [
+        "name"
+      ],
+      "bound": 3.0
+    },
+    "Regex": {
+      "evaluatedFields": [
+        "email"
+      ],
+      "value": "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"
+    },
+    "SimpleObject.requiredFields": {
+      "evaluatedFields": [
+        "companiesNotAllowed",
+        "ddd",
+        "desiredJob",
+        "disponibility",
+        "disabilities",
+        "experience",
+        "lastJob",
+        "name",
+        "observations",
+        "resumeBase64",
+        "resumeText",
+        "skill"
+      ]
+    },
+    "SimpleObject.requiredAtLeastOne": {
+      "evaluatedFields": [
+        "clt",
+        "pj"
+      ]
+    },
+    "SimpleObject.nonRepeatedLists": {
+      "evaluatedFields": [
+        "ddd",
+        "disabilities",
+        "companiesNotAllowed",
+        "skill"
+      ]
+    },
+    "SimpleObject.integerFields": {
+      "evaluatedFields": [
+        "disponibility"
+      ]
+    },
+    "Year.equalsOrLessThan": {
+      "evaluatedFields": [
+        "experience"
+      ],
+      "bound": 70.0
+    },
+    "Year.equalsOrGreaterThan": {
+      "evaluatedFields": [
+        "experience"
+      ],
+      "bound": 0.0
+    }
+  }
+}
