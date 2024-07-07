@@ -19,12 +19,6 @@
             "timestamp": {
                 "type": "long"
             },
-            "date": {
-                "type": "text"
-            },
-            "name": {
-                "type": "text"
-            },
             "email": {
                 "type": "keyword"
             },
@@ -39,15 +33,6 @@
             },
             "disponibility": {
                 "type": "integer"
-            },
-            "observations": {
-                "type": "text"
-            },
-            "resumeBase64": {
-                "type": "text"
-            },
-            "resumeText": {
-                "type": "text"
             },
             "desiredJob": {
                 "type": "text"

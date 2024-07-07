@@ -16,7 +16,7 @@ public class GetSkillsFromResume {
 		
 		CcpJsonRepresentation json = new CcpStringDecorator("documentation\\tests\\resume\\curriculoQueOriginalmenteContenhaPalavraAngularDeveConterTambemPalavraJavaScriptAlemDeConterPalavraAngularJs.json").file().asSingleJson();
 		CcpJsonRepresentation jsonWithSkills = VisCommonsUtils.getJsonWithSkills(json,
-				VisEntityResume.Fields.resumeText.name(), VisEntityResume.Fields.skill.name());
+				"resumeText", VisEntityResume.Fields.skill.name());
 		
 		boolean testPassed = jsonWithSkills
 			.itIsTrueThatTheFollowingFields(VisEntityResume.Fields.skill.name())
