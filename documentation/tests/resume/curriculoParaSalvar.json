@@ -1,5 +1,7 @@
 {
-	"email": "selecao@mollicait.com",
+	"originalEmail": "selecao@mollicait.com",
+	"email": "-79081bc8055a58031ea2e22346151515c8899848",
+	"fileName": "teste.json",
 	"ddd": "11",
 	"disabilities": "visual",
 	"companiesNotAllowed": "VW",
@@ -10,7 +12,6 @@
 	"desiredJob": "trabalho desejado",
 	"lastJob": "último trabalho",
     "name": "Jasson",
-    "skill": "advogado",	
 	"experience": 50,
 	"clt": 10000.00
 }

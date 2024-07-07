@@ -1,17 +1,28 @@
 {
   "errors": {
-    "regex": {
-      "regex": "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+    "ObjectTextSize.equalsOrGreaterThan": {
+      "bound": 40.0,
       "wrongFields": [
         {
           "name": "email",
           "value": "selecao@mollicait.com"
         }
       ]
+    },
+    "regex": {
+      "regex": "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+      "wrongFields": [
+        {
+          "name": "originalEmail",
+          "value": "-79081bc8055a58031ea2e22346151515c8899848"
+        }
+      ]
     }
   },
   "json": {
+    "originalEmail": "-79081bc8055a58031ea2e22346151515c8899848",
     "email": "selecao@mollicait.com",
+    "fileName": "teste.json",
     "ddd": "11",
     "disabilities": "visual",
     "companiesNotAllowed": "VW",
@@ -22,178 +33,38 @@
     "desiredJob": "trabalho desejado",
     "lastJob": "último trabalho",
     "name": "Jasson",
-    "skill": "advogado",
     "experience": 50.0,
     "clt": 10000.0
   },
   "specification": {
-    "featureName": "resumeSave",
-    "AllowedValues.arrayWithAllowedNumbers": {
-      "evaluatedFields": [
-        "ddd"
-      ],
-      "restrictedValues": [
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "21",
-        "22",
-        "24",
-        "27",
-        "28",
-        "31",
-        "32",
-        "33",
-        "34",
-        "35",
-        "37",
-        "38",
-        "41",
-        "42",
-        "43",
-        "44",
-        "45",
-        "46",
-        "47",
-        "48",
-        "49",
-        "51",
-        "53",
-        "54",
-        "55",
-        "61",
-        "62",
-        "63",
-        "64",
-        "65",
-        "66",
-        "67",
-        "68",
-        "69",
-        "71",
-        "73",
-        "74",
-        "75",
-        "77",
-        "79",
-        "81",
-        "82",
-        "83",
-        "84",
-        "85",
-        "86",
-        "87",
-        "88",
-        "89",
-        "91",
-        "92",
-        "93",
-        "94",
-        "95",
-        "96",
-        "97",
-        "98",
-        "99"
-      ]
-    },
-    "AllowedValues.arrayWithAllowedTexts": {
-      "evaluatedFields": [
-        "disabilities"
-      ],
-      "restrictedValues": [
-        "física/motora",
-        "intelectual/mental",
-        "visual",
-        "auditiva"
-      ]
-    },
-    "ObjectNumbers.equalsOrGreaterThan": {
-      "evaluatedFields": [
-        "btc",
-        "clt",
-        "pj"
-      ],
-      "bound": 1000.0
-    },
-    "ObjectNumbers.equalsOrLessThan": {
-      "evaluatedFields": [
-        "btc",
-        "clt",
-        "pj"
-      ],
-      "bound": 100000.0
-    },
+    "featureName": "resumeBucketSave",
     "ObjectTextSize.equalsOrLessThan": {
       "evaluatedFields": [
-        "name"
+        "email"
       ],
-      "bound": 100.0
+      "bound": 41.0
     },
     "ObjectTextSize.equalsOrGreaterThan": {
       "evaluatedFields": [
-        "name"
+        "email"
       ],
-      "bound": 3.0
+      "bound": 40.0
     },
     "Regex": {
       "evaluatedFields": [
-        "email"
+        "originalEmail"
       ],
       "value": "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"
     },
     "SimpleObject.requiredFields": {
       "evaluatedFields": [
-        "companiesNotAllowed",
-        "ddd",
-        "desiredJob",
-        "disponibility",
-        "disabilities",
-        "experience",
-        "lastJob",
         "name",
+        "fileName",
+        "resumeText",
         "observations",
         "resumeBase64",
-        "resumeText",
-        "skill"
+        "originalEmail"
       ]
-    },
-    "SimpleObject.requiredAtLeastOne": {
-      "evaluatedFields": [
-        "clt",
-        "pj"
-      ]
-    },
-    "SimpleObject.nonRepeatedLists": {
-      "evaluatedFields": [
-        "ddd",
-        "disabilities",
-        "companiesNotAllowed",
-        "skill"
-      ]
-    },
-    "SimpleObject.integerFields": {
-      "evaluatedFields": [
-        "disponibility"
-      ]
-    },
-    "Year.equalsOrLessThan": {
-      "evaluatedFields": [
-        "experience"
-      ],
-      "bound": 70.0
-    },
-    "Year.equalsOrGreaterThan": {
-      "evaluatedFields": [
-        "experience"
-      ],
-      "bound": 0.0
     }
   }
 }

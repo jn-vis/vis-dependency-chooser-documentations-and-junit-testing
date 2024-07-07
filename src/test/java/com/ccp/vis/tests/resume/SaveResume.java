@@ -7,21 +7,44 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import com.ccp.constantes.CcpConstants;
 import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
+import com.ccp.especifications.http.CcpHttpHandler;
+import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.resume.VisAsyncBusinessResumeSave;
 import com.ccp.vis.tests.commons.BaseTest;
+import com.vis.commons.entities.VisEntityResume;
 
 public class SaveResume extends BaseTest {
 
 	@Test
+	public void excluirCurriculoSalvo() {
+		CcpJsonRepresentation resume = CcpConstants.EMPTY_JSON.put(VisEntityResume.Fields.email.name(), "-79081bc8055a58031ea2e22346151515c8899848");
+		SyncServiceVisResume.INSTANCE.delete(resume);
+	}
+	
+	@Test
 	public void salvarCurriculo() {
-		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/curriculoParaSalvar.json");
+		CcpHttpHandler http = new CcpHttpHandler(200, CcpConstants.DO_NOTHING);
+		String path = "http://localhost:9200/profissionais2/_doc/onias85@gmail.com/_source";
+		String asUgglyJson = "";
+
+		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, "GET", CcpConstants.EMPTY_JSON, asUgglyJson);
+			
+		CcpJsonRepresentation asSingleJson = response.asSingleJson();
+		
+		CcpStringDecorator ccpStringDecorator =
+				new CcpStringDecorator("documentation/tests/resume/"
+						+ "curriculoParaSalvar.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
-		CcpJsonRepresentation resume = file.asSingleJson();
+		CcpJsonRepresentation curriculo = asSingleJson.getInnerJson("curriculo");
+		String conteudo = curriculo.getAsString("conteudo");
+		CcpJsonRepresentation resume = file.asSingleJson().put("resumeBase64", conteudo);
+		
 		try {
 			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {

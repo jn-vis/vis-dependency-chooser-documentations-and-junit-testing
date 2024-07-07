@@ -57,6 +57,11 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+			<groupId>com.ccp</groupId>
+			<artifactId>ccp-text-extractor-apache-tika</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>com.ccp.jn.vis</groupId>
 			<artifactId>vis-business-sync</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

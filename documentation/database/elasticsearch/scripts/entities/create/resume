@@ -19,6 +19,9 @@
             "timestamp": {
                 "type": "long"
             },
+            "date": {
+                "type": "text"
+            },
             "email": {
                 "type": "keyword"
             },
