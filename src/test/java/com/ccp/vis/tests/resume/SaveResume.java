@@ -11,16 +11,37 @@ import com.ccp.constantes.CcpConstants;
 import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
+import com.ccp.dependency.injection.CcpDependencyInjection;
+import com.ccp.especifications.db.query.CcpDbQueryOptions;
+import com.ccp.especifications.db.query.CcpQueryExecutor;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.resume.VisAsyncBusinessResumeSave;
 import com.ccp.vis.tests.commons.BaseTest;
+import com.ccp.vis.tests.commons.ImportResumeFromOldJobsNow;
 import com.vis.commons.entities.VisEntityResume;
 
 public class SaveResume extends BaseTest {
-
+	
+	@Test
+	public void importarCurriculosDoJobsNowAntigo() {
+		CcpQueryExecutor queryExecutor = CcpDependencyInjection.getDependency(CcpQueryExecutor.class);
+		CcpDbQueryOptions query = 
+				CcpDbQueryOptions.INSTANCE
+					.matchAll()
+				;
+		String[] resourcesNames = new String[] {"profissionais2"};
+		queryExecutor.consumeQueryResult(
+				query, 
+				resourcesNames, 
+				"10m", 
+				100, 
+				ImportResumeFromOldJobsNow.INSTANCE
+				);
+	}
+	
 	@Test
 	public void excluirCurriculoSalvo() {
 		CcpJsonRepresentation resume = CcpConstants.EMPTY_JSON.put(VisEntityResume.Fields.email.name(), "-79081bc8055a58031ea2e22346151515c8899848");

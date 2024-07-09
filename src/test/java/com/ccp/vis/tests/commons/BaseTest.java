@@ -22,6 +22,18 @@ import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
 import com.jn.commons.utils.JnGenerateRandomToken;
 
 public class BaseTest {
+
+	public final static String SESSION_TOKEN = CcpConstants.EMPTY_JSON.getTransformed(
+			new JnGenerateRandomToken(8, "token")).getAsString("token");
+	
+	public final static CcpJsonRepresentation REQUEST_TO_LOGIN = CcpConstants.EMPTY_JSON
+			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
+			.put("sessionToken", SESSION_TOKEN)
+			.put("ip", "localhost:8080")
+			;
+
+	public final static CcpJsonRepresentation ANSWERS_JSON =  REQUEST_TO_LOGIN.put("goal", "jobs").put("channel", "linkedin");
+
 	static {
 		boolean localEnviroment = new CcpStringDecorator("c:\\rh").file().exists();
 
@@ -43,6 +55,9 @@ public class BaseTest {
 				new CcpElasticSearchDbRequest(), new CcpApacheMimeHttp(),
 				new CcpElasticSerchDbBulk());
 		
+		createTables();
+	}
+	private static void createTables() {
 		String pathToCreateEntityScript = "documentation\\database\\elasticsearch\\scripts\\entities\\create";
 		String pathToJavaClasses = "..\\vis-business-commons\\src\\main\\java\\com\\vis\\commons\\entities";
 		String mappingJnEntitiesErrors = "c:\\logs\\mappingJnEntitiesErrors.json";
@@ -50,15 +65,6 @@ public class BaseTest {
 		CcpDbRequester database = CcpDependencyInjection.getDependency(CcpDbRequester.class);
 		database.createTables(pathToCreateEntityScript, pathToJavaClasses, mappingJnEntitiesErrors, insertErrors);
 	}
-
-	public final static String SESSION_TOKEN = CcpConstants.EMPTY_JSON.getTransformed(
-			new JnGenerateRandomToken(8, "token")).getAsString("token");
-	
-	public CcpJsonRepresentation REQUEST_TO_LOGIN = CcpConstants.EMPTY_JSON
-			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
-			.put("sessionToken", SESSION_TOKEN)
-			.put("ip", "localhost:8080")
-			;
 	protected void saveErrors(CcpFileDecorator file, CcpJsonInvalid e) {
 		String path = file.getPath().replace(".json", "_errors.json");
 		String message = e.getMessage();
