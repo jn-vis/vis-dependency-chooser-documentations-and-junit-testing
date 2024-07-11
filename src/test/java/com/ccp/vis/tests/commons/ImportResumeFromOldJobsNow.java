@@ -1,22 +1,11 @@
 package com.ccp.vis.tests.commons;
 
+import java.util.Arrays;
 import java.util.function.Consumer;
 
-import com.ccp.constantes.CcpConstants;
 import com.ccp.decorators.CcpJsonRepresentation;
-import com.ccp.especifications.db.bulk.CcpEntityOperationType;
-import com.ccp.especifications.http.CcpHttpHandler;
-import com.ccp.especifications.http.CcpHttpResponse;
-import com.ccp.jn.async.commons.JnAsyncCommitAndAudit;
 import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
 import com.ccp.json.transformers.CcpJsonTransformerGenerateFieldHash;
-import com.ccp.json.transformers.CcpJsonTransformerGenerateRandomToken;
-import com.ccp.json.transformers.CcpJsonTransformerPutPasswordField;
-import com.jn.commons.entities.JnEntityLoginAnswers;
-import com.jn.commons.entities.JnEntityLoginEmail;
-import com.jn.commons.entities.JnEntityLoginPassword;
-import com.jn.commons.entities.JnEntityLoginSessionCurrent;
-import com.jn.commons.entities.JnEntityLoginToken;
 import com.jn.commons.utils.JnValidateSession;
 import com.vis.commons.entities.VisEntityResume;
 
@@ -28,6 +17,7 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 	
 	@SuppressWarnings("unchecked")
 	public void accept(CcpJsonRepresentation candidate) {
+		var fieldHashGenerator = new CcpJsonTransformerGenerateFieldHash("email", "originalEmail");
 		CcpJsonRepresentation resumeFile = candidate.getInnerJson("curriculo")
 				.renameField("conteudo", "resumeBase64")
 				.renameField("arquivo", "fileName")
@@ -45,22 +35,29 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 		.renameField("observacao", "observations")
 		.put("name", "NOME DO CANDIDATO")
 		.putAll(resumeFile)
+		.copyIfNotContains(VisEntityResume.Fields.lastJob.name(), VisEntityResume.Fields.desiredJob.name())
+		.putIfNotContains(VisEntityResume.Fields.companiesNotAllowed.name(), Arrays.asList())
+		.whenHasNotField(VisEntityResume.Fields.experience.name(), AddExperience.INSTANCE)
+		.putIfNotContains(VisEntityResume.Fields.disabilities.name(), Arrays.asList())
 		.getTransformedJson(
 				CreateLoginAndSession.INSTANCE,
 				JnValidateSession.INSTANCE,
-				AddDefaultValuesInResume.INSTANCE,
-				AddDddsInResume.INSTANCE
+				AddDddsInResume.INSTANCE,
+				fieldHashGenerator
 				)
 		.getJsonPiece(
 				VisEntityResume.Fields.companiesNotAllowed.name()
 				,VisEntityResume.Fields.disponibility.name()
+				,VisEntityResume.Fields.disabilities.name()
 				,VisEntityResume.Fields.desiredJob.name()
 				,VisEntityResume.Fields.experience.name()
 				,VisEntityResume.Fields.lastJob.name()
+				,VisEntityResume.Fields.email.name()
 				,VisEntityResume.Fields.clt.name()
 				,VisEntityResume.Fields.btc.name()
 				,VisEntityResume.Fields.ddd.name()
 				,VisEntityResume.Fields.pj.name()
+				,"originalEmail"
 				,"resumeBase64"
 				,"observations"
 				,"fileName"
