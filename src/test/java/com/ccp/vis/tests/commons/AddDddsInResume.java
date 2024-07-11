@@ -7,11 +7,11 @@ import java.util.function.Function;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.vis.commons.entities.VisEntityResume;
 
-public class AddDdds implements Function<CcpJsonRepresentation, CcpJsonRepresentation> {
+public class AddDddsInResume implements Function<CcpJsonRepresentation, CcpJsonRepresentation> {
 	
-	public static final AddDdds INSTANCE = new AddDdds();
+	public static final AddDddsInResume INSTANCE = new AddDddsInResume();
 
-	private AddDdds() {}
+	private AddDddsInResume() {}
 	
 	public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
 		boolean mudanca = json.getAsBoolean("mudanca");

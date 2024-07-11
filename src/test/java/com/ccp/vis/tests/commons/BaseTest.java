@@ -15,16 +15,17 @@ import com.ccp.implementations.file.bucket.gcp.CcpGcpFileBucket;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.mensageria.sender.gcp.pubsub.CcpGcpPubSubMensageriaSender;
+import com.ccp.implementations.password.mindrot.CcpMindrotPasswordHandler;
 import com.ccp.implementations.text.extractor.apache.tika.CcpApacheTikaTextExtractor;
+import com.ccp.json.transformers.CcpJsonTransformerGenerateRandomToken;
 import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
-import com.jn.commons.utils.JnGenerateRandomToken;
 
 public class BaseTest {
 
 	public final static String SESSION_TOKEN = CcpConstants.EMPTY_JSON.getTransformed(
-			new JnGenerateRandomToken(8, "token")).getAsString("token");
+			new CcpJsonTransformerGenerateRandomToken(8, "token")).getAsString("token");
 	
 	public final static CcpJsonRepresentation REQUEST_TO_LOGIN = CcpConstants.EMPTY_JSON
 			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
@@ -43,6 +44,7 @@ public class BaseTest {
 				new CcpApacheMimeHttp(), 
 				new CcpGsonJsonHandler(), 
 				new CcpElasticSearchCrud(),
+				new CcpMindrotPasswordHandler(),
 				new CcpElasticSearchDbRequest(),
 				new CcpApacheTikaTextExtractor(),
 				localEnviroment ? CcpLocalInstances.bucket.getLocalImplementation(businessInstanceProvider) : new CcpGcpFileBucket(),

@@ -4,11 +4,19 @@ import java.util.function.Consumer;
 
 import com.ccp.constantes.CcpConstants;
 import com.ccp.decorators.CcpJsonRepresentation;
+import com.ccp.especifications.db.bulk.CcpEntityOperationType;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
+import com.ccp.jn.async.commons.JnAsyncCommitAndAudit;
 import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
+import com.ccp.json.transformers.CcpJsonTransformerGenerateFieldHash;
+import com.ccp.json.transformers.CcpJsonTransformerGenerateRandomToken;
+import com.ccp.json.transformers.CcpJsonTransformerPutPasswordField;
 import com.jn.commons.entities.JnEntityLoginAnswers;
 import com.jn.commons.entities.JnEntityLoginEmail;
+import com.jn.commons.entities.JnEntityLoginPassword;
+import com.jn.commons.entities.JnEntityLoginSessionCurrent;
+import com.jn.commons.entities.JnEntityLoginToken;
 import com.jn.commons.utils.JnValidateSession;
 import com.vis.commons.entities.VisEntityResume;
 
@@ -19,13 +27,14 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 
 	private ImportResumeFromOldJobsNow() {}
 	
+	@SuppressWarnings("unchecked")
 	public void accept(CcpJsonRepresentation candidate) {
 		CcpJsonRepresentation resumeFile = candidate.getInnerJson("curriculo")
 				.renameField("conteudo", "resumeBase64")
 				.renameField("arquivo", "fileName")
 				.getJsonPiece("resumeBase64", "fileName")
 		;
-		CcpJsonRepresentation data = candidate
+		CcpJsonRepresentation allResumeData = candidate
 		.renameField("disponibilidade", VisEntityResume.Fields.disponibility.name())
 		.renameField("profissaoDesejada", VisEntityResume.Fields.desiredJob.name())
 		.renameField("empresas",VisEntityResume.Fields.companiesNotAllowed.name())
@@ -37,7 +46,7 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 		.renameField("observacao", "observations")
 		.put("name", "NOME DO CANDIDATO")
 		.putAll(resumeFile)
-		.getTransformed(AddDdds.INSTANCE)
+		.getTransformedJson(AddDddsInResume.INSTANCE, AddDefaultValuesInResume.INSTANCE)
 		.getJsonPiece(
 				VisEntityResume.Fields.companiesNotAllowed.name()
 				,VisEntityResume.Fields.disponibility.name()
@@ -54,19 +63,13 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 				,"name"
 				);
 	
-		JnEntityLoginAnswers.INSTANCE.createOrUpdate(BaseTest.ANSWERS_JSON);
-		JnEntityLoginEmail.INSTANCE.createOrUpdate(BaseTest.REQUEST_TO_LOGIN);
-		CcpJsonRepresentation put = BaseTest.REQUEST_TO_LOGIN.put("password", "Jobsnow1!");
-		String asUgglyJson = put.asUgglyJson();
-		String email = data.getAsString("id");
+		String email = candidate.getAsString("id");
 		
-		String path = "http://localhost:8080/login/{email}/password".replace("{email}", email);
+		CcpJsonRepresentation createLogin = this.createLogin(email);
 		
-		CcpHttpResponse response = this.http.ccpHttp.executeHttpRequest(path, "POST", CcpConstants.EMPTY_JSON, asUgglyJson);
+		CcpJsonRepresentation jsonWithSessionToken = this.executeLogin(email);
 		
-		CcpJsonRepresentation asSingleJson = response.asSingleJson();
-		
-		CcpJsonRepresentation putAll = data.putAll(asSingleJson);
+		CcpJsonRepresentation putAll = allResumeData.putAll(jsonWithSessionToken).putAll(createLogin);
 		
 		CcpJsonRepresentation resume = putAll.getTransformed(JnValidateSession.INSTANCE);
 		
@@ -79,5 +82,48 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 		if(inactiveResume) {
 			SyncServiceVisResume.INSTANCE.changeStatus(resume);
 		}
+	}
+
+	private CcpJsonRepresentation executeLogin(String email) {
+	
+		String path = "http://localhost:8080/login/{email}".replace("{email}", email);
+		
+		String asUgglyJson = CcpConstants.EMPTY_JSON.put("password", "Jobsnow1!").asUgglyJson();
+		
+		CcpHttpResponse response = this.http.ccpHttp.executeHttpRequest(path, "POST", CcpConstants.EMPTY_JSON, asUgglyJson, 200);
+		
+		CcpJsonRepresentation asSingleJson = response.asSingleJson();
+		return asSingleJson;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private CcpJsonRepresentation createLogin(String email) {
+		var tokenGenerator = new CcpJsonTransformerGenerateRandomToken(8, "token");
+		var passwordGenerator = new CcpJsonTransformerPutPasswordField("password");
+		var fieldHashGenerator = new CcpJsonTransformerGenerateFieldHash("email", "originalEmail");
+		CcpJsonRepresentation transformed = CcpConstants.EMPTY_JSON
+		.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
+		.put("password", "Jobsnow1!")
+		.put("ip", "localhost:8080")
+		.put("channel", "linkedin")
+		.put("goal", "jobs")
+		.put("email", email)
+		.getTransformedJson(
+				tokenGenerator,
+				fieldHashGenerator,
+				passwordGenerator
+		);
+		
+		JnAsyncCommitAndAudit.INSTANCE.executeBulk(transformed, CcpEntityOperationType.create, 
+				JnEntityLoginPassword.INSTANCE,
+				JnEntityLoginAnswers.INSTANCE,
+				JnEntityLoginToken.INSTANCE,
+				JnEntityLoginEmail.INSTANCE
+				);
+		
+		JnEntityLoginSessionCurrent.INSTANCE.delete(transformed);
+		
+		CcpJsonRepresentation renameField = transformed.renameField("originalEmail", "email");
+		return renameField;
 	}
 }
