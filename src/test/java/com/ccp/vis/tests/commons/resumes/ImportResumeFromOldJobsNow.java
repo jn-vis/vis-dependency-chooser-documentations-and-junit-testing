@@ -1,23 +1,43 @@
-package com.ccp.vis.tests.commons;
+package com.ccp.vis.tests.commons.resumes;
 
 import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import com.ccp.decorators.CcpJsonRepresentation;
+import com.ccp.dependency.injection.CcpDependencyInjection;
+import com.ccp.especifications.db.query.CcpDbQueryOptions;
+import com.ccp.especifications.db.query.CcpQueryExecutor;
 import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
-import com.ccp.json.transformers.CcpJsonTransformerGenerateFieldHash;
 import com.jn.commons.utils.JnValidateSession;
 import com.vis.commons.entities.VisEntityResume;
 
 public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentation>{
+	public static final ImportResumeFromOldJobsNow INSTANCE = new ImportResumeFromOldJobsNow();
+	private Set<String> ids;			
+	int contador;
 
-	public static final ImportResumeFromOldJobsNow INSTANCE = new ImportResumeFromOldJobsNow();			
-
-	private ImportResumeFromOldJobsNow() {}
+	private ImportResumeFromOldJobsNow() {
+		CcpQueryExecutor queryExecutor = CcpDependencyInjection.getDependency(CcpQueryExecutor.class);
+		CcpDbQueryOptions query = 
+				CcpDbQueryOptions.INSTANCE
+					.matchAll()
+					.maxResults()
+				;
+		String[] resourcesNames = new String[] {VisEntityResume.INSTANCE.getEntityName(), VisEntityResume.INSTANCE.getMirrorEntity().getEntityName()};
+		this.ids = queryExecutor.getResultAsList(query, resourcesNames, "email").stream().map(x -> x.getAsString("id")).collect(Collectors.toSet());
+	}
 	
 	@SuppressWarnings("unchecked")
 	public void accept(CcpJsonRepresentation candidate) {
-		var fieldHashGenerator = new CcpJsonTransformerGenerateFieldHash("email", "originalEmail");
+		
+		boolean alreadyInserted = this.contador++ < this.ids.size();
+		
+		if(alreadyInserted) {
+			return;
+		}
+		
 		CcpJsonRepresentation resumeFile = candidate.getInnerJson("curriculo")
 				.renameField("conteudo", "resumeBase64")
 				.renameField("arquivo", "fileName")
@@ -37,13 +57,22 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 		.putAll(resumeFile)
 		.copyIfNotContains(VisEntityResume.Fields.lastJob.name(), VisEntityResume.Fields.desiredJob.name())
 		.putIfNotContains(VisEntityResume.Fields.companiesNotAllowed.name(), Arrays.asList())
-		.whenHasNotField(VisEntityResume.Fields.experience.name(), AddExperience.INSTANCE)
 		.putIfNotContains(VisEntityResume.Fields.disabilities.name(), Arrays.asList())
+		.putIfNotContains(VisEntityResume.Fields.disponibility.name(), 0)
+		.putIfNotContains(VisEntityResume.Fields.desiredJob.name(), "-")
+		.putIfNotContains(VisEntityResume.Fields.lastJob.name(), "-")
+		.putIfNotContains("observations", "-")
 		.getTransformedJson(
-				CreateLoginAndSession.INSTANCE,
-				JnValidateSession.INSTANCE,
-				AddDddsInResume.INSTANCE,
-				fieldHashGenerator
+				ResumeTransformations.AddBtcValue,
+				ResumeTransformations.AddCltValue,
+				ResumeTransformations.AddDddsInResume,
+				ResumeTransformations.AddDesiredJob,
+				ResumeTransformations.AddDisponibility,
+				ResumeTransformations.AddExperience,
+				ResumeTransformations.AddLastJob,
+				ResumeTransformations.AddObservations,
+				ResumeTransformations.CreateLoginAndSession,
+				JnValidateSession.INSTANCE
 				)
 		.getJsonPiece(
 				VisEntityResume.Fields.companiesNotAllowed.name()

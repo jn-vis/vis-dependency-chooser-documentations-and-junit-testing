@@ -20,7 +20,7 @@ import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.resume.VisAsyncBusinessResumeSave;
 import com.ccp.vis.tests.commons.BaseTest;
-import com.ccp.vis.tests.commons.ImportResumeFromOldJobsNow;
+import com.ccp.vis.tests.commons.resumes.ImportResumeFromOldJobsNow;
 import com.vis.commons.entities.VisEntityResume;
 
 public class SaveResume extends BaseTest {

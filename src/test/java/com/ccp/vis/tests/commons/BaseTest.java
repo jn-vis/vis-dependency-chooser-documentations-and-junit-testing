@@ -57,9 +57,9 @@ public class BaseTest {
 				new CcpElasticSearchDbRequest(), new CcpApacheMimeHttp(),
 				new CcpElasticSerchDbBulk());
 		
-		createTables();
+//		createTables();
 	}
-	private static void createTables() {
+	static void createTables() {
 		String pathToCreateEntityScript = "documentation\\database\\elasticsearch\\scripts\\entities\\create";
 		String pathToJavaClasses = "..\\vis-business-commons\\src\\main\\java\\com\\vis\\commons\\entities";
 		String mappingJnEntitiesErrors = "c:\\logs\\mappingJnEntitiesErrors.json";
