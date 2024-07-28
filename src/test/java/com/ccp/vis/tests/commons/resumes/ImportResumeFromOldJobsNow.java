@@ -29,13 +29,12 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 		this.ids = queryExecutor.getResultAsList(query, resourcesNames, "email").stream().map(x -> x.getAsString("id")).collect(Collectors.toSet());
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void accept(CcpJsonRepresentation candidate) {
 		
 		boolean alreadyInserted = this.contador++ < this.ids.size();
 		
 		if(alreadyInserted) {
-			return;
+//			return;
 		}
 		
 		CcpJsonRepresentation resumeFile = candidate.getInnerJson("curriculo")
@@ -70,6 +69,8 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 				ResumeTransformations.AddDisponibility,
 				ResumeTransformations.AddExperience,
 				ResumeTransformations.AddLastJob,
+				ResumeTransformations.AddMinCltValue,
+				ResumeTransformations.AddMinPjValue,
 				ResumeTransformations.AddObservations,
 				ResumeTransformations.CreateLoginAndSession,
 				JnValidateSession.INSTANCE

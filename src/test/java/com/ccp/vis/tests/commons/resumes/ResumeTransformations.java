@@ -12,9 +12,6 @@ import com.ccp.especifications.db.bulk.CcpEntityOperationType;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.jn.async.commons.JnAsyncCommitAndAudit;
-import com.ccp.json.transformers.CcpJsonTransformerGenerateFieldHash;
-import com.ccp.json.transformers.CcpJsonTransformerGenerateRandomToken;
-import com.ccp.json.transformers.CcpJsonTransformerPutPasswordField;
 import com.ccp.json.transformers.CcpTransformers;
 import com.jn.commons.entities.JnEntityLoginAnswers;
 import com.jn.commons.entities.JnEntityLoginEmail;
@@ -106,8 +103,7 @@ public enum ResumeTransformations implements CcpTransformers{
 			} catch (Exception e) {
 				new CcpStringDecorator("c:\\logs\\resumes").folder().createNewFolderIfNotExists("wrongEmails").createNewFileIfNotExists(email);
 				CcpJsonRepresentation putAll = json.putAll(createLogin);
-				CcpJsonTransformerGenerateFieldHash transformer = new CcpJsonTransformerGenerateFieldHash("email", "originalEmail");
-				CcpJsonRepresentation transformed = putAll.getTransformed(transformer);
+				CcpJsonRepresentation transformed = putAll.putEmailHash("SHA1");
 				return transformed;
 			}
 		}
@@ -126,11 +122,7 @@ public enum ResumeTransformations implements CcpTransformers{
 			return asSingleJson;
 		}
 		
-		@SuppressWarnings("unchecked")
 		private CcpJsonRepresentation createLogin(String email) {
-			var tokenGenerator = new CcpJsonTransformerGenerateRandomToken(8, "token");
-			var passwordGenerator = new CcpJsonTransformerPutPasswordField("password");
-			var fieldHashGenerator = new CcpJsonTransformerGenerateFieldHash("email", "originalEmail");
 			CcpJsonRepresentation transformed = CcpConstants.EMPTY_JSON
 			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
 			.put("password", "Jobsnow1!")
@@ -138,11 +130,10 @@ public enum ResumeTransformations implements CcpTransformers{
 			.put("channel", "linkedin")
 			.put("goal", "jobs")
 			.put("email", email)
-			.getTransformedJson(
-					tokenGenerator,
-					fieldHashGenerator,
-					passwordGenerator
-			);
+			.putEmailHash("SHA1")
+			.putRandomToken(8, "token")
+			.putPasswordHash("password")
+			;
 			
 			JnAsyncCommitAndAudit.INSTANCE.executeBulk(transformed, CcpEntityOperationType.create, 
 					JnEntityLoginPassword.INSTANCE,
@@ -170,6 +161,18 @@ public enum ResumeTransformations implements CcpTransformers{
 	AddBtcValue {
 		public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
 			CcpJsonRepresentation put = this.putMinValue(json, VisEntityResume.Fields.btc.name(), 1000);
+			return put;
+		}
+	},
+	AddMinCltValue {
+		public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
+			CcpJsonRepresentation put = this.putMinValue(json, VisEntityResume.Fields.clt.name(), 1000);
+			return put;
+		}
+	},
+	AddMinPjValue {
+		public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
+			CcpJsonRepresentation put = this.putMinValue(json, VisEntityResume.Fields.clt.name(), 1000);
 			return put;
 		}
 	},

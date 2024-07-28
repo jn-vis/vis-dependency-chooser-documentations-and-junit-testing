@@ -14,6 +14,7 @@ import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.dependency.injection.CcpDependencyInjection;
 import com.ccp.especifications.db.query.CcpDbQueryOptions;
 import com.ccp.especifications.db.query.CcpQueryExecutor;
+import com.ccp.especifications.db.utils.CcpEntityField;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
@@ -25,12 +26,36 @@ import com.vis.commons.entities.VisEntityResume;
 
 public class SaveResume extends BaseTest {
 	
+	
+	@Test
+	public void inativarCurriculo() {
+		
+		CcpJsonRepresentation resume = CcpConstants.EMPTY_JSON
+				.put("email", "onias85@gmail.com")
+				.putEmailHash("SHA1")
+				
+				;
+		
+		SyncServiceVisResume.INSTANCE.changeStatus(resume);
+	}
+	
+	
 	@Test
 	public void importarCurriculosDoJobsNowAntigo() {
 		CcpQueryExecutor queryExecutor = CcpDependencyInjection.getDependency(CcpQueryExecutor.class);
+		CcpEntityField id = new CcpEntityField() {
+			public String name() {
+				return "_id";
+			}
+			public boolean isPrimaryKey() {
+				return false;
+			}
+		};
 		CcpDbQueryOptions query = 
 				CcpDbQueryOptions.INSTANCE
-					.matchAll()
+					.startSimplifiedQuery()
+					.term(id, "onias85@gmail.com")
+					.endSimplifiedQueryAndBackToRequest()
 				;
 		String[] resourcesNames = new String[] {"profissionais2"};
 		queryExecutor.consumeQueryResult(
