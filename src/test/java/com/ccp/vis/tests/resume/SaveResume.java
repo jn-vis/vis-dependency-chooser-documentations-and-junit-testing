@@ -14,7 +14,6 @@ import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.dependency.injection.CcpDependencyInjection;
 import com.ccp.especifications.db.query.CcpDbQueryOptions;
 import com.ccp.especifications.db.query.CcpQueryExecutor;
-import com.ccp.especifications.db.utils.CcpEntityField;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
@@ -26,36 +25,12 @@ import com.vis.commons.entities.VisEntityResume;
 
 public class SaveResume extends BaseTest {
 	
-	
-	@Test
-	public void inativarCurriculo() {
-		
-		CcpJsonRepresentation resume = CcpConstants.EMPTY_JSON
-				.put("email", "onias85@gmail.com")
-				.putEmailHash("SHA1")
-				
-				;
-		
-		SyncServiceVisResume.INSTANCE.changeStatus(resume);
-	}
-	
-	
 	@Test
 	public void importarCurriculosDoJobsNowAntigo() {
 		CcpQueryExecutor queryExecutor = CcpDependencyInjection.getDependency(CcpQueryExecutor.class);
-		CcpEntityField id = new CcpEntityField() {
-			public String name() {
-				return "_id";
-			}
-			public boolean isPrimaryKey() {
-				return false;
-			}
-		};
 		CcpDbQueryOptions query = 
 				CcpDbQueryOptions.INSTANCE
-					.startSimplifiedQuery()
-					.term(id, "onias85@gmail.com")
-					.endSimplifiedQueryAndBackToRequest()
+					.matchAll()
 				;
 		String[] resourcesNames = new String[] {"profissionais2"};
 		queryExecutor.consumeQueryResult(
@@ -197,6 +172,44 @@ public class SaveResume extends BaseTest {
 			String faltandoDdd = json.getAsString("name");
 			
 			assertTrue("ddd".equals(faltandoDdd));
+		}
+	}
+	
+	@Test
+	public void faltandoCampoResumeMeiaQuatro () {
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoResumeMeiaQuatro.json");
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation resume = file.asSingleJson();
+		try {
+			SyncServiceVisResume.INSTANCE.save(resume);
+		} catch (CcpJsonInvalid e) {
+			CcpJsonRepresentation errorAsJson = e.getErrorAsJson();
+			ArrayList<Map<String, Object>> valueFromPath = errorAsJson
+					.getValueFromPath(new ArrayList<>(), "errors", "SimpleText.requiredFields", "wrongFields");
+			Map<String, Object> baseMeiaQuatroErro = valueFromPath.get(0);
+			CcpJsonRepresentation json = new CcpJsonRepresentation(baseMeiaQuatroErro);
+			String faltandoResumeMeiaQuatro = json.getAsString("name");
+			
+			assertTrue("Resume64".equals(faltandoResumeMeiaQuatro));
+		}
+	}
+	
+	@Test
+	public void faltandoCampoResumeText() {
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoResumeText.json");
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation resume = file.asSingleJson();
+		try {
+			SyncServiceVisResume.INSTANCE.save(resume);
+		} catch (CcpJsonInvalid e) {
+			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
+			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
+					.getValueFromPath(new ArrayList<>(), "errors", "SimpleText.requiredFields", "wrongFields");
+			Map<String, Object> resumeTextErro = valueFromPath.get(0);
+			CcpJsonRepresentation json = new CcpJsonRepresentation(resumeTextErro);
+			String faltandoResumeText = json.getAsString("name");
+			
+			assertTrue("ResumeText".equals(faltandoResumeText));
 		}
 	}
 
