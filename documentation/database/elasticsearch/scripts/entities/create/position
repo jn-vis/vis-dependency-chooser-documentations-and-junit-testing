@@ -44,14 +44,11 @@
             "sortFields": {
                 "type": "keyword"
             },
-            "synonym": {
-                "type": "keyword"
-            },
             "frequency": {
                 "type": "keyword"
             },
             "channel": {
-                "type": "keyword"
+                "type": "text"
             },
             "btc": {
                 "type": "double"
@@ -61,9 +58,6 @@
             },
             "pj": {
                 "type": "double"
-            },
-            "experience": {
-                "type": "integer"
             }
         }
     }
