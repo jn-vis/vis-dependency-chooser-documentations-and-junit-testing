@@ -74,7 +74,7 @@ public class SaveResume extends BaseTest {
 	}
 	
 	@Test
-	public void faltandoCampoDisponibilidadeEdeficiencia() {
+	public void faltandoCampoDisponibilidadeEdeficiencia() {		//Ok
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDisponibilidadeEdeficiencia.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
@@ -119,7 +119,7 @@ public class SaveResume extends BaseTest {
 	
 	
 	@Test
-	public void faltandoCampoDisponibilidade() {
+	public void faltandoCampoDisponibilidade() {		//Ok
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDisponibilidade.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
@@ -138,7 +138,7 @@ public class SaveResume extends BaseTest {
 	}
 	
 	@Test
-	public void faltandoCampoDeficiencia() {
+	public void faltandoCampoDeficiencia() {		//Ok
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDeficiencia.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
@@ -157,7 +157,7 @@ public class SaveResume extends BaseTest {
 	}
 
 	@Test
-	public void faltandoCampoDdd() {
+	public void faltandoCampoDdd() {		//Ok
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDdd.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
