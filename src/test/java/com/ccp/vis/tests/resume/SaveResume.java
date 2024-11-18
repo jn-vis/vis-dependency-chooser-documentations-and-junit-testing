@@ -74,7 +74,7 @@ public class SaveResume extends BaseTest {
 	}
 	
 	@Test
-	public void faltandoCampoDisponibilidadeEdeficiencia() {
+	public void faltandoCampoDisponibilidadeEdeficiencia() {		//Ok
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDisponibilidadeEdeficiencia.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
@@ -119,7 +119,7 @@ public class SaveResume extends BaseTest {
 	
 	
 	@Test
-	public void faltandoCampoDisponibilidade() {
+	public void faltandoCampoDisponibilidade() {		//Ok
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDisponibilidade.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
@@ -138,7 +138,7 @@ public class SaveResume extends BaseTest {
 	}
 	
 	@Test
-	public void faltandoCampoDeficiencia() {
+	public void faltandoCampoDeficiencia() {		//Ok
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDeficiencia.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
@@ -157,7 +157,7 @@ public class SaveResume extends BaseTest {
 	}
 
 	@Test
-	public void faltandoCampoDdd() {
+	public void faltandoCampoDdd() {		//Ok
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDdd.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
@@ -210,6 +210,82 @@ public class SaveResume extends BaseTest {
 			String faltandoResumeText = json.getAsString("name");
 			
 			assertTrue("ResumeText".equals(faltandoResumeText));
+		}
+	}
+	
+	@Test
+	public void faltandoCampoDesiredJob() {
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDesiredJob.json");
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation resume = file.asSingleJson();
+		try {
+			SyncServiceVisResume.INSTANCE.save(resume);			
+		} catch (CcpJsonInvalid e) {
+			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
+			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
+					.getValueFromPath(new ArrayList<>(), "errors", "SimpleText.requiredFields", "wrongFields");
+			Map<String, Object> resumeDesiredJob = valueFromPath.get(0);
+			CcpJsonRepresentation json = new CcpJsonRepresentation(resumeDesiredJob);
+			String faltandoResumeDesiredJob = json.getAsString("name");
+			
+			assertTrue("DesiredJob".equals(faltandoResumeDesiredJob));
+		}
+	}
+
+	@Test
+	public void faltandoCampoLastJob() {
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoLastJob.json");
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation resume = file.asSingleJson();
+		try {
+			SyncServiceVisResume.INSTANCE.save(resume);			
+		} catch (CcpJsonInvalid e) {
+			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
+			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
+					.getValueFromPath(new ArrayList<>(), "errors", "SimpleText.requiredFields", "wrongFields");
+			Map<String, Object> resumeLastJob = valueFromPath.get(0);
+			CcpJsonRepresentation json = new CcpJsonRepresentation(resumeLastJob);
+			String faltandoResumeLastJob = json.getAsString("name");
+			
+			assertTrue("DesiredJob".equals(faltandoResumeLastJob));
+		}
+	}
+	
+	@Test
+	public void faltandoCampoExperience() {
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoExperience.json");
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation resume = file.asSingleJson();
+		try {
+			SyncServiceVisResume.INSTANCE.save(resume);			
+		} catch (CcpJsonInvalid e) {
+			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
+			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
+					.getValueFromPath(new ArrayList<>(), "errors", "SimpleText.requiredFields", "wrongFields");
+			Map<String, Object> resumeExperience = valueFromPath.get(0);
+			CcpJsonRepresentation json = new CcpJsonRepresentation(resumeExperience);
+			String faltandoExperience = json.getAsString("name");
+			
+			assertTrue("DesiredJob".equals(faltandoExperience));
+		}
+	}
+	
+	@Test
+	public void faltandoCampoClt() {
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoClt.json");
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation resume = file.asSingleJson();
+		try {
+			SyncServiceVisResume.INSTANCE.save(resume);			
+		} catch (CcpJsonInvalid e) {
+			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
+			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
+					.getValueFromPath(new ArrayList<>(), "errors", "SimpleText.requiredFields", "wrongFields");
+			Map<String, Object> resumeClt = valueFromPath.get(0);
+			CcpJsonRepresentation json = new CcpJsonRepresentation(resumeClt);
+			String faltandoResumeClt = json.getAsString("name");
+			
+			assertTrue("DesiredJob".equals(faltandoResumeClt));
 		}
 	}
 
