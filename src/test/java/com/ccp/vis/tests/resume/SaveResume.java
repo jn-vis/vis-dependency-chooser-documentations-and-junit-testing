@@ -1,5 +1,6 @@
 package com.ccp.vis.tests.resume;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -287,6 +288,33 @@ public class SaveResume extends BaseTest {
 			
 			assertTrue("DesiredJob".equals(faltandoResumeClt));
 		}
+	}
+	
+	@Test
+	public void reativarCurriculo() {
+
+		CcpJsonRepresentation inactiveResume = this.getResume("inactive_resume/_source/-59b2d0bbc256a21ddec4620fa6dfd624a3096935");
+
+		SyncServiceVisResume.INSTANCE.changeStatus(inactiveResume);
+
+		CcpJsonRepresentation resume = this.getResume("resume/_source/-59b2d0bbc256a21ddec4620fa6dfd624a3096935");
+		
+		assertEquals(resume, inactiveResume);
+
+		SyncServiceVisResume.INSTANCE.changeStatus(inactiveResume);
+
+	}
+
+	private CcpJsonRepresentation getResume(String string) {
+		String url = "http://localhost:9200/"
+				+ string;
+		
+		CcpHttpHandler http = new CcpHttpHandler(200, CcpConstants.DO_NOTHING);
+		
+		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(url, "GET", CcpConstants.EMPTY_JSON, CcpConstants.EMPTY_JSON.asUgglyJson(), 200);
+		
+		CcpJsonRepresentation resume = response.asSingleJson();
+		return resume;
 	}
 
 }
