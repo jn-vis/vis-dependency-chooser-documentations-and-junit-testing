@@ -33,7 +33,7 @@
                 "type": "integer"
             },
             "seniority": {
-                "type": "integer"
+                "type": "keyword"
             },
             "disponibility": {
                 "type": "integer"
