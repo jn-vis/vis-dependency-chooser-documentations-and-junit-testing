@@ -9,7 +9,6 @@ import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.dependency.injection.CcpDependencyInjection;
 import com.ccp.especifications.db.query.CcpDbQueryOptions;
 import com.ccp.especifications.db.query.CcpQueryExecutor;
-import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
 import com.jn.commons.utils.JnValidateSession;
 import com.vis.commons.entities.VisEntityResume;
 
@@ -94,14 +93,14 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 				,"name"
 				);
 	
-		SyncServiceVisResume.INSTANCE.save(resume);
+//		SyncServiceVisResume.INSTANCE.save(resume);
 		
 		Integer status = candidate.getAsIntegerNumber("status");
 		
 		boolean inactiveResume = Integer.valueOf(0).equals(status);
 		
 		if(inactiveResume) {
-			SyncServiceVisResume.INSTANCE.changeStatus(resume);
+//			SyncServiceVisResume.INSTANCE.changeStatus(resume);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.ccp.vis.tests.position;
+package com.ccp.vis.tests.position.validations.json;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import com.ccp.vis.tests.commons.BaseTest;
 import com.ccp.vis.tests.commons.resumes.ResumeTransformations;
 import com.jn.vis.commons.cache.tasks.PutSkillsInJson;
 
-public class SavePosition extends BaseTest {
+public class ValidationsJsonSavePosition extends BaseTest {
 
 	@Test
 	public void salvarVaga() {

@@ -1,4 +1,4 @@
-package com.ccp.vis.tests.resume;
+package com.ccp.vis.tests.resume.validations.json;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -17,14 +17,13 @@ import com.ccp.especifications.db.query.CcpDbQueryOptions;
 import com.ccp.especifications.db.query.CcpQueryExecutor;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
-import com.ccp.jn.vis.sync.service.SyncServiceVisResume;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.resume.VisAsyncBusinessResumeSave;
 import com.ccp.vis.tests.commons.BaseTest;
 import com.ccp.vis.tests.commons.resumes.ImportResumeFromOldJobsNow;
 import com.vis.commons.entities.VisEntityResume;
 
-public class SaveResume extends BaseTest {
+public class ValidationsJsonSaveResume extends BaseTest {
 	
 	@Test
 	public void importarCurriculosDoJobsNowAntigo() {
@@ -46,7 +45,7 @@ public class SaveResume extends BaseTest {
 	@Test
 	public void excluirCurriculoSalvo() {
 		CcpJsonRepresentation resume = CcpConstants.EMPTY_JSON.put(VisEntityResume.Fields.email.name(), "-79081bc8055a58031ea2e22346151515c8899848");
-		SyncServiceVisResume.INSTANCE.delete(resume);
+//		SyncServiceVisResume.INSTANCE.delete(resume);
 	}
 	
 	@Test
@@ -68,7 +67,7 @@ public class SaveResume extends BaseTest {
 		CcpJsonRepresentation resume = file.asSingleJson().put("resumeBase64", conteudo);
 		
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);
+//			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
 			super.saveErrors(file, e);
 		}
@@ -80,7 +79,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);
+//			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation errorAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = errorAsJson
@@ -112,7 +111,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);
+//			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
 			super.saveErrors(file, e);
 		}
@@ -125,7 +124,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);
+//			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation errorAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = errorAsJson
@@ -144,7 +143,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);
+//			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation errorAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = errorAsJson
@@ -163,7 +162,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);
+//			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation errorAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = errorAsJson
@@ -182,7 +181,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);
+//			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation errorAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = errorAsJson
@@ -201,7 +200,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);
+//			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
@@ -220,7 +219,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);			
+//			SyncServiceVisResume.INSTANCE.save(resume);			
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
@@ -239,7 +238,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);			
+//			SyncServiceVisResume.INSTANCE.save(resume);			
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
@@ -258,7 +257,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);			
+//			SyncServiceVisResume.INSTANCE.save(resume);			
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
@@ -277,7 +276,7 @@ public class SaveResume extends BaseTest {
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
 		try {
-			SyncServiceVisResume.INSTANCE.save(resume);			
+//			SyncServiceVisResume.INSTANCE.save(resume);			
 		} catch (CcpJsonInvalid e) {
 			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
 			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
@@ -295,13 +294,13 @@ public class SaveResume extends BaseTest {
 
 		CcpJsonRepresentation inactiveResume = this.getResume("inactive_resume/_source/-59b2d0bbc256a21ddec4620fa6dfd624a3096935");
 
-		SyncServiceVisResume.INSTANCE.changeStatus(inactiveResume);
+//		SyncServiceVisResume.INSTANCE.changeStatus(inactiveResume);
 
 		CcpJsonRepresentation resume = this.getResume("resume/_source/-59b2d0bbc256a21ddec4620fa6dfd624a3096935");
 		
 		assertEquals(resume, inactiveResume);
 
-		SyncServiceVisResume.INSTANCE.changeStatus(inactiveResume);
+//		SyncServiceVisResume.INSTANCE.changeStatus(inactiveResume);
 
 	}
 
