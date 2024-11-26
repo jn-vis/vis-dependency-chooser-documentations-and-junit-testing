@@ -23,7 +23,7 @@ import com.ccp.vis.tests.commons.BaseTest;
 import com.ccp.vis.tests.commons.resumes.ImportResumeFromOldJobsNow;
 import com.vis.commons.entities.VisEntityResume;
 
-public class ValidationsJsonSaveResume extends BaseTest {
+public class ValidationsJsonSaveResume extends BaseTest {  
 	
 	@Test
 	public void importarCurriculosDoJobsNowAntigo() {
