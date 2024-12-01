@@ -138,13 +138,13 @@ public enum ResumeTransformations implements CcpTransformers{
 			;
 			
 			JnAsyncCommitAndAudit.INSTANCE.executeBulk(transformed, CcpEntityOperationType.create, 
-					JnEntityLoginPassword.INSTANCE,
-					JnEntityLoginAnswers.INSTANCE,
-					JnEntityLoginToken.INSTANCE,
-					JnEntityLoginEmail.INSTANCE
+					JnEntityLoginPassword.ENTITY,
+					JnEntityLoginAnswers.ENTITY,
+					JnEntityLoginToken.ENTITY,
+					JnEntityLoginEmail.ENTITY
 					);
 			
-			JnEntityLoginSessionCurrent.INSTANCE.delete(transformed);
+			JnEntityLoginSessionCurrent.ENTITY.delete(transformed);
 			
 			CcpJsonRepresentation renameField = transformed.renameField("originalEmail", "email");
 			return renameField;

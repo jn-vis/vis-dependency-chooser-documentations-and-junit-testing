@@ -24,7 +24,7 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 					.matchAll()
 					.maxResults()
 				;
-		String[] resourcesNames = new String[] {VisEntityResume.INSTANCE.getEntityName(), VisEntityResume.INSTANCE.getMirrorEntity().getEntityName()};
+		String[] resourcesNames = new String[] {VisEntityResume.ENTITY.getEntityName(), VisEntityResume.ENTITY.getTwinEntity().getEntityName()};
 		this.ids = queryExecutor.getResultAsList(query, resourcesNames, "email").stream().map(x -> x.getAsString("id")).collect(Collectors.toSet());
 	}
 	
