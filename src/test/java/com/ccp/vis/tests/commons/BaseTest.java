@@ -18,6 +18,7 @@ import com.ccp.implementations.mensageria.sender.gcp.pubsub.CcpGcpPubSubMensager
 import com.ccp.implementations.password.mindrot.CcpMindrotPasswordHandler;
 import com.ccp.implementations.text.extractor.apache.tika.CcpApacheTikaTextExtractor;
 import com.ccp.local.testings.implementations.CcpLocalInstances;
+import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
 
@@ -46,8 +47,8 @@ public class BaseTest {
 				new CcpElasticSearchDbRequest(),
 				new CcpApacheTikaTextExtractor(),
 				localEnviroment ? CcpLocalInstances.bucket.getLocalImplementation(businessInstanceProvider) : new CcpGcpFileBucket(),
-				localEnviroment ? CcpLocalInstances.email.getLocalImplementation(businessInstanceProvider) : new CcpSendGridEmailSender(),
-				localEnviroment ? CcpLocalInstances.cache.getLocalImplementation(businessInstanceProvider) : new CcpGcpMemCache(),
+			    localEnviroment ? CcpLocalCacheInstances.map.getLocalImplementation(businessInstanceProvider) : new CcpGcpMemCache(),
+	    		localEnviroment ? CcpLocalInstances.email.getLocalImplementation(businessInstanceProvider) : new CcpSendGridEmailSender(),
 				localEnviroment ? CcpLocalInstances.mensageriaSender.getLocalImplementation(businessInstanceProvider) : new CcpGcpPubSubMensageriaSender()
 				);	
 		
