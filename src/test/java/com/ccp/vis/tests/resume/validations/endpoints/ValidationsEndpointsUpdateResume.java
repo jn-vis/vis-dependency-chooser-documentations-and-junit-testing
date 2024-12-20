@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.especifications.http.CcpHttpResponseType;
-import com.ccp.process.CcpProcessStatus;
+import com.ccp.process.CcpDefaultProcessStatus;
 import com.ccp.vis.tests.commons.VisTemplateDeTestes;
 
 public class ValidationsEndpointsUpdateResume  extends VisTemplateDeTestes{
@@ -14,7 +14,7 @@ public class ValidationsEndpointsUpdateResume  extends VisTemplateDeTestes{
 		
 		String uri = ENDPOINT_URL + "/resume/{email}";
 		CcpJsonRepresentation headers = super.getHeaders();
-		CcpJsonRepresentation jsonDeRetornoDoTeste = super.testarEndpoint(CcpProcessStatus.UPDATED, headers, uri, CcpHttpResponseType.singleRecord);
+		CcpJsonRepresentation jsonDeRetornoDoTeste = super.testarEndpoint(CcpDefaultProcessStatus.UPDATED, headers, uri, CcpHttpResponseType.singleRecord);
 		
 	}
 

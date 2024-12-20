@@ -1,6 +1,7 @@
 package com.ccp.vis.tests.commons;
 
 import com.ccp.constantes.CcpConstants;
+import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.decorators.CcpTimeDecorator;
@@ -107,4 +108,11 @@ public abstract class VisTemplateDeTestes {
 	}
 	
  
+	public CcpJsonRepresentation getJsonDoArquivo(String path) {
+		CcpStringDecorator ccpStringDecorator =	new CcpStringDecorator(path);
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation json = file.asSingleJson();
+		return json;
+
+	}
 }
