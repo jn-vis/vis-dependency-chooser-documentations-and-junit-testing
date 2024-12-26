@@ -21,7 +21,7 @@ import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.process.CcpProcessStatus;
 
 public abstract class VisTemplateDeTestes {
-	protected final String ENDPOINT_URL = "http://localhost:8080/";
+	protected final String ENDPOINT_URL = "http://localhost:8081/";
 
 	static {
 		CcpDependencyInjection.loadAllDependencies(
@@ -36,7 +36,7 @@ public abstract class VisTemplateDeTestes {
 				);
 		
 		String pathToCreateEntityScript = "documentation\\database\\elasticsearch\\scripts\\entities\\create";
-		String pathToJavaClasses = "..\\jn-business-commons\\src\\main\\java\\com\\jn\\commons\\entities";
+		String pathToJavaClasses = "..\\vis-business-commons\\src\\main\\java\\com\\vis\\commons\\entities";
 		String mappingJnEntitiesErrors = "c:\\logs\\mappingJnEntitiesErrors.json";
 		String insertErrors = "c:\\logs\\insertErrors.json";
 		CcpDbRequester database = CcpDependencyInjection.getDependency(CcpDbRequester.class);

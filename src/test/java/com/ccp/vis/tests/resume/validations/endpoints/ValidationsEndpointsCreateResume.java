@@ -14,7 +14,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 
 	@Test
 	public void salvarCurriculoComArquivoInvalido() {
-		String uri = ENDPOINT_URL + "/resume/{email}";
+		String uri ="resume/onias85@gmail.com";
 		CcpJsonRepresentation body = super.getJsonDoArquivo("documentation/tests/resume/curriculoComArquivoInvalido.json");
 		CcpJsonRepresentation jsonDeRetornoDoTeste = super.testarEndpoint(CcpDefaultProcessStatus.CREATED, body, uri, CcpHttpResponseType.singleRecord);
 		
