@@ -1,6 +1,6 @@
 package com.ccp.vis.tests.commons;
 
-import com.ccp.constantes.CcpConstants;
+import com.ccp.constantes.CcpOtherConstants;
 import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
@@ -42,32 +42,35 @@ public abstract class VisTemplateDeTestes {
 		CcpDbRequester database = CcpDependencyInjection.getDependency(CcpDbRequester.class);
 		database.createTables(pathToCreateEntityScript, pathToJavaClasses, mappingJnEntitiesErrors, insertErrors);
 	}
-
-
-	public static void main(String[] args) {
-		
+	
+	public final Object getInnerClass(){
+		class InnerClass{
+			
+		}
+		return new InnerClass();
 	}
+	
 	
 	protected abstract String getMethod();
 
 	protected CcpJsonRepresentation getHeaders() {
-		return CcpConstants.EMPTY_JSON;
+		return CcpOtherConstants.EMPTY_JSON;
 	}
 
-	protected CcpJsonRepresentation testarEndpoint(String uri, CcpProcessStatus expectedStatus) {
-		CcpJsonRepresentation testarEndpoint = this.testarEndpoint(expectedStatus, CcpConstants.EMPTY_JSON, uri,
+	protected CcpJsonRepresentation testarEndpoint(String uri, String scenarioName, CcpProcessStatus expectedStatus) {
+		CcpJsonRepresentation testarEndpoint = this.testarEndpoint(expectedStatus, scenarioName, CcpOtherConstants.EMPTY_JSON, uri,
 				CcpHttpResponseType.singleRecord);
 		return testarEndpoint;
 	}
 
-	protected <V> V testarEndpoint(CcpProcessStatus scenarioName, CcpJsonRepresentation body, String uri,
+	protected <V> V testarEndpoint(CcpProcessStatus status, String scenarioName, CcpJsonRepresentation body, String uri,
 			CcpHttpResponseTransform<V> transformer) {
 
 		String method = this.getMethod();
 		CcpJsonRepresentation headers = this.getHeaders();
 
-		int expectedStatus = scenarioName.status();
-		CcpHttpHandler http = new CcpHttpHandler(expectedStatus, CcpConstants.DO_NOTHING);
+		int expectedStatus = status.asNumber();
+		CcpHttpHandler http = new CcpHttpHandler(expectedStatus, CcpOtherConstants.DO_NOTHING);
 		String path = this.ENDPOINT_URL + uri;
 		String name = this.getClass().getName();
 		String asUgglyJson = body.asUgglyJson();
@@ -78,17 +81,17 @@ public abstract class VisTemplateDeTestes {
 
 		int actualStatus = response.httpStatus;
 
-		this.logRequestAndResponse(path, method, scenarioName, actualStatus, body, headers, executeHttpRequest);
+		this.logRequestAndResponse(path, method, status, scenarioName, actualStatus, body, headers, executeHttpRequest);
 
-		scenarioName.verifyStatus(actualStatus);
+		status.verifyStatus(actualStatus);
 
 		return executeHttpRequest;
 	}
 
-	private <V> void logRequestAndResponse(String url, String method, CcpProcessStatus status, int actualStatus,
+	private <V> void logRequestAndResponse(String url, String method, CcpProcessStatus status, String scenarioName, int actualStatus,
 			CcpJsonRepresentation body, CcpJsonRepresentation headers, V executeHttpRequest) {
 
-		CcpJsonRepresentation md = CcpConstants.EMPTY_JSON.put("x", executeHttpRequest);
+		CcpJsonRepresentation md = CcpOtherConstants.EMPTY_JSON.put("x", executeHttpRequest);
 
 		if (executeHttpRequest instanceof CcpJsonRepresentation json) {
 			md = json;
@@ -96,15 +99,15 @@ public abstract class VisTemplateDeTestes {
 
 		String date = new CcpTimeDecorator().getFormattedDateTime("dd/MM/yyyy HH:mm:ss");
 
-		int expectedStatus = status.status();
-		CcpJsonRepresentation put = CcpConstants.EMPTY_JSON.put("url", url).put("method", method).put("actualStatus", actualStatus)
+		int expectedStatus = status.asNumber();
+		CcpJsonRepresentation put = CcpOtherConstants.EMPTY_JSON.put("url", url).put("method", method).put("actualStatus", actualStatus)
 				.put("expectedStatus", expectedStatus).put("headers", headers).put("request", body).put("response", md)
 				.put("timestamp", date);
 		String asPrettyJson = put.asPrettyJson();
 
 		String testName = this.getClass().getSimpleName();
 		new CcpStringDecorator("c:\\rh\\vis\\logs\\").folder().createNewFolderIfNotExists(testName)
-				.writeInTheFile(status + ".json", asPrettyJson);
+				.writeInTheFile(scenarioName + ".json", asPrettyJson);
 	}
 	
  

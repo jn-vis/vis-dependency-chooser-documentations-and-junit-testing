@@ -1,6 +1,6 @@
 package com.ccp.vis.tests.commons;
 
-import com.ccp.constantes.CcpConstants;
+import com.ccp.constantes.CcpOtherConstants;
 import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
@@ -24,9 +24,9 @@ import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
 
 public class BaseTest {
 
-	public final static String SESSION_TOKEN = CcpConstants.EMPTY_JSON.putRandomToken(8, "token").getAsString("token");
+	public final static String SESSION_TOKEN = CcpOtherConstants.EMPTY_JSON.putRandomToken(8, "token").getAsString("token");
 	
-	public final static CcpJsonRepresentation REQUEST_TO_LOGIN = CcpConstants.EMPTY_JSON
+	public final static CcpJsonRepresentation REQUEST_TO_LOGIN = CcpOtherConstants.EMPTY_JSON
 			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
 			.put("sessionToken", SESSION_TOKEN)
 			.put("ip", "localhost:8080")

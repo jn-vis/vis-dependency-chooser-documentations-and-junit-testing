@@ -5,7 +5,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.ccp.constantes.CcpConstants;
+import com.ccp.constantes.CcpOtherConstants;
+import com.ccp.decorators.CcpHashAlgorithm;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.especifications.db.bulk.CcpEntityOperationType;
@@ -105,7 +106,7 @@ public enum ResumeTransformations implements CcpTransformers{
 			} catch (Exception e) {
 				new CcpStringDecorator("c:\\logs\\resumes").folder().createNewFolderIfNotExists("wrongEmails").createNewFileIfNotExists(email);
 				CcpJsonRepresentation putAll = json.putAll(createLogin);
-				CcpJsonRepresentation transformed = putAll.putEmailHash("SHA1");
+				CcpJsonRepresentation transformed = putAll.putEmailHash(CcpHashAlgorithm.SHA1);
 				return transformed;
 			}
 		}
@@ -114,25 +115,25 @@ public enum ResumeTransformations implements CcpTransformers{
 			
 			String path = "http://localhost:8080/login/{email}".replace("{email}", email);
 			
-			String asUgglyJson = CcpConstants.EMPTY_JSON.put("password", "Jobsnow1!").asUgglyJson();
+			String asUgglyJson = CcpOtherConstants.EMPTY_JSON.put("password", "Jobsnow1!").asUgglyJson();
 
-			CcpHttpHandler http = new CcpHttpHandler(200, CcpConstants.DO_NOTHING);
+			CcpHttpHandler http = new CcpHttpHandler(200, CcpOtherConstants.DO_NOTHING);
 			
-			CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, "POST", CcpConstants.EMPTY_JSON, asUgglyJson, 200);
+			CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, "POST", CcpOtherConstants.EMPTY_JSON, asUgglyJson, 200);
 			
 			CcpJsonRepresentation asSingleJson = response.asSingleJson();
 			return asSingleJson;
 		}
 		
 		private CcpJsonRepresentation createLogin(String email) {
-			CcpJsonRepresentation transformed = CcpConstants.EMPTY_JSON
+			CcpJsonRepresentation transformed = CcpOtherConstants.EMPTY_JSON
 			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
 			.put("password", "Jobsnow1!")
 			.put("ip", "localhost:8080")
 			.put("channel", "linkedin")
 			.put("goal", "jobs")
 			.put("email", email)
-			.putEmailHash("SHA1")
+			.putEmailHash(CcpHashAlgorithm.SHA1)
 			.putRandomToken(8, "token")
 			.putPasswordHash("password")
 			;

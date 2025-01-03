@@ -12,11 +12,42 @@ import com.jn.commons.entities.JnEntityEmailMessageSent;
 
 public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 
+	private final String email = "onias85@gmail.com";
+	private final String uri = "resume/" + this.email + "/language/portuguese";
+	@Test
+	public void testarEmailInvalido() {
+
+		String scenarioName = new Object(){}.getClass().getEnclosingMethod().getName();
+		CcpJsonRepresentation body = super.getJsonDoArquivo("documentation/tests/resume/curriculoComArquivoInvalido.json");
+		super.testarEndpoint(CcpDefaultProcessStatus.BAD_REQUEST, scenarioName, body, this.uri, CcpHttpResponseType.singleRecord);
+	}
+
+	@Test
+	public void testarRequisicaoSemTokenDeSessao() {
+		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
+		CcpJsonRepresentation body = super.getJsonDoArquivo("documentation/tests/resume/curriculoComArquivoInvalido.json");
+		super.testarEndpoint(CcpDefaultProcessStatus.UNHAUTHORIZED, scenarioName, body, this.uri, CcpHttpResponseType.singleRecord);
+	}
+	
+	
+	@Test
+	public void testarRequisicaoComTokenFalso() {
+		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
+		CcpJsonRepresentation body = super.getJsonDoArquivo("documentation/tests/resume/curriculoComArquivoInvalido.json");
+		CcpJsonRepresentation bodyWithFakeSessionToken = body.put("sessionToken", "tokenFalsoSafadoQualquer");
+		super.testarEndpoint(CcpDefaultProcessStatus.UNHAUTHORIZED, scenarioName, bodyWithFakeSessionToken, this.uri, CcpHttpResponseType.singleRecord);
+
+	}
+	@Override
+	protected CcpJsonRepresentation getHeaders() {
+		return super.getHeaders().put("sessionToken", "NFDP8DV9987EVMBW1H3N56OEGYMFZB");
+	}
 	@Test
 	public void salvarCurriculoComArquivoInvalido() {
-		String uri ="resume/onias85@gmail.com";
+		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
 		CcpJsonRepresentation body = super.getJsonDoArquivo("documentation/tests/resume/curriculoComArquivoInvalido.json");
-		CcpJsonRepresentation jsonDeRetornoDoTeste = super.testarEndpoint(CcpDefaultProcessStatus.CREATED, body, uri, CcpHttpResponseType.singleRecord);
+		
+		CcpJsonRepresentation jsonDeRetornoDoTeste = super.testarEndpoint(CcpDefaultProcessStatus.CREATED, scenarioName, body, this.uri, CcpHttpResponseType.singleRecord);
 		
 		 new CcpGetEntityId(jsonDeRetornoDoTeste)
 			.toBeginProcedureAnd()
@@ -26,9 +57,9 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	}
 	@Test
 	public void salvarCurriculoComArquivoValido() {
-		String uri = ENDPOINT_URL + "/resume/{email}";
+		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
 		CcpJsonRepresentation body = super.getJsonDoArquivo("documentation/tests/resume/curriculoComArquivoValido.json");
-		CcpJsonRepresentation jsonDeRetornoDoTeste = super.testarEndpoint(CcpDefaultProcessStatus.CREATED, body, uri, CcpHttpResponseType.singleRecord);
+		CcpJsonRepresentation jsonDeRetornoDoTeste = super.testarEndpoint(CcpDefaultProcessStatus.CREATED, scenarioName, body, this.uri, CcpHttpResponseType.singleRecord);
 		
 		 new CcpGetEntityId(jsonDeRetornoDoTeste)
 			.toBeginProcedureAnd()

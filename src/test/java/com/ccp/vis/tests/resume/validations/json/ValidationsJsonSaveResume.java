@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.ccp.constantes.CcpConstants;
+import com.ccp.constantes.CcpOtherConstants;
 import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
@@ -44,17 +44,17 @@ public class ValidationsJsonSaveResume extends BaseTest {
 	
 	@Test
 	public void excluirCurriculoSalvo() {
-		CcpJsonRepresentation resume = CcpConstants.EMPTY_JSON.put(VisEntityResume.Fields.email.name(), "-79081bc8055a58031ea2e22346151515c8899848");
+		CcpJsonRepresentation resume = CcpOtherConstants.EMPTY_JSON.put(VisEntityResume.Fields.email.name(), "-79081bc8055a58031ea2e22346151515c8899848");
 //		SyncServiceVisResume.INSTANCE.delete(resume);
 	}
 	
 	@Test
 	public void salvarCurriculo() {
-		CcpHttpHandler http = new CcpHttpHandler(200, CcpConstants.DO_NOTHING);
+		CcpHttpHandler http = new CcpHttpHandler(200, CcpOtherConstants.DO_NOTHING);
 		String path = "http://localhost:9200/profissionais2/_doc/onias85@gmail.com/_source";
 		String asUgglyJson = "";
 
-		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, "GET", CcpConstants.EMPTY_JSON, asUgglyJson);
+		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, "GET", CcpOtherConstants.EMPTY_JSON, asUgglyJson);
 			
 		CcpJsonRepresentation asSingleJson = response.asSingleJson();
 		
@@ -308,9 +308,9 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		String url = "http://localhost:9200/"
 				+ string;
 		
-		CcpHttpHandler http = new CcpHttpHandler(200, CcpConstants.DO_NOTHING);
+		CcpHttpHandler http = new CcpHttpHandler(200, CcpOtherConstants.DO_NOTHING);
 		
-		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(url, "GET", CcpConstants.EMPTY_JSON, CcpConstants.EMPTY_JSON.asUgglyJson(), 200);
+		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(url, "GET", CcpOtherConstants.EMPTY_JSON, CcpOtherConstants.EMPTY_JSON.asUgglyJson(), 200);
 		
 		CcpJsonRepresentation resume = response.asSingleJson();
 		return resume;

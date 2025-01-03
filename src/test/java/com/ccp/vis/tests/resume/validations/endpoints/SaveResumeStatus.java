@@ -6,7 +6,7 @@ public enum SaveResumeStatus  implements CcpProcessStatus{
 	naoCadastrouMensageria,
 	naoEnviouEmail
 	;
-	public int status() {
+	public int asNumber() {
 		return 0;
 	}
 }
