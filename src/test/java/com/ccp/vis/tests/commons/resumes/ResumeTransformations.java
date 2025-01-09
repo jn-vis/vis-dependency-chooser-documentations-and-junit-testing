@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.ccp.constantes.CcpOtherConstants;
-import com.ccp.decorators.CcpHashAlgorithm;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.especifications.db.bulk.CcpEntityOperationType;
@@ -106,8 +105,7 @@ public enum ResumeTransformations implements CcpTransformers{
 			} catch (Exception e) {
 				new CcpStringDecorator("c:\\logs\\resumes").folder().createNewFolderIfNotExists("wrongEmails").createNewFileIfNotExists(email);
 				CcpJsonRepresentation putAll = json.putAll(createLogin);
-				CcpJsonRepresentation transformed = putAll.putEmailHash(CcpHashAlgorithm.SHA1);
-				return transformed;
+				return putAll;
 			}
 		}
 		
@@ -133,9 +131,6 @@ public enum ResumeTransformations implements CcpTransformers{
 			.put("channel", "linkedin")
 			.put("goal", "jobs")
 			.put("email", email)
-			.putEmailHash(CcpHashAlgorithm.SHA1)
-			.putRandomToken(8, "token")
-			.putPasswordHash("password")
 			;
 			
 			JnAsyncCommitAndAudit.INSTANCE.executeBulk(transformed, CcpEntityOperationType.create, 
