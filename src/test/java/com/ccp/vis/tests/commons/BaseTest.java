@@ -21,15 +21,13 @@ import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
-import com.jn.commons.json.transformers.JnJsonTransformerPutRandomTokenSecret;
 
 public class BaseTest {
 
-	public final static String SESSION_TOKEN = CcpOtherConstants.EMPTY_JSON.getTransformedJson(JnJsonTransformerPutRandomTokenSecret.INSTANCE).getAsString("token");
 	
 	public final static CcpJsonRepresentation REQUEST_TO_LOGIN = CcpOtherConstants.EMPTY_JSON
 			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
-			.put("sessionToken", SESSION_TOKEN)
+//			.put("sessionToken", SESSION_TOKEN)
 			.put("ip", "localhost:8080")
 			;
 
