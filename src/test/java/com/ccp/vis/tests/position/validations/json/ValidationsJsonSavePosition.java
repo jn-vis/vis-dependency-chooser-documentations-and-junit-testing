@@ -12,7 +12,7 @@ import com.ccp.decorators.CcpTimeDecorator;
 import com.ccp.vis.async.commons.FrequencyOptions;
 import com.ccp.vis.tests.commons.BaseTest;
 import com.ccp.vis.tests.commons.resumes.ResumeTransformations;
-import com.jn.vis.commons.cache.tasks.PutSkillsInJson;
+import com.vis.commons.cache.tasks.PutSkillsInJson;
 
 public class ValidationsJsonSavePosition extends BaseTest {
 

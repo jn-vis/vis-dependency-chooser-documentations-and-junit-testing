@@ -9,7 +9,6 @@ import com.ccp.dependency.injection.CcpDependencyInjection;
 import com.ccp.especifications.db.utils.CcpDbRequester;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
-import com.ccp.especifications.http.CcpHttpResponseTransform;
 import com.ccp.especifications.http.CcpHttpResponseType;
 import com.ccp.implementations.db.bulk.elasticsearch.CcpElasticSerchDbBulk;
 import com.ccp.implementations.db.crud.elasticsearch.CcpElasticSearchCrud;
@@ -58,17 +57,23 @@ public abstract class VisTemplateDeTestes {
 	}
 
 	protected CcpJsonRepresentation testarEndpoint(String uri, String scenarioName, CcpProcessStatus expectedStatus) {
-		CcpJsonRepresentation testarEndpoint = this.testarEndpoint(expectedStatus, scenarioName, CcpOtherConstants.EMPTY_JSON, uri,
-				CcpHttpResponseType.singleRecord);
+		CcpJsonRepresentation testarEndpoint = this.testarEndpoint(expectedStatus, scenarioName, CcpOtherConstants.EMPTY_JSON, uri);
 		return testarEndpoint;
 	}
 
-	protected <V> V testarEndpoint(CcpProcessStatus status, String scenarioName, CcpJsonRepresentation body, String uri,
-			CcpHttpResponseTransform<V> transformer) {
+	protected CcpJsonRepresentation testarEndpoint(CcpProcessStatus status, String scenarioName, CcpJsonRepresentation body, String uri) {
 
-		String method = this.getMethod();
 		CcpJsonRepresentation headers = this.getHeaders();
 
+		CcpJsonRepresentation executeHttpRequest = this.testarEndpoint(status, scenarioName, body, uri, headers);
+
+		return executeHttpRequest;
+	}
+
+
+	protected CcpJsonRepresentation testarEndpoint(CcpProcessStatus status, String scenarioName, CcpJsonRepresentation body, String uri,
+			CcpJsonRepresentation headers) {
+		String method = this.getMethod();
 		int expectedStatus = status.asNumber();
 		CcpHttpHandler http = new CcpHttpHandler(expectedStatus, CcpOtherConstants.DO_NOTHING);
 		String path = this.ENDPOINT_URL + uri;
@@ -77,14 +82,13 @@ public abstract class VisTemplateDeTestes {
 
 		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, method, headers, asUgglyJson);
 
-		V executeHttpRequest = http.executeHttpRequest(name, path, method, headers, asUgglyJson, transformer, response);
+		CcpJsonRepresentation executeHttpRequest = http.executeHttpRequest(name, path, method, headers, asUgglyJson, CcpHttpResponseType.singleRecord, response);
 
 		int actualStatus = response.httpStatus;
 
 		this.logRequestAndResponse(path, method, status, scenarioName, actualStatus, body, headers, executeHttpRequest);
-
-		status.verifyStatus(actualStatus);
-
+		String message = executeHttpRequest.isInnerJson("message") == false ? executeHttpRequest.getAsString("message") : executeHttpRequest.getValueFromPath("", "message", "statusName");
+		status.verifyStatus(actualStatus, message);
 		return executeHttpRequest;
 	}
 
