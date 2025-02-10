@@ -1,15 +1,15 @@
-#Testar pdf inválido0
+#Testar pdf inválido
 A) Verificação de fields
-B) Retorno do json do endpoint do salvamento de curriculo
-C) Verificação de existência de mensagem VisAsyncBusiness.resume em JnEntityAsyncTask.INSTANCE
-D) Verificação de existência do registro em JnEntityEmailMessageSent.INSTANCE
+B) Verificação de existência do registro em JnEntityEmailMessageSent.ENTITY
+C) Verificação de existência de mensagem VisAsyncBusiness.resume em JnEntityAsyncTask.ENTITY
+D) Retorno do json do endpoint do salvamento de curriculo
 
 #Testar pdf válido
-A) Verificação de existência de mensagem VisAsyncBusiness.resumeSave em JnEntityAsyncTask.INSTANCE
-B) Verificação de existência de mensagem VisAsyncBusiness.resumeBucketSave em JnEntityAsyncTask.INSTANCE
-C) Verificação de existência de registro em VisEntityResume.INSTANCE
+A) Verificação de existência de mensagem VisAsyncBusiness.resumeSave em JnEntityAsyncTask.ENTITY
+B) Verificação de existência de mensagem VisAsyncBusiness.resumeBucketSave em JnEntityAsyncTask.ENTITY
+C) Verificação de existência de registro em VisEntityResume.ENTITY
 D) Validar palavras chaves encontradas
-E) Verificação de existência do registro em JnEntityEmailMessageSent.INSTANCE
+E) Verificação de existência do registro em JnEntityEmailMessageSent.ENTITY
 F) Verificação de existência de dados no bucket
 G) Validação de dados do bucket
 H) Verificação de existência de dados do formulário no cache
