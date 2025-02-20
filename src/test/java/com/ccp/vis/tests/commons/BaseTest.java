@@ -65,11 +65,25 @@ public class BaseTest {
 		CcpDbRequester database = CcpDependencyInjection.getDependency(CcpDbRequester.class);
 		database.createTables(pathToCreateEntityScript, pathToJavaClasses, mappingJnEntitiesErrors, insertErrors);
 	}
+	
 	protected void saveErrors(CcpFileDecorator file, CcpJsonInvalid e) {
-		String path = file.getPath().replace(".json", "_errors.json");
-		String message = e.getMessage();
-		CcpFileDecorator reset = new CcpStringDecorator(path).file().reset();
-		reset.append(message);
+		String path = file.getPath();
+		this.saveErrors(path, e);
 		throw new RuntimeException(e);
 	}
+	
+	protected void saveErrors(String path, CcpJsonInvalid e) {
+		String replace = path.replace(".json", "_errors.json");
+		String message = e.getMessage();
+		CcpFileDecorator reset = new CcpStringDecorator(replace).file().reset();
+		reset.append(message);
+	}
+	
+	protected CcpJsonRepresentation getJson (String filePath) {
+		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator(filePath);
+		CcpFileDecorator file = ccpStringDecorator.file();
+		CcpJsonRepresentation json = file.asSingleJson();
+		return json;
+	}
+	
 }

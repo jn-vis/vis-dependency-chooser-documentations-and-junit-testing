@@ -1,7 +1,13 @@
 package com.ccp.vis.tests.position.validations.json;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -9,13 +15,788 @@ import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.decorators.CcpTimeDecorator;
+import com.ccp.jn.sync.mensageria.JnSyncMensageriaSender;
+import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.commons.FrequencyOptions;
 import com.ccp.vis.tests.commons.BaseTest;
 import com.ccp.vis.tests.commons.resumes.ResumeTransformations;
 import com.vis.commons.cache.tasks.PutSkillsInJson;
+import com.vis.commons.utils.VisAsyncBusiness;
 
 public class ValidationsJsonSavePosition extends BaseTest {
+	
+/*	//Exemplo Contra teste
+	@Test(expected = CcpJsonInvalid.class)
+	public void contraTestRemoveDDD() {
+		
+		CcpJsonRepresentation resume = super.getJson("documentation/tests/resume/" + "curriculoParaSalvar.json");
+		CcpJsonRepresentation removeField = resume.removeField("ddd");
+		System.out.println(resume.fieldSet());
+		CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+		System.out.println(apply);
+				
+	}
+*/
+	
+//##############Test_Remove_Fields#################################################################################################################################################################################
+	
+	@Test
+	public void testRemoveField() {
 
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("companiesNotAllowed")
+													  .removeFields("ddd")
+													  .removeFields("desiredJob")
+													  .removeFields("disponibility")
+													  .removeFields("disabilities")
+													  .removeFields("experience")
+													  .removeFields("lastJob")
+													  .removeFields("name")
+													  .removeFields("fileName")
+													  .removeFields("observations")
+													  .removeFields("resumeBase64")
+													  .removeFields("originalEmail")
+													  .removeFields("email")
+//													  .removeFields("clt")
+//													  .removeFields("topic")
+//													  .removeFields("resumeText") 
+													  ;
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("companiesNotAllowed"));
+				assertTrue(names.contains("ddd"));
+				assertTrue(names.contains("desiredJob"));
+				assertTrue(names.contains("disponibility"));
+				assertTrue(names.contains("disabilities"));
+				assertTrue(names.contains("experience"));
+				assertTrue(names.contains("lastJob"));
+				assertTrue(names.contains("name"));
+				assertTrue(names.contains("fileName"));
+				assertTrue(names.contains("observations"));
+				assertTrue(names.contains("resumeBase64"));
+				assertTrue(names.contains("originalEmail"));
+				assertTrue(names.contains("email"));
+//				assertTrue(names.contains("clt"));
+//				assertTrue(names.contains("topic"));
+//				assertTrue(names.contains("resumeText"));
+		}
+	}
+
+	@Test
+	public void testRemoveFieldCompaniesNotAllowed() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("companiesNotAllowed");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("companiesNotAllowed"));
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldDdd() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("ddd");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+				
+				assertTrue(names.contains("ddd"));
+				
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldDesiredJob() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("desiredJob");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("desiredJob"));
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldDisponibility() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("disponibility");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("disponibility"));
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldDisabilities() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("disabilities");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("disabilities"));
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldExperience() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("experience");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("experience"));
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldLastJob() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("lastJob");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("lastJob"));
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldName() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("name");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("name"));				
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldFileName() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("fileName");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("fileName"));				
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldObservations() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume .removeFields("observations");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("observations"));
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldResumeBase64() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("resumeBase64");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("resumeBase64"));
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldOriginalEmail() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("originalEmail");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("originalEmail"));
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldEmail() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("email");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("email"));
+		}
+	}
+	
+	
+	//ao usar map apresenta erro de cast
+	@Test
+	public void testRemoveFieldCltPj() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("clt")
+													  .removeFields("pj")
+													  ;
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);			
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+	
+				List<String> missingFields = e.result.getValueFromPath(new ArrayList<String>(), "errors", "SimpleObject.requiredAtLeastOne", "wrongFields");
+					System.out.println(missingFields);				
+				    
+				System.out.println(missingFields);
+
+				assertTrue(missingFields.contains("clt"));
+				assertTrue(missingFields.contains("pj"));
+
+		}
+	}
+	
+	@Test
+	public void testRemoveFieldResumeText() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {
+			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation removeField = resume.removeFields("resumeText");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("resumeText"));
+
+		}
+		
+	}
+	
+	
+//##############Test_Wrong_Values##################################################################################################################################################################################
+	
+	//teste nao funciona, quebra a aplicao ao passar o mesmo valor do curriculo
+	
+	@Test
+	public void testWrongValueCompaniesNotAllowed() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.put("companiesNotAllowed","VW");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+				assertTrue(false);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("companiesNotAllowed"));
+		}
+	}
+	
+	
+	@Test
+	public void testWrongValueDdd() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.put("ddd","a");
+				System.out.println("resume.fieldSet: " + resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println("appply: " + apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","AllowedValues.arrayWithAllowedNumbers","wrongFields");				
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+								
+				assertTrue(names.contains("ddd"));
+				
+		}
+	}
+
+	//possivel erro do framework
+	@Test
+	public void testWrongValueDesiredJob() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+//CcpJsonRepresentation removeField = resume.put("desiredJob","trabalho desejado").put("language", "portuguese");
+			CcpJsonRepresentation insertValue = resume.put("desiredJob","trabalho desejado");
+				System.out.println("antes do fieldSet");
+				System.out.println(resume.fieldSet());
+				System.out.println("antes do apply");
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println("depois do apply");
+				System.out.println("error..." + apply);
+			} catch (CcpJsonInvalid e) {
+				System.out.println("entrou no catch");
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(missingFields);
+				Set<String> names = missingFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+				
+				assertTrue(names.contains("desiredJob"));
+		}
+	}
+
+	
+	@Test
+	public void testWrongValueDisponibility() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.removeFields("disponibility");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("disponibility"));
+		}
+	}
+	
+	@Test
+	public void testWrongValueDisabilities() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.removeFields("disabilities");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("disabilities"));
+		}
+	}
+	
+	@Test
+	public void testWrongValueExperience() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.removeFields("experience");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("experience"));
+		}
+	}
+	
+	@Test
+	public void testWrongValueLastJob() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.removeFields("lastJob");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("lastJob"));
+		}
+	}
+	
+	@Test
+	public void testWrongValueName() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.removeFields("name");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("name"));				
+		}
+	}
+	
+	@Test
+	public void testWrongValueFileName() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.removeFields("fileName");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("fileName"));				
+		}
+	}
+	
+	@Test
+	public void testWrongValueObservations() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume .removeFields("observations");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("observations"));
+		}
+	}
+	
+	@Test
+	public void testWrongValueResumeBase64() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.removeFields("resumeBase64");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("resumeBase64"));
+		}
+	}
+	
+	@Test
+	public void testWrongValueOriginalEmail() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.removeFields("originalEmail");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("originalEmail"));
+		}
+	}
+	
+	@Test
+	public void testWrongValueEmail() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.removeFields("email");
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredFields","wrongFields");
+				System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+				System.out.println(names);
+
+				assertTrue(names.contains("email"));
+		}
+	}
+				
+	@Test
+	public void testWrongValueCltPj() {
+
+		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		try {			
+			CcpJsonRepresentation resume = super.getJson(filePath);
+			CcpJsonRepresentation insertValue = resume.put("clt", "2")
+													  ;
+				System.out.println(resume.fieldSet());
+			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+				System.out.println(apply);			
+			} catch (CcpJsonInvalid e) {
+				super.saveErrors(filePath, e);
+				List<Map<String,Object>> wrongFields = e.result.getValueFromPath(new ArrayList<Map<String,Object>>(), "errors","SimpleObject.requiredAtLeastOne","wrongFields");
+					System.out.println(wrongFields);
+				Set<String> names = wrongFields.stream()
+						.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+						.map(itemDaLista -> itemDaLista.getAsString("name")).collect(Collectors.toSet());
+
+				
+/*				List<String> wrongFields = e.result.getValueFromPath(new ArrayList<String>(), "errors", "SimpleObject.requiredAtLeastOne", "wrongFields");
+					System.out.println(wrongFields);				
+				Set<String> names = wrongFields.stream()
+				    .map(fieldName -> fieldName) 
+				    .collect(Collectors.toSet());
+*/
+					System.out.println(names);
+
+				assertTrue(names.contains("clt"));
+				assertTrue(names.contains("pj"));
+
+		}
+	}
+	
+/*
 	@Test
 	public void salvarVaga() {
 		CcpFileDecorator vagasFile = new CcpStringDecorator("c:\\logs\\vagas.json").file();
@@ -74,5 +855,5 @@ public class ValidationsJsonSavePosition extends BaseTest {
 		
 		return putSortFields;
 	}
-
+*/
 }
