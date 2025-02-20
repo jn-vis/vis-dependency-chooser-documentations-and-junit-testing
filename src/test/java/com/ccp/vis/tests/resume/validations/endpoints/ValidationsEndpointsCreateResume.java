@@ -57,6 +57,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 			.ifThisIdIsNotPresentInEntity(JnEntityEmailMessageSent.ENTITY).returnStatus(SaveResumeStatus.naoEnviouEmail).and()
 			;
 	}
+	
 	@Test
 	public void salvarCurriculoComArquivoValido() {
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
@@ -68,6 +69,61 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 			.ifThisIdIsNotPresentInEntity(JnEntityAsyncTask.ENTITY).returnStatus(SaveResumeStatus.naoCadastrouMensageria).and()
 			.ifThisIdIsNotPresentInEntity(JnEntityEmailMessageSent.ENTITY).returnStatus(SaveResumeStatus.naoEnviouEmail).and()
 			;
+	}
+	
+	
+	@Test
+	public void faltandoCadastrarSenha() {
+		
+	}
+
+	@Test
+	public void faltandoCadastrarPreRegistro() {
+		
+	}
+	
+	@Test
+	public void senhaBloqueada() {
+		
+	}
+
+	@Test
+	public void tokenBloqueado() {
+		
+	}
+
+	@Test
+	public void usuarioJaLogado() {
+	}
+	
+	@Test
+	public void errarParaDepoisAcertarToken() {
+		
+	}
+
+	@Test
+	public void efetuarDesbloqueioDeSenha() {
+		
+	}
+	
+	@Test
+	public void tokenRecemBloqueado() {
+		
+	}
+	
+	@Test
+	public void faltandoCadastrarEmail() {
+		
+	}
+	
+	@Test
+	public void senhaRecemBloqueada() {
+		
+	}
+
+	@Test
+	public void errarParaDepoisAcertarSenha() {
+		
 	}
 
 	protected String getMethod() {
