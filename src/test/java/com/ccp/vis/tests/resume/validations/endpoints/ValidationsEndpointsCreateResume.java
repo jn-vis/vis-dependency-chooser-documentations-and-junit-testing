@@ -1,5 +1,7 @@
 package com.ccp.vis.tests.resume.validations.endpoints;
 
+import java.util.function.Function;
+
 import org.junit.Test;
 
 import com.ccp.constantes.CcpOtherConstants;
@@ -8,6 +10,7 @@ import com.ccp.especifications.db.crud.CcpGetEntityId;
 import com.ccp.exceptions.process.CcpFlow;
 import com.ccp.flow.CcpTreeFlow;
 import com.ccp.jn.sync.service.SyncServiceJnLogin;
+import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
 import com.ccp.process.CcpDefaultProcessStatus;
 import com.ccp.vis.tests.commons.VisTemplateDeTestes;
 import com.jn.commons.entities.JnEntityAsyncTask;
@@ -136,23 +139,38 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void errarParaDepoisAcertarSenha() {
+		
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> logInTheSystem = json -> SyncServiceJnLogin.INSTANCE.executeLogin(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> createLoginEmail = json -> SyncServiceJnLogin.INSTANCE.createLoginEmail(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> readTokenFromReceivedEmail = json -> this.readTokenFromReceivedEmail(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> createLoginToken = json -> SyncServiceJnLogin.INSTANCE.createLoginToken(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> updatePassword = json -> SyncServiceJnLogin.INSTANCE.updatePassword(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> saveAnswers = json -> SyncServiceJnLogin.INSTANCE.saveAnswers(json);
+		
+ 		CcpJsonRepresentation parameters = CcpOtherConstants.EMPTY_JSON;
+		
 		CcpTreeFlow
 		.beginThisStatement()
-		.tryToExecuteTheGivenFinalTargetProcess(null)
-		.usingTheGivenJson(null)
-		.butIfThisExecutionReturns(null)
-		.executeTheGivenProcess(null)
+		.tryToExecuteTheGivenFinalTargetProcess(logInTheSystem).usingTheGivenJson(parameters)
+		.butIfThisExecutionReturns(StatusExecuteLogin.missingEmail).executeTheGivenProcesses(createLoginEmail)
 		.and()
-		.ifThisExecutionReturns(null)
-		.executeTheGivenProcess(null)
+		.ifThisExecutionReturns(StatusCreateLoginEmail.missingPassword).executeTheGivenProcesses(createLoginToken, readTokenFromReceivedEmail, updatePassword)
+		.and()
+		.ifThisExecutionReturns(StatusCreateLoginEmail.missingAnswers).executeTheGivenProcesses(saveAnswers)
 		.and()
 		.endThisStatement()
 		
 		;
 	}
-
+	
+	private CcpJsonRepresentation readTokenFromReceivedEmail(CcpJsonRepresentation json) {
+		//TODO
+		return json;
+	}
+	
 	protected String getMethod() {
 		return "POST";
 	}
