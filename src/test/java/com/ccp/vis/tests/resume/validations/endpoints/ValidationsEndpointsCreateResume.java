@@ -5,10 +5,14 @@ import org.junit.Test;
 import com.ccp.constantes.CcpOtherConstants;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.especifications.db.crud.CcpGetEntityId;
+import com.ccp.exceptions.process.CcpFlow;
+import com.ccp.flow.CcpTreeFlow;
+import com.ccp.jn.sync.service.SyncServiceJnLogin;
 import com.ccp.process.CcpDefaultProcessStatus;
 import com.ccp.vis.tests.commons.VisTemplateDeTestes;
 import com.jn.commons.entities.JnEntityAsyncTask;
 import com.jn.commons.entities.JnEntityEmailMessageSent;
+import com.jn.commons.entities.JnEntityLoginToken;
 import com.jn.commons.status.StatusExecuteLogin;
 
 public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
@@ -113,7 +117,18 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	
 	@Test
 	public void faltandoCadastrarEmail() {
-		
+		CcpJsonRepresentation json = CcpOtherConstants.EMPTY_JSON
+			.put(JnEntityLoginToken.Fields.email.name(), "onias85@gmail.com")
+			.put(JnEntityLoginToken.Fields.userAgent.name(), "teste")
+			.put(JnEntityLoginToken.Fields.ip.name(), "teste")
+			;
+				
+		try {
+			
+			SyncServiceJnLogin.INSTANCE.existsLoginEmail(json);
+		} catch (CcpFlow e) {
+			System.out.println();
+		}	
 	}
 	
 	@Test
@@ -123,7 +138,19 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 
 	@Test
 	public void errarParaDepoisAcertarSenha() {
+		CcpTreeFlow
+		.beginThisStatement()
+		.tryToExecuteTheGivenFinalTargetProcess(null)
+		.usingTheGivenJson(null)
+		.butIfThisExecutionReturns(null)
+		.executeTheGivenProcess(null)
+		.and()
+		.ifThisExecutionReturns(null)
+		.executeTheGivenProcess(null)
+		.and()
+		.endThisStatement()
 		
+		;
 	}
 
 	protected String getMethod() {

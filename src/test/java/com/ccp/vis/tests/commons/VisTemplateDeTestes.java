@@ -1,5 +1,7 @@
 package com.ccp.vis.tests.commons;
 
+import java.util.function.Function;
+
 import com.ccp.constantes.CcpOtherConstants;
 import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
@@ -10,6 +12,7 @@ import com.ccp.especifications.db.utils.CcpDbRequester;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.especifications.http.CcpHttpResponseType;
+import com.ccp.exceptions.process.CcpFlow;
 import com.ccp.implementations.db.bulk.elasticsearch.CcpElasticSerchDbBulk;
 import com.ccp.implementations.db.crud.elasticsearch.CcpElasticSearchCrud;
 import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
@@ -121,5 +124,29 @@ public abstract class VisTemplateDeTestes {
 		CcpJsonRepresentation json = file.asSingleJson();
 		return json;
 
+	}
+	//tryToExecuteThisProcess
+	//usingThisFollowingJson
+	//butIfHappens
+	//
+	
+	public CcpJsonRepresentation executeThisFlow(
+			Function<CcpJsonRepresentation, CcpJsonRepresentation> first
+			, CcpJsonRepresentation flow
+			, CcpJsonRepresentation json
+			) {
+		
+		
+		try {
+			CcpJsonRepresentation apply = first.apply(json);
+			return apply;
+		} catch (CcpFlow e) {
+			Function<CcpJsonRepresentation, CcpJsonRepresentation> nextFlow = flow.getAsObject(e.status.name());
+			nextFlow.apply(json);
+			CcpJsonRepresentation executeThisFlow = this.executeThisFlow(first, flow, json);
+			return executeThisFlow;
+		}
+		
+		
 	}
 }

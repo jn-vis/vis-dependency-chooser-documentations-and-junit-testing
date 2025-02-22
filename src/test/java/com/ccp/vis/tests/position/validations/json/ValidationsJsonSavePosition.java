@@ -1,6 +1,5 @@
 package com.ccp.vis.tests.position.validations.json;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -11,34 +10,13 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
-import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
-import com.ccp.decorators.CcpStringDecorator;
-import com.ccp.decorators.CcpTimeDecorator;
 import com.ccp.jn.sync.mensageria.JnSyncMensageriaSender;
 import com.ccp.validation.CcpJsonInvalid;
-import com.ccp.vis.async.commons.FrequencyOptions;
 import com.ccp.vis.tests.commons.BaseTest;
-import com.ccp.vis.tests.commons.resumes.ResumeTransformations;
-import com.vis.commons.cache.tasks.PutSkillsInJson;
 import com.vis.commons.utils.VisAsyncBusiness;
 
 public class ValidationsJsonSavePosition extends BaseTest {
-	
-/*	//Exemplo Contra teste
-	@Test(expected = CcpJsonInvalid.class)
-	public void contraTestRemoveDDD() {
-		
-		CcpJsonRepresentation resume = super.getJson("documentation/tests/resume/" + "curriculoParaSalvar.json");
-		CcpJsonRepresentation removeField = resume.removeField("ddd");
-		System.out.println(resume.fieldSet());
-		CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
-		System.out.println(apply);
-				
-	}
-*/
-	
-//##############Test_Remove_Fields#################################################################################################################################################################################
 	
 	@Test
 	public void testRemoveField() {
@@ -354,7 +332,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
 		try {			
 			CcpJsonRepresentation resume = super.getJson(filePath);
-			CcpJsonRepresentation removeField = resume.removeFields("originalEmail");
+			CcpJsonRepresentation removeField = resume.removeFields("originalEmail", "ddd");
 				System.out.println(resume.fieldSet());
 			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
 				System.out.println(apply);
