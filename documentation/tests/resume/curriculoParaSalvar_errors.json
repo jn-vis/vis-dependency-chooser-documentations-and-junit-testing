@@ -172,7 +172,8 @@
     },
     "SimpleObject.integerFields": {
       "evaluatedFields": [
-        "disponibility"
+        "disponibility",
+        "experience"
       ]
     },
     "Year.equalsOrLessThan": {
