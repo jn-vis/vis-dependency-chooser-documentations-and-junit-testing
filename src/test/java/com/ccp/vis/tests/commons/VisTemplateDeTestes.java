@@ -12,15 +12,20 @@ import com.ccp.especifications.db.utils.CcpDbRequester;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.especifications.http.CcpHttpResponseType;
-import com.ccp.exceptions.process.CcpFlow;
+import com.ccp.exceptions.process.CcpFlowDiversion;
+import com.ccp.flow.CcpTreeFlow;
 import com.ccp.implementations.db.bulk.elasticsearch.CcpElasticSerchDbBulk;
 import com.ccp.implementations.db.crud.elasticsearch.CcpElasticSearchCrud;
 import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.password.mindrot.CcpMindrotPasswordHandler;
+import com.ccp.jn.sync.service.SyncServiceJnLogin;
+import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.process.CcpProcessStatus;
+import com.jn.commons.entities.JnEntityLoginToken;
+import com.jn.commons.status.StatusExecuteLogin;
 
 public abstract class VisTemplateDeTestes {
 	protected final String ENDPOINT_URL = "http://localhost:8081/";
@@ -60,21 +65,21 @@ public abstract class VisTemplateDeTestes {
 	}
 
 	protected CcpJsonRepresentation testarEndpoint(String uri, String scenarioName, CcpProcessStatus expectedStatus) {
-		CcpJsonRepresentation testarEndpoint = this.testarEndpoint(expectedStatus, scenarioName, CcpOtherConstants.EMPTY_JSON, uri);
+		CcpJsonRepresentation testarEndpoint = this.getJsonResponseFromEndpoint(expectedStatus, scenarioName, CcpOtherConstants.EMPTY_JSON, uri);
 		return testarEndpoint;
 	}
 
-	protected CcpJsonRepresentation testarEndpoint(CcpProcessStatus status, String scenarioName, CcpJsonRepresentation body, String uri) {
+	protected CcpJsonRepresentation getJsonResponseFromEndpoint(CcpProcessStatus status, String scenarioName, CcpJsonRepresentation body, String uri) {
 
 		CcpJsonRepresentation headers = this.getHeaders();
 
-		CcpJsonRepresentation executeHttpRequest = this.testarEndpoint(status, scenarioName, body, uri, headers);
+		CcpJsonRepresentation executeHttpRequest = this.getJsonResponseFromEndpoint(status, scenarioName, body, uri, headers);
 
 		return executeHttpRequest;
 	}
 
 
-	protected CcpJsonRepresentation testarEndpoint(CcpProcessStatus status, String scenarioName, CcpJsonRepresentation body, String uri,
+	protected CcpJsonRepresentation getJsonResponseFromEndpoint(CcpProcessStatus status, String scenarioName, CcpJsonRepresentation body, String uri,
 			CcpJsonRepresentation headers) {
 		String method = this.getMethod();
 		int expectedStatus = status.asNumber();
@@ -118,7 +123,7 @@ public abstract class VisTemplateDeTestes {
 	}
 	
  
-	public CcpJsonRepresentation getJsonDoArquivo(String path) {
+	public CcpJsonRepresentation getJsonFile(String path) {
 		CcpStringDecorator ccpStringDecorator =	new CcpStringDecorator(path);
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation json = file.asSingleJson();
@@ -140,13 +145,68 @@ public abstract class VisTemplateDeTestes {
 		try {
 			CcpJsonRepresentation apply = first.apply(json);
 			return apply;
-		} catch (CcpFlow e) {
+		} catch (CcpFlowDiversion e) {
 			Function<CcpJsonRepresentation, CcpJsonRepresentation> nextFlow = flow.getAsObject(e.status.name());
 			nextFlow.apply(json);
 			CcpJsonRepresentation executeThisFlow = this.executeThisFlow(first, flow, json);
 			return executeThisFlow;
 		}
-		
-		
 	}
+
+	@SuppressWarnings("unchecked")
+	protected final CcpJsonRepresentation createLogin(Function<CcpJsonRepresentation, CcpJsonRepresentation>... whatToNext) {
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> createLoginEmail = json -> SyncServiceJnLogin.INSTANCE.createLoginEmail(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> createLoginToken = json -> SyncServiceJnLogin.INSTANCE.createLoginToken(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> readTokenFromReceivedEmail = json -> this.readTokenFromReceivedEmail(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> executeLogout = json -> SyncServiceJnLogin.INSTANCE.executeLogout(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> savePassword = json -> SyncServiceJnLogin.INSTANCE.savePassword(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> executeLogin = json -> SyncServiceJnLogin.INSTANCE.executeLogin(json);
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> saveAnswers = json -> SyncServiceJnLogin.INSTANCE.saveAnswers(json);
+		
+		CcpJsonRepresentation sessionValuesToTest = this.getSessionValuesToTest();
+		
+		CcpJsonRepresentation endThisStatement = CcpTreeFlow// fluxo de arvore
+		.beginThisStatement()//iniciando comando
+		.tryToExecuteTheGivenFinalTargetProcess(executeLogin).usingTheGivenJson(sessionValuesToTest)// executar um processo alvo, usando um json fornecido
+		.butIfThisExecutionReturns(StatusExecuteLogin.missingSaveEmail).thenExecuteTheGivenProcesses(createLoginEmail)// se esta execução retornar que o e-mail está faltando, entao ele vai executar o processo de criação de e-mail
+		.and()//e
+		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(createLoginToken, readTokenFromReceivedEmail, savePassword, executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
+		.and()// e
+		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSaveAnswers).thenExecuteTheGivenProcesses(saveAnswers)
+		.and()
+		.endThisStatement(whatToNext);
+		
+		return endThisStatement;
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected final CcpJsonRepresentation getJsonResponseFromEndpoint(CcpProcessStatus processStatus, String scenarioName,
+			String pathToJsonFile, Function<CcpJsonRepresentation, CcpJsonRepresentation>... whatToNext) {
+		CcpJsonRepresentation jsonFile = this.getJsonFile(pathToJsonFile);
+		CcpJsonRepresentation loginData = this.createLogin(whatToNext);
+		CcpJsonRepresentation body = jsonFile.putAll(loginData);
+		
+		String uri = this.getUri();
+		CcpJsonRepresentation responseFromEndpoint = this.getJsonResponseFromEndpoint(processStatus, scenarioName, body, uri);
+		return responseFromEndpoint;
+	}
+
+	protected abstract String getUri();
+
+
+	private CcpJsonRepresentation readTokenFromReceivedEmail(CcpJsonRepresentation json) {
+		//FIXME
+		return json;
+	}
+	
+	protected final CcpJsonRepresentation getSessionValuesToTest() {
+		CcpJsonRepresentation json = CcpOtherConstants.EMPTY_JSON
+				.put(JnEntityLoginToken.Fields.email.name(), "onias85@gmail.com")
+				.put(JnEntityLoginToken.Fields.userAgent.name(), "teste")
+				.put(JnEntityLoginToken.Fields.ip.name(), "teste")
+				;
+
+		return json;
+	}
+
 }
