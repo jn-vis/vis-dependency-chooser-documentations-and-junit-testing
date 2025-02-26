@@ -9,7 +9,6 @@ import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.especifications.db.crud.CcpGetEntityId;
 import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
 import com.ccp.process.CcpDefaultProcessStatus;
-import com.ccp.process.CcpProcessStatus;
 import com.ccp.vis.tests.commons.VisTemplateDeTestes;
 import com.jn.commons.entities.JnEntityAsyncTask;
 import com.jn.commons.entities.JnEntityEmailMessageSent;
@@ -74,15 +73,15 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	@SuppressWarnings("unchecked")
 	@Test
 	public void salvarCurriculoComArquivoValido() {
-		CcpProcessStatus processStatus = CcpDefaultProcessStatus.CREATED;
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
 
-		CcpJsonRepresentation responseFromEndpoint = this.getJsonResponseFromEndpoint(processStatus, scenarioName, this.pathToJsonFile);
+		CcpJsonRepresentation responseFromEndpoint = this.getJsonResponseFromEndpoint(CcpDefaultProcessStatus.CREATED, scenarioName, this.pathToJsonFile);
 		
 		 new CcpGetEntityId(responseFromEndpoint)
 			.toBeginProcedureAnd()
 			.ifThisIdIsNotPresentInEntity(JnEntityAsyncTask.ENTITY).returnStatus(SaveResumeStatus.naoCadastrouMensageria).and()
-			.ifThisIdIsNotPresentInEntity(JnEntityEmailMessageSent.ENTITY).returnStatus(SaveResumeStatus.naoEnviouEmail).and()
+			.ifThisIdIsNotPresentInEntity(JnEntityEmailMessageSent.ENTITY).returnStatus(SaveResumeStatus.naoEnviouEmail)
+			.andFinallyReturningTheseFields("x")
 			;
 	}
 	

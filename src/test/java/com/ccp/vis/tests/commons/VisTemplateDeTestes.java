@@ -178,7 +178,10 @@ public abstract class VisTemplateDeTestes {
 		
 		return endThisStatement;
 	}
-	
+//	CcpJsonRepresentation step3 = step2.put("experience", "onias");
+	//FIXME essa validação deu errado
+	//LATER melhorar a intuitividade dos bounds no retorno do json
+
 	@SuppressWarnings("unchecked")
 	protected final CcpJsonRepresentation getJsonResponseFromEndpoint(CcpProcessStatus processStatus, String scenarioName,
 			String pathToJsonFile, Function<CcpJsonRepresentation, CcpJsonRepresentation>... whatToNext) {
@@ -188,6 +191,7 @@ public abstract class VisTemplateDeTestes {
 		
 		String uri = this.getUri();
 		CcpJsonRepresentation responseFromEndpoint = this.getJsonResponseFromEndpoint(processStatus, scenarioName, body, uri);
+		SyncServiceJnLogin.INSTANCE.executeLogout(body);
 		return responseFromEndpoint;
 	}
 
