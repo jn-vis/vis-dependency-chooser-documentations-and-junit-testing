@@ -178,8 +178,6 @@ public abstract class VisTemplateDeTestes {
 		
 		return endThisStatement;
 	}
-//	CcpJsonRepresentation step3 = step2.put("experience", "onias");
-	//FIXME essa validação deu errado
 	//LATER melhorar a intuitividade dos bounds no retorno do json
 
 	@SuppressWarnings("unchecked")

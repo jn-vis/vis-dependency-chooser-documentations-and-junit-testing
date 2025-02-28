@@ -23,9 +23,7 @@ import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
 
 public class BaseTest {
-	//FIXME a validação SimpleObject.nonRepeatedLists nao funciona para array de string mas funciona pra collection de string
 	//FIXME faltando validações do SimpleArray
-	//FIXME a validação ObjectTextSize não está funcionando
 	public final static CcpJsonRepresentation REQUEST_TO_LOGIN = CcpOtherConstants.EMPTY_JSON
 			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
 //			.put("sessionToken", SESSION_TOKEN)
