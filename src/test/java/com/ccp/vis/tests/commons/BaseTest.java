@@ -21,16 +21,19 @@ import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
+import com.jn.commons.entities.JnEntityLoginAnswers;
+import com.jn.commons.entities.JnEntityLoginSessionToken;
+import com.jn.commons.entities.JnEntityLoginToken;
 
 public class BaseTest {
 	//FIXME faltando validações do SimpleArray
 	public final static CcpJsonRepresentation REQUEST_TO_LOGIN = CcpOtherConstants.EMPTY_JSON
-			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
+			.put(JnEntityLoginSessionToken.Fields.userAgent.name(), "Apache-HttpClient/4.5.4 (Java/17.0.9)")
 //			.put("sessionToken", SESSION_TOKEN)
-			.put("ip", "localhost:8080")
+			.put(JnEntityLoginToken.Fields.ip.name(), "localhost:8080")
 			;
 
-	public final static CcpJsonRepresentation ANSWERS_JSON =  REQUEST_TO_LOGIN.put("goal", "jobs").put("channel", "linkedin");
+	public final static CcpJsonRepresentation ANSWERS_JSON =  REQUEST_TO_LOGIN.put(JnEntityLoginAnswers.Fields.goal.name(), "jobs").put(JnEntityLoginAnswers.Fields.channel.name(), "linkedin");
 
 	static {
 		boolean localEnviroment = new CcpStringDecorator("c:\\rh").file().exists();

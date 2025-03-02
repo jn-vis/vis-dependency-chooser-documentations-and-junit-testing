@@ -17,6 +17,7 @@ import com.jn.commons.entities.JnEntityLoginAnswers;
 import com.jn.commons.entities.JnEntityLoginEmail;
 import com.jn.commons.entities.JnEntityLoginPassword;
 import com.jn.commons.entities.JnEntityLoginSessionCurrent;
+import com.jn.commons.entities.JnEntityLoginSessionToken;
 import com.jn.commons.entities.JnEntityLoginToken;
 import com.vis.commons.entities.VisEntityResume;
 
@@ -113,7 +114,7 @@ public enum ResumeTransformations implements CcpTransformers{
 			
 			String path = "http://localhost:8080/login/{email}".replace("{email}", email);
 			
-			String asUgglyJson = CcpOtherConstants.EMPTY_JSON.put("password", "Jobsnow1!").asUgglyJson();
+			String asUgglyJson = CcpOtherConstants.EMPTY_JSON.put(JnEntityLoginPassword.Fields.password.name(), "Jobsnow1!").asUgglyJson();
 
 			CcpHttpHandler http = new CcpHttpHandler(200, CcpOtherConstants.DO_NOTHING);
 			
@@ -125,12 +126,12 @@ public enum ResumeTransformations implements CcpTransformers{
 		
 		private CcpJsonRepresentation createLogin(String email) {
 			CcpJsonRepresentation transformed = CcpOtherConstants.EMPTY_JSON
-			.put("userAgent", "Apache-HttpClient/4.5.4 (Java/17.0.9)")
-			.put("password", "Jobsnow1!")
-			.put("ip", "localhost:8080")
-			.put("channel", "linkedin")
-			.put("goal", "jobs")
-			.put("email", email)
+			.put(JnEntityLoginSessionToken.Fields.userAgent.name(), "Apache-HttpClient/4.5.4 (Java/17.0.9)")
+			.put(JnEntityLoginPassword.Fields.password.name(), "Jobsnow1!")
+			.put(JnEntityLoginToken.Fields.ip.name(), "localhost:8080")
+			.put(JnEntityLoginAnswers.Fields.channel.name(), "linkedin")
+			.put(JnEntityLoginAnswers.Fields.goal.name(), "jobs")
+			.put(JnEntityLoginAnswers.Fields.email.name(), email)
 			;
 			
 			JnAsyncCommitAndAudit.INSTANCE.executeBulk(transformed, CcpEntityOperationType.create, 

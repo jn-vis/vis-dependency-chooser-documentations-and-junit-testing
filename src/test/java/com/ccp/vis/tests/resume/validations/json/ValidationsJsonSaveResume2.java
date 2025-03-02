@@ -375,7 +375,7 @@ public class ValidationsJsonSaveResume2 extends BaseTest {
 //-------------------------------------------------simpleObject-requiredAtLeastOne----------------------------------------------
 	@Test
 	public void testRemoveFieldsCltPj() {		
-		String fieldTest  = "clt";
+		String fieldTest  = VisEntityResume.Fields.clt.name();
 		String fieldTest1  = "pj";
 		System.out.println("Regra:" 	+ annotation.simpleObject()[1].rule()
 				 		 + "\nTeste:"   + Thread.currentThread().getStackTrace()[1].getMethodName() 
@@ -957,7 +957,7 @@ public class ValidationsJsonSaveResume2 extends BaseTest {
 	@Test
 	//NotMapped
 	public void testCltExceedLimitUnder() {
-		String fieldTest  = "clt";
+		String fieldTest  = VisEntityResume.Fields.clt.name();
 		String fieldValue  = "999";
 		System.out.println("Regra:" 	+ annotation.objectNumbers()[0].rule()
 				 		 + "\nTeste:"   + Thread.currentThread().getStackTrace()[1].getMethodName() 
@@ -1035,7 +1035,7 @@ public class ValidationsJsonSaveResume2 extends BaseTest {
 	@Test
 	//NotMapped
 	public void testCltExceedLimitAbove() {
-		String fieldTest  = "clt";
+		String fieldTest  = VisEntityResume.Fields.clt.name();
 		String fieldValue  = "100001";
 		System.out.println("Regra:" 	+ annotation.objectNumbers()[1].rule()
 				 		 + "\nTeste:"   + Thread.currentThread().getStackTrace()[1].getMethodName() 

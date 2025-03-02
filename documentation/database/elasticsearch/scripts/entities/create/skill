@@ -5,7 +5,7 @@
             "parent": {
                 "type": "keyword"
             },
-            "preRequisite": {
+            "prerequisite": {
                 "dynamic": "strict",
                 "properties": {
                     "word": {

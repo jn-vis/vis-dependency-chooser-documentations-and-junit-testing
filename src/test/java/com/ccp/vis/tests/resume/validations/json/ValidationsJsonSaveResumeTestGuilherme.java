@@ -46,7 +46,7 @@ public class ValidationsJsonSaveResumeTestGuilherme extends BaseTest {
 		this.validateSimpleObjectValidationsRequiredFields("SimpleObject.requiredFields", "email");
 		
 		//erro: java.lang.AssertionError
-		this.validateSimpleObjectValidationsRequiredAtLeastOne("SimpleObject.requiredFields", "clt", "pj");
+		this.validateSimpleObjectValidationsRequiredAtLeastOne("SimpleObject.requiredFields", VisEntityResume.Fields.clt.name(), "pj");
  		
 		//?
 		this.validateSimpleObjectValidationsRequiredNonRepeatedLists("SimpleObject.nonRepeatedLists", "ddd");
@@ -587,11 +587,14 @@ public class ValidationsJsonSaveResumeTestGuilherme extends BaseTest {
 			}
 		catch (CcpJsonInvalid e) {
 			 super.saveErrors(filePath, e);
+		   //em vez desse:	 
+//			 List<Map<String, Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String, Object>>(),"errors","SimpleObject.requiredFields","wrongFields");
+			//usar esse: 
+			 List<CcpJsonRepresentation> missingFields = e.result.getInnerJsonListFromPath("errors","SimpleObject.requiredFields","wrongFields");
 			 
-			 List<Map<String, Object>> missingFields = e.result.getValueFromPath(new ArrayList<Map<String, Object>>(),"errors","SimpleObject.requiredFields","wrongFields");
-			 
-			 Set<String> names = missingFields.stream().map(itemDaLista -> 
-			    new CcpJsonRepresentation(itemDaLista)).map(itemDaLista -> 
+			 Set<String> names = missingFields.stream()
+					 //.map(itemDaLista -> new CcpJsonRepresentation(itemDaLista))
+					 .map(itemDaLista -> 
 			    itemDaLista.getAsString("name")).collect(Collectors.toSet());
 			 
 			 assertTrue(names.contains(fieldTest));
@@ -867,7 +870,7 @@ public class ValidationsJsonSaveResumeTestGuilherme extends BaseTest {
 //-------------------------------------------------simpleObject-requiredAtLeastOne----------------------------------------------
 	@Test
 	public void testRemoveFieldsCltPj() {		
-		String fieldTest  = "clt";
+		String fieldTest  = VisEntityResume.Fields.clt.name();
 		String fieldTest1  = "pj";
 		System.out.println("Regra:" 	+ annotation.simpleObject()[1].rule()
 				 		 + "\nTeste:"   + Thread.currentThread().getStackTrace()[1].getMethodName() 
@@ -1407,7 +1410,7 @@ public class ValidationsJsonSaveResumeTestGuilherme extends BaseTest {
 	@Test
 	//NotMapped
 	public void testCltExceedLimitUnder() {
-		String fieldTest  = "clt";
+		String fieldTest  = VisEntityResume.Fields.clt.name();
 		String fieldValue  = "999";
 		System.out.println("Regra:" 	+ annotation.objectNumbers()[0].rule()
 				 		 + "\nTeste:"   + Thread.currentThread().getStackTrace()[1].getMethodName() 
@@ -1485,7 +1488,7 @@ public class ValidationsJsonSaveResumeTestGuilherme extends BaseTest {
 	@Test
 	//NotMapped
 	public void testCltExceedLimitAbove() {
-		String fieldTest  = "clt";
+		String fieldTest  = VisEntityResume.Fields.clt.name();
 		String fieldValue  = "100001";
 		System.out.println("Regra:" 	+ annotation.objectNumbers()[1].rule()
 				 		 + "\nTeste:"   + Thread.currentThread().getStackTrace()[1].getMethodName() 

@@ -14,6 +14,7 @@ import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.jn.sync.mensageria.JnSyncMensageriaSender;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.tests.commons.BaseTest;
+import com.vis.commons.entities.VisEntityResume;
 import com.vis.commons.utils.VisAsyncBusiness;
 
 public class ValidationsJsonSavePosition extends BaseTest {
@@ -21,7 +22,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 	@Test
 	public void testRemoveField() {
 
-		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
+		String filePath = "documentation/tests/resume/curriculoParaSalvar.json";
 		try {			
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("companiesNotAllowed")
@@ -37,7 +38,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 													  .removeFields("resumeBase64")
 													  .removeFields("originalEmail")
 													  .removeFields("email")
-//													  .removeFields("clt")
+//													  .removeFields(VisEntityResume.Fields.clt.name())
 //													  .removeFields("topic")
 //													  .removeFields("resumeText") 
 													  ;
@@ -66,7 +67,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 				assertTrue(names.contains("resumeBase64"));
 				assertTrue(names.contains("originalEmail"));
 				assertTrue(names.contains("email"));
-//				assertTrue(names.contains("clt"));
+//				assertTrue(names.contains(VisEntityResume.Fields.clt.name()));
 //				assertTrue(names.contains("topic"));
 //				assertTrue(names.contains("resumeText"));
 		}
@@ -380,8 +381,8 @@ public class ValidationsJsonSavePosition extends BaseTest {
 		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
 		try {			
 			CcpJsonRepresentation resume = super.getJson(filePath);
-			CcpJsonRepresentation removeField = resume.removeFields("clt")
-													  .removeFields("pj")
+			CcpJsonRepresentation removeField = resume.removeFields(VisEntityResume.Fields.clt.name())
+													  .removeFields(VisEntityResume.Fields.pj.name())
 													  ;
 				System.out.println(resume.fieldSet());
 			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
@@ -394,8 +395,8 @@ public class ValidationsJsonSavePosition extends BaseTest {
 				    
 				System.out.println(missingFields);
 
-				assertTrue(missingFields.contains("clt"));
-				assertTrue(missingFields.contains("pj"));
+				assertTrue(missingFields.contains(VisEntityResume.Fields.clt.name()));
+				assertTrue(missingFields.contains(VisEntityResume.Fields.pj.name()));
 
 		}
 	}
@@ -487,7 +488,6 @@ public class ValidationsJsonSavePosition extends BaseTest {
 		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
 		try {			
 			CcpJsonRepresentation resume = super.getJson(filePath);
-//CcpJsonRepresentation removeField = resume.put("desiredJob","trabalho desejado").put("language", "portuguese");
 			CcpJsonRepresentation insertValue = resume.put("desiredJob","trabalho desejado");
 				System.out.println("antes do fieldSet");
 				System.out.println(resume.fieldSet());
@@ -746,7 +746,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 		String filePath = "documentation/tests/resume/"	+ "curriculoParaSalvar.json";
 		try {			
 			CcpJsonRepresentation resume = super.getJson(filePath);
-			CcpJsonRepresentation insertValue = resume.put("clt", "2")
+			CcpJsonRepresentation insertValue = resume.put(VisEntityResume.Fields.clt.name(), "2")
 													  ;
 				System.out.println(resume.fieldSet());
 			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
@@ -768,8 +768,8 @@ public class ValidationsJsonSavePosition extends BaseTest {
 */
 					System.out.println(names);
 
-				assertTrue(names.contains("clt"));
-				assertTrue(names.contains("pj"));
+				assertTrue(names.contains(VisEntityResume.Fields.clt.name()));
+				assertTrue(names.contains(VisEntityResume.Fields.pj.name()));
 
 		}
 	}
@@ -807,7 +807,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 		CcpJsonRepresentation putRequiredSkills = putSeniority.getTransformedJson(putSkillsInJson);
 		
 		CcpJsonRepresentation putPj = putRequiredSkills.renameField("pretensaoPj", "pj");
-		CcpJsonRepresentation putClt = putPj.renameField("pretensaoClt", "clt");
+		CcpJsonRepresentation putClt = putPj.renameField("pretensaoClt", VisEntityResume.Fields.clt.name());
 		CcpJsonRepresentation putBitcoin = putClt.renameField("bitcoin", "btc");
 		
 		boolean pcd = putBitcoin.getAsBoolean("pcd");
