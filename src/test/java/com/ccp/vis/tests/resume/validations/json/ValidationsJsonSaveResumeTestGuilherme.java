@@ -20,8 +20,6 @@ import com.vis.commons.entities.VisEntityResume;
 import com.vis.commons.json.validations.VisJsonValidationResume;
 import com.vis.commons.utils.VisAsyncBusiness;
 
-import io.grpc.netty.shaded.io.netty.util.internal.EmptyArrays;
-
 //@FixMethodOrder(MethodSorters.JVM)
 public class ValidationsJsonSaveResumeTestGuilherme extends BaseTest {
 

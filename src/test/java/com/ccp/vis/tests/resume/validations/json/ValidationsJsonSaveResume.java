@@ -44,7 +44,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 	
 	@Test
 	public void excluirCurriculoSalvo() {
-		CcpJsonRepresentation resume = CcpOtherConstants.EMPTY_JSON.put(VisEntityResume.Fields.email.name(), "-79081bc8055a58031ea2e22346151515c8899848");
+		 CcpOtherConstants.EMPTY_JSON.put(VisEntityResume.Fields.email.name(), "-79081bc8055a58031ea2e22346151515c8899848");
 //		SyncServiceVisResume.INSTANCE.delete(resume);
 	}
 	
@@ -270,24 +270,6 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		}
 	}
 	
-	@Test
-	public void faltandoCampoClt() {
-		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoClt.json");
-		CcpFileDecorator file = ccpStringDecorator.file();
-		CcpJsonRepresentation resume = file.asSingleJson();
-		try {
-//			SyncServiceVisResume.INSTANCE.save(resume);			
-		} catch (CcpJsonInvalid e) {
-			CcpJsonRepresentation erroAsJson = e.getErrorAsJson();
-			ArrayList<Map<String, Object>> valueFromPath = erroAsJson
-					.getValueFromPath(new ArrayList<>(), "errors", "SimpleText.requiredFields", "wrongFields");
-			Map<String, Object> resumeClt = valueFromPath.get(0);
-			CcpJsonRepresentation json = new CcpJsonRepresentation(resumeClt);
-			String faltandoResumeClt = json.getAsString("name");
-			
-			assertTrue("DesiredJob".equals(faltandoResumeClt));
-		}
-	}
 	
 	@Test
 	public void reativarCurriculo() {
