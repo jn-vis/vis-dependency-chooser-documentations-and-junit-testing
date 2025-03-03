@@ -22,7 +22,6 @@ public class ValidationsEndpointsUpdateResume  extends VisTemplateDeTestes{
 		return "PATCH";
 	}
 
-	@Override
 	protected String getUri() {
 		// TODO Auto-generated method stub
 		return null;
