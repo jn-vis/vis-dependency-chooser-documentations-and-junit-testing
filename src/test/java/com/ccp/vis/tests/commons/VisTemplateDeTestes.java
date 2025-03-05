@@ -3,6 +3,7 @@ package com.ccp.vis.tests.commons;
 import java.util.function.Function;
 
 import com.ccp.constantes.CcpOtherConstants;
+import com.ccp.constantes.CcpStringConstants;
 import com.ccp.decorators.CcpFileDecorator;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
@@ -20,8 +21,10 @@ import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.password.mindrot.CcpMindrotPasswordHandler;
+import com.ccp.jn.async.business.factory.CcpJnAsyncBusinessFactory;
 import com.ccp.jn.sync.service.SyncServiceJnLogin;
 import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
+import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.process.CcpProcessStatus;
 import com.jn.commons.entities.JnEntityLoginToken;
@@ -31,7 +34,9 @@ public abstract class VisTemplateDeTestes {
 	protected final String ENDPOINT_URL = "http://localhost:8081/";
 
 	static {
+		CcpJnAsyncBusinessFactory asyncBusiness = new CcpJnAsyncBusinessFactory();
 		CcpDependencyInjection.loadAllDependencies(
+				CcpLocalInstances.mensageriaSender.getLocalImplementation(asyncBusiness),
 				new CcpElasticSearchDbRequest(), 
 				new CcpMindrotPasswordHandler(),
 				CcpLocalCacheInstances.mock,
@@ -155,24 +160,17 @@ public abstract class VisTemplateDeTestes {
 
 	@SuppressWarnings("unchecked")
 	protected final CcpJsonRepresentation createLogin(Function<CcpJsonRepresentation, CcpJsonRepresentation>... whatToNext) {
-		Function<CcpJsonRepresentation, CcpJsonRepresentation> createLoginEmail = json -> SyncServiceJnLogin.INSTANCE.createLoginEmail(json);
-		Function<CcpJsonRepresentation, CcpJsonRepresentation> createLoginToken = json -> SyncServiceJnLogin.INSTANCE.createLoginToken(json);
-		Function<CcpJsonRepresentation, CcpJsonRepresentation> readTokenFromReceivedEmail = json -> this.readTokenFromReceivedEmail(json);
-		Function<CcpJsonRepresentation, CcpJsonRepresentation> executeLogout = json -> SyncServiceJnLogin.INSTANCE.executeLogout(json);
-		Function<CcpJsonRepresentation, CcpJsonRepresentation> savePassword = json -> SyncServiceJnLogin.INSTANCE.savePassword(json);
-		Function<CcpJsonRepresentation, CcpJsonRepresentation> executeLogin = json -> SyncServiceJnLogin.INSTANCE.executeLogin(json);
-		Function<CcpJsonRepresentation, CcpJsonRepresentation> saveAnswers = json -> SyncServiceJnLogin.INSTANCE.saveAnswers(json);
 		
 		CcpJsonRepresentation sessionValuesToTest = this.getSessionValuesToTest();
 		
 		CcpJsonRepresentation endThisStatement = CcpTreeFlow// fluxo de arvore
 		.beginThisStatement()//iniciando comando
-		.tryToExecuteTheGivenFinalTargetProcess(executeLogin).usingTheGivenJson(sessionValuesToTest)// executar um processo alvo, usando um json fornecido
-		.butIfThisExecutionReturns(StatusExecuteLogin.missingSaveEmail).thenExecuteTheGivenProcesses(createLoginEmail)// se esta execução retornar que o e-mail está faltando, entao ele vai executar o processo de criação de e-mail
+		.tryToExecuteTheGivenFinalTargetProcess(LoginActions.executeLogin).usingTheGivenJson(sessionValuesToTest)// executar um processo alvo, usando um json fornecido
+		.butIfThisExecutionReturns(StatusExecuteLogin.missingSaveEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)// se esta execução retornar que o e-mail está faltando, entao ele vai executar o processo de criação de e-mail
 		.and()//e
-		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(createLoginToken, readTokenFromReceivedEmail, savePassword, executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
+		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, LoginActions.savePassword, LoginActions.executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
 		.and()// e
-		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSaveAnswers).thenExecuteTheGivenProcesses(saveAnswers)
+		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSaveAnswers).thenExecuteTheGivenProcesses(LoginActions.saveAnswers)
 		.and()
 		.endThisStatement(whatToNext);
 		
@@ -195,16 +193,11 @@ public abstract class VisTemplateDeTestes {
 
 	protected abstract String getUri();
 
-
-	private CcpJsonRepresentation readTokenFromReceivedEmail(CcpJsonRepresentation json) {
-		//FIXME
-		return json;
-	}
-	
 	protected final CcpJsonRepresentation getSessionValuesToTest() {
 		CcpJsonRepresentation json = CcpOtherConstants.EMPTY_JSON
 				.put(JnEntityLoginToken.Fields.email.name(), "onias85@gmail.com")
 				.put(JnEntityLoginToken.Fields.userAgent.name(), "teste")
+				.put(CcpStringConstants.LANGUAGE.value, "language")
 				.put(JnEntityLoginToken.Fields.ip.name(), "teste")
 				;
 

@@ -55,12 +55,21 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 		return super.getHeaders().put("sessionToken", "NFDP8DV9987EVMBW1H3N56OEGYMFZB");
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void faltandoCadastrarSenha() {
+		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
+		Function<CcpJsonRepresentation, CcpJsonRepresentation> event = json -> JnEntityLoginPassword.ENTITY.delete(json);
+		this.getJsonResponseFromEndpoint(StatusExecuteLogin.missingSavePassword, scenarioName, this.pathToJsonFile, event);
+	}
+
+	@SuppressWarnings("unchecked")
 	@Test
 	public void salvarCurriculoComArquivoInvalido() {
-		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
-		CcpJsonRepresentation body = super.getJsonFile("documentation/tests/resume/curriculoComArquivoInvalido.json");
 		
-		CcpJsonRepresentation jsonDeRetornoDoTeste = super.getJsonResponseFromEndpoint(CcpDefaultProcessStatus.CREATED, scenarioName, body, this.uri);
+		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
+		
+		CcpJsonRepresentation jsonDeRetornoDoTeste = this.getJsonResponseFromEndpoint(CcpDefaultProcessStatus.CREATED, scenarioName, "documentation/tests/resume/curriculoComArquivoInvalido.json");
 		
 		 new CcpGetEntityId(jsonDeRetornoDoTeste)
 			.toBeginProcedureAnd()
@@ -85,14 +94,6 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 			;
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void faltandoCadastrarSenha() {
-		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
-		Function<CcpJsonRepresentation, CcpJsonRepresentation> event = json -> JnEntityLoginPassword.ENTITY.delete(json);
-		this.getJsonResponseFromEndpoint(StatusExecuteLogin.missingSavePassword, scenarioName, this.pathToJsonFile, event);
-		
-	}
 
 	@SuppressWarnings("unchecked")
 	@Test
