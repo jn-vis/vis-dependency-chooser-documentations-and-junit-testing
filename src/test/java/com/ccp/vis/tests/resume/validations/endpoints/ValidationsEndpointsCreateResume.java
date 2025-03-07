@@ -1,7 +1,5 @@
 package com.ccp.vis.tests.resume.validations.endpoints;
 
-import java.util.function.Function;
-
 import org.junit.Test;
 
 import com.ccp.constantes.CcpOtherConstants;
@@ -13,10 +11,6 @@ import com.ccp.vis.tests.commons.LoginActions;
 import com.ccp.vis.tests.commons.VisTemplateDeTestes;
 import com.jn.commons.entities.JnEntityAsyncTask;
 import com.jn.commons.entities.JnEntityEmailMessageSent;
-import com.jn.commons.entities.JnEntityLoginAnswers;
-import com.jn.commons.entities.JnEntityLoginEmail;
-import com.jn.commons.entities.JnEntityLoginPassword;
-import com.jn.commons.entities.JnEntityLoginToken;
 import com.jn.commons.status.StatusExecuteLogin;
 
 public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
@@ -69,13 +63,14 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 		
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
 		
-		CcpJsonRepresentation jsonDeRetornoDoTeste = this.getJsonResponseFromEndpoint(CcpDefaultProcessStatus.CREATED, scenarioName, "documentation/tests/resume/curriculoComArquivoInvalido.json");
+		CcpJsonRepresentation jsonDeRetornoDoTeste = this.getJsonResponseFromEndpoint(CcpDefaultProcessStatus.UNPROCESSABLE_ENTITY, scenarioName, "documentation/tests/resume/curriculoComArquivoInvalido.json");
 		
 		 new CcpGetEntityId(jsonDeRetornoDoTeste)
 			.toBeginProcedureAnd()
 			.ifThisIdIsNotPresentInEntity(JnEntityAsyncTask.ENTITY).returnStatus(SaveResumeStatus.naoCadastrouMensageria).and()
 			.ifThisIdIsNotPresentInEntity(JnEntityEmailMessageSent.ENTITY).returnStatus(SaveResumeStatus.naoEnviouEmail).and()
 			;
+		 //TODO TESTES DO JSON INVALIDO
 	}
 	
 	private String pathToJsonFile = "documentation/tests/resume/curriculoComArquivoValido.json";
