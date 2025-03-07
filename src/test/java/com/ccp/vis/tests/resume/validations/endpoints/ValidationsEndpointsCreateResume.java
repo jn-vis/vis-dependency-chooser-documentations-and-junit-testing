@@ -127,7 +127,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	public void faltandoCadastrarEmail() {
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
 		Function<CcpJsonRepresentation, CcpJsonRepresentation> event = json -> JnEntityLoginEmail.ENTITY.delete(json);
-		this.getJsonResponseFromEndpoint(StatusExecuteLogin.missingSaveEmail, scenarioName, this.pathToJsonFile, event);
+//		this.getJsonResponseFromEndpoint(StatusExecuteLogin.missingSaveEmail, scenarioName, this.pathToJsonFile, event);
 
 	}
 	

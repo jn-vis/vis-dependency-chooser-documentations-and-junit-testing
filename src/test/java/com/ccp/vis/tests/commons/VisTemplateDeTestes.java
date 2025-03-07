@@ -13,7 +13,7 @@ import com.ccp.especifications.db.utils.CcpDbRequester;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.especifications.http.CcpHttpResponseType;
-import com.ccp.exceptions.process.CcpFlowDiversion;
+import com.ccp.exceptions.process.CcpFlowDisturb;
 import com.ccp.flow.CcpTreeFlow;
 import com.ccp.implementations.db.bulk.elasticsearch.CcpElasticSerchDbBulk;
 import com.ccp.implementations.db.crud.elasticsearch.CcpElasticSearchCrud;
@@ -150,7 +150,7 @@ public abstract class VisTemplateDeTestes {
 		try {
 			CcpJsonRepresentation apply = first.apply(json);
 			return apply;
-		} catch (CcpFlowDiversion e) {
+		} catch (CcpFlowDisturb e) {
 			Function<CcpJsonRepresentation, CcpJsonRepresentation> nextFlow = flow.getAsObject(e.status.name());
 			nextFlow.apply(json);
 			CcpJsonRepresentation executeThisFlow = this.executeThisFlow(first, flow, json);
@@ -166,7 +166,7 @@ public abstract class VisTemplateDeTestes {
 		CcpJsonRepresentation endThisStatement = CcpTreeFlow// fluxo de arvore
 		.beginThisStatement()//iniciando comando
 		.tryToExecuteTheGivenFinalTargetProcess(LoginActions.executeLogin).usingTheGivenJson(sessionValuesToTest)// executar um processo alvo, usando um json fornecido
-		.butIfThisExecutionReturns(StatusExecuteLogin.missingSaveEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)// se esta execução retornar que o e-mail está faltando, entao ele vai executar o processo de criação de e-mail
+		.butIfThisExecutionReturns(StatusExecuteLogin.missingSavingEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)// se esta execução retornar que o e-mail está faltando, entao ele vai executar o processo de criação de e-mail
 		.and()//e
 		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, LoginActions.savePassword, LoginActions.executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
 		.and()// e

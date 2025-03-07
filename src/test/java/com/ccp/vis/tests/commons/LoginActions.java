@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.function.Function;
 
 import com.ccp.decorators.CcpJsonRepresentation;
-import com.ccp.exceptions.process.CcpFlowDiversion;
+import com.ccp.exceptions.process.CcpFlowDisturb;
 import com.ccp.jn.sync.service.SyncServiceJnLogin;
 
 enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepresentation> {
@@ -30,7 +30,7 @@ enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepresentati
 			Object invoke = declaredMethod.invoke(SyncServiceJnLogin.INSTANCE, json);
 			return (CcpJsonRepresentation)invoke;
 		}catch(InvocationTargetException e) {
-			if(e.getCause() instanceof CcpFlowDiversion flowDiversion) {
+			if(e.getCause() instanceof CcpFlowDisturb flowDiversion) {
 				throw flowDiversion;
 			}
 			throw new RuntimeException(e);
