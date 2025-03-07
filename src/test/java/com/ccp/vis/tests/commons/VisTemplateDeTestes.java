@@ -22,7 +22,6 @@ import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.password.mindrot.CcpMindrotPasswordHandler;
 import com.ccp.jn.async.business.factory.CcpJnAsyncBusinessFactory;
-import com.ccp.jn.sync.service.SyncServiceJnLogin;
 import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
 import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
@@ -187,7 +186,11 @@ public abstract class VisTemplateDeTestes {
 		
 		String uri = this.getUri();
 		CcpJsonRepresentation responseFromEndpoint = this.getJsonResponseFromEndpoint(processStatus, scenarioName, body, uri);
-		SyncServiceJnLogin.INSTANCE.executeLogout(body);
+		LoginActions.deleteAsnswers.apply(body);
+		LoginActions.deletePassword.apply(body);
+		LoginActions.unlockPassword.apply(body);
+		LoginActions.deleteEmail.apply(body);
+		LoginActions.unlockToken.apply(body);
 		return responseFromEndpoint;
 	}
 
@@ -197,7 +200,7 @@ public abstract class VisTemplateDeTestes {
 		CcpJsonRepresentation json = CcpOtherConstants.EMPTY_JSON
 				.put(JnEntityLoginToken.Fields.email.name(), "onias85@gmail.com")
 				.put(JnEntityLoginToken.Fields.userAgent.name(), "teste")
-				.put(CcpStringConstants.LANGUAGE.value, "language")
+				.put(CcpStringConstants.LANGUAGE.value, "portuguese")
 				.put(JnEntityLoginToken.Fields.ip.name(), "teste")
 				;
 
