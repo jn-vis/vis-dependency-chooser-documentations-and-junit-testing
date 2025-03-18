@@ -70,10 +70,9 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 			.ifThisIdIsNotPresentInEntity(JnEntityAsyncTask.ENTITY).returnStatus(SaveResumeStatus.naoCadastrouMensageria).and()
 			.ifThisIdIsNotPresentInEntity(JnEntityEmailMessageSent.ENTITY).returnStatus(SaveResumeStatus.naoEnviouEmail).and()
 			;
-		 //TODO TESTES DO JSON INVALIDO
 	}
 	
-	private String pathToJsonFile = "documentation/tests/resume/curriculoComArquivoValido.json";
+	private String pathToJsonFile = "documentation/tests/resume/curriculoParaSalvar.json";
 	
 	@SuppressWarnings("unchecked")
 	@Test

@@ -167,7 +167,9 @@ public abstract class VisTemplateDeTestes {
 		.tryToExecuteTheGivenFinalTargetProcess(LoginActions.executeLogin).usingTheGivenJson(sessionValuesToTest)// executar um processo alvo, usando um json fornecido
 		.butIfThisExecutionReturns(StatusExecuteLogin.missingSavingEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)// se esta execução retornar que o e-mail está faltando, entao ele vai executar o processo de criação de e-mail
 		.and()//e
-		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, LoginActions.savePassword, LoginActions.executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
+		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(
+				LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, 
+				LoginActions.savePassword, LoginActions.executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
 		.and()// e
 		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSaveAnswers).thenExecuteTheGivenProcesses(LoginActions.saveAnswers)
 		.and()

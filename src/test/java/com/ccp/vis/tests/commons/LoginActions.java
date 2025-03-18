@@ -23,7 +23,7 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 	readTokenFromReceivedEmail{
 		public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
 			//FIXME
-			return null;
+			return json;
 		}
 		
 	},
