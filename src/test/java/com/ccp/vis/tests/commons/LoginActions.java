@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.function.Function;
 
 import com.ccp.decorators.CcpJsonRepresentation;
+import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.especifications.db.utils.CcpEntity;
 import com.ccp.exceptions.process.CcpFlowDisturb;
 import com.ccp.jn.sync.service.SyncServiceJnLogin;
@@ -12,6 +13,7 @@ import com.jn.commons.entities.JnEntityLoginAnswers;
 import com.jn.commons.entities.JnEntityLoginEmail;
 import com.jn.commons.entities.JnEntityLoginPassword;
 import com.jn.commons.entities.JnEntityLoginToken;
+import com.jn.commons.utils.JnAsyncBusiness;
 
 public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepresentation> {
 	saveAnswers,
@@ -22,8 +24,10 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 	createLoginEmail,
 	readTokenFromReceivedEmail{
 		public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
-			//FIXME
-			return json;
+			String originalToken = new CcpStringDecorator("c:\\logs\\email\\"+ JnAsyncBusiness.sendUserToken.name() + ".json")
+			.file().asSingleJson().getAsString("originalToken");
+			CcpJsonRepresentation put = json.put("token", originalToken);
+			return put;
 		}
 		
 	},
@@ -81,7 +85,8 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 			Class<? extends SyncServiceJnLogin> clazz = SyncServiceJnLogin.INSTANCE.getClass();
 			Method declaredMethod = clazz.getDeclaredMethod(this.name(), CcpJsonRepresentation.class);
 			Object invoke = declaredMethod.invoke(SyncServiceJnLogin.INSTANCE, json);
-			return (CcpJsonRepresentation)invoke;
+			CcpJsonRepresentation jsn = (CcpJsonRepresentation)invoke;
+			return jsn;
 		}catch(InvocationTargetException e) {
 			if(e.getCause() instanceof CcpFlowDisturb flowDiversion) {
 				throw flowDiversion;

@@ -39,11 +39,11 @@ public abstract class VisTemplateDeTestes {
 				new CcpElasticSearchDbRequest(), 
 				new CcpMindrotPasswordHandler(),
 				CcpLocalCacheInstances.mock,
+				new CcpElasticSerchDbBulk(),
 				new CcpElasticSearchCrud(),
 				new CcpGsonJsonHandler(), 
 				new CcpApacheMimeHttp(), 
-				new CcpElasticSerchDbBulk()
-				
+				CcpLocalInstances.email
 				);
 		
 		String pathToCreateEntityScript = "documentation\\database\\elasticsearch\\scripts\\entities\\create";
@@ -168,7 +168,7 @@ public abstract class VisTemplateDeTestes {
 		.butIfThisExecutionReturns(StatusExecuteLogin.missingSavingEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)// se esta execução retornar que o e-mail está faltando, entao ele vai executar o processo de criação de e-mail
 		.and()//e
 		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(
-				LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, 
+				LoginActions.saveAnswers, LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, 
 				LoginActions.savePassword, LoginActions.executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
 		.and()// e
 		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSaveAnswers).thenExecuteTheGivenProcesses(LoginActions.saveAnswers)
