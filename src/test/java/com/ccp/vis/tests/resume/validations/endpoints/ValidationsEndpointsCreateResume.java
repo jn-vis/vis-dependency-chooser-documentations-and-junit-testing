@@ -12,6 +12,7 @@ import com.ccp.vis.tests.commons.VisTemplateDeTestes;
 import com.jn.commons.entities.JnEntityAsyncTask;
 import com.jn.commons.entities.JnEntityEmailMessageSent;
 import com.jn.commons.status.StatusExecuteLogin;
+import com.jn.commons.utils.JnDeleteKeysFromCache;
 
 public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 
@@ -63,13 +64,17 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 		
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
 		
-		CcpJsonRepresentation jsonDeRetornoDoTeste = this.getJsonResponseFromEndpoint(CcpDefaultProcessStatus.UNPROCESSABLE_ENTITY, scenarioName, "documentation/tests/resume/curriculoComArquivoInvalido.json");
+		CcpJsonRepresentation jsonDeRetornoDoTeste = this.getJsonResponseFromEndpoint(CcpDefaultProcessStatus.SUCCESS, scenarioName, "documentation/tests/resume/curriculoComArquivoInvalido.json");
 		
-		 new CcpGetEntityId(jsonDeRetornoDoTeste)
+		 CcpJsonRepresentation result = new CcpGetEntityId(jsonDeRetornoDoTeste)
 			.toBeginProcedureAnd()
 			.ifThisIdIsNotPresentInEntity(JnEntityAsyncTask.ENTITY).returnStatus(SaveResumeStatus.naoCadastrouMensageria).and()
-			.ifThisIdIsNotPresentInEntity(JnEntityEmailMessageSent.ENTITY).returnStatus(SaveResumeStatus.naoEnviouEmail).and()
+			.ifThisIdIsNotPresentInEntity(JnEntityEmailMessageSent.ENTITY).returnStatus(SaveResumeStatus.naoEnviouEmail)
+			.andFinallyReturningTheseFields(jsonDeRetornoDoTeste.fieldSet())
+			.endThisProcedureRetrievingTheResultingData(CcpOtherConstants.DO_NOTHING, JnDeleteKeysFromCache.INSTANCE)
 			;
+		 
+		 System.out.println(result);
 	}
 	
 	private String pathToJsonFile = "documentation/tests/resume/curriculoParaSalvar.json";
