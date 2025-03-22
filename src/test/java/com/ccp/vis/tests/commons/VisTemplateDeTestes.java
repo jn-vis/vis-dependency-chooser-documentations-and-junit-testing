@@ -212,7 +212,6 @@ public abstract class VisTemplateDeTestes {
 		JnEntityLoginPasswordAttempts.ENTITY.delete(body);
 		JnEntityLoginAnswers.ENTITY.delete(body);
 		JnEntityLoginPassword.ENTITY.getTwinEntity().delete(body);
-		JnEntityLoginEmail.ENTITY.getTwinEntity().delete(body);
 		JnEntityLoginTokenAttempts.ENTITY.delete(body);
 		JnEntityLoginToken.ENTITY.getTwinEntity().delete(body);
 		JnEntityLoginToken.ENTITY.delete(body);

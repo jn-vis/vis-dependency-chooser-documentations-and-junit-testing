@@ -36,8 +36,8 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 			CcpJsonRepresentation jsn = (CcpJsonRepresentation)invoke;
 			return jsn;
 		}catch(InvocationTargetException e) {
-			if(e.getCause() instanceof CcpFlowDisturb flowDiversion) {
-				throw flowDiversion;
+			if(e.getCause() instanceof CcpFlowDisturb flowDisturb) {
+				throw flowDisturb;
 			}
 			throw new RuntimeException(e);
 		}catch (Exception e) {
