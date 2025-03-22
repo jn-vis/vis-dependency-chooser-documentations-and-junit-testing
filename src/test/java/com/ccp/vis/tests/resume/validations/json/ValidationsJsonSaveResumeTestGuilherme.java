@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 import com.ccp.decorators.CcpJsonRepresentation;
-import com.ccp.jn.sync.mensageria.JnSyncMensageriaSender;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.validation.annotations.CcpJsonFieldsValidation;
 import com.ccp.vis.tests.commons.BaseTest;
+import com.jn.sync.mensageria.JnSyncMensageriaSender;
 import com.vis.commons.entities.VisEntityResume;
 import com.vis.commons.json.validations.VisJsonValidationResume;
 import com.vis.commons.utils.VisAsyncBusiness;

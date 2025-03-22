@@ -22,13 +22,13 @@ import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
 import com.jn.commons.entities.JnEntityLoginAnswers;
-import com.jn.commons.entities.JnEntityLoginSessionToken;
+import com.jn.commons.entities.JnEntityLoginSessionValidation;
 import com.jn.commons.entities.JnEntityLoginToken;
 
 public class BaseTest {
 	//FIXME faltando validações do SimpleArray
 	public final static CcpJsonRepresentation REQUEST_TO_LOGIN = CcpOtherConstants.EMPTY_JSON
-			.put(JnEntityLoginSessionToken.Fields.userAgent.name(), "Apache-HttpClient/4.5.4 (Java/17.0.9)")
+			.put(JnEntityLoginSessionValidation.Fields.userAgent.name(), "Apache-HttpClient/4.5.4 (Java/17.0.9)")
 //			.put("sessionToken", SESSION_TOKEN)
 			.put(JnEntityLoginToken.Fields.ip.name(), "localhost:8080")
 			;

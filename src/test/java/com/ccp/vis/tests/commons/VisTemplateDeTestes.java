@@ -10,6 +10,7 @@ import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.decorators.CcpTimeDecorator;
 import com.ccp.dependency.injection.CcpDependencyInjection;
 import com.ccp.especifications.db.utils.CcpDbRequester;
+import com.ccp.especifications.db.utils.CcpEntityCrudOperationType;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.especifications.http.CcpHttpResponseType;
@@ -26,7 +27,12 @@ import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
 import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.process.CcpProcessStatus;
+import com.jn.commons.entities.JnEntityLoginAnswers;
+import com.jn.commons.entities.JnEntityLoginEmail;
+import com.jn.commons.entities.JnEntityLoginPassword;
+import com.jn.commons.entities.JnEntityLoginPasswordAttempts;
 import com.jn.commons.entities.JnEntityLoginToken;
+import com.jn.commons.entities.JnEntityLoginTokenAttempts;
 import com.jn.commons.status.StatusExecuteLogin;
 
 public abstract class VisTemplateDeTestes {
@@ -167,7 +173,19 @@ public abstract class VisTemplateDeTestes {
 		.tryToExecuteTheGivenFinalTargetProcess(LoginActions.executeLogin).usingTheGivenJson(sessionValuesToTest)// executar um processo alvo, usando um json fornecido
 		.butIfThisExecutionReturns(StatusExecuteLogin.missingSavingEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)// se esta execução retornar que o e-mail está faltando, entao ele vai executar o processo de criação de e-mail
 		.and()//e
-		.ifThisExecutionReturns(StatusCreateLoginEmail.loginConflict).thenExecuteTheGivenProcesses(LoginActions.executeLogout).and()
+		.ifThisExecutionReturns(StatusCreateLoginEmail.loginConflict)
+		.thenExecuteTheGivenProcesses(
+				LoginActions.executeLogout,
+				JnEntityLoginEmail.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
+				JnEntityLoginPassword.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
+				JnEntityLoginPasswordAttempts.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
+				JnEntityLoginAnswers.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
+				JnEntityLoginPassword.ENTITY.getTwinEntity().getOperationCallback(CcpEntityCrudOperationType.delete),
+				JnEntityLoginToken.ENTITY.getTwinEntity().getOperationCallback(CcpEntityCrudOperationType.delete),
+				JnEntityLoginTokenAttempts.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
+				JnEntityLoginToken.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete)
+
+				 ).and()
 		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(
 				LoginActions.saveAnswers, LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, 
 				LoginActions.savePassword, LoginActions.executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
@@ -189,11 +207,16 @@ public abstract class VisTemplateDeTestes {
 		
 		String uri = this.getUri();
 		CcpJsonRepresentation responseFromEndpoint = this.getJsonResponseFromEndpoint(processStatus, scenarioName, body, uri);
-		LoginActions.deleteAsnswers.apply(body);
-		LoginActions.deletePassword.apply(body);
-		LoginActions.unlockPassword.apply(body);
-		LoginActions.deleteEmail.apply(body);
-		LoginActions.unlockToken.apply(body);
+		JnEntityLoginEmail.ENTITY.delete(body);
+		JnEntityLoginPassword.ENTITY.delete(body);
+		JnEntityLoginPasswordAttempts.ENTITY.delete(body);
+		JnEntityLoginAnswers.ENTITY.delete(body);
+		JnEntityLoginPassword.ENTITY.getTwinEntity().delete(body);
+		JnEntityLoginEmail.ENTITY.getTwinEntity().delete(body);
+		JnEntityLoginTokenAttempts.ENTITY.delete(body);
+		JnEntityLoginToken.ENTITY.getTwinEntity().delete(body);
+		JnEntityLoginToken.ENTITY.delete(body);
+		
 		return responseFromEndpoint;
 	}
 

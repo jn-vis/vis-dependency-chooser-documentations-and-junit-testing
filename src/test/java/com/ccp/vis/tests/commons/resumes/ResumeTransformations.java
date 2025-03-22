@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import com.ccp.constantes.CcpOtherConstants;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
-import com.ccp.especifications.db.bulk.CcpEntityOperationType;
+import com.ccp.especifications.db.bulk.CcpEntityBulkOperationType;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.jn.async.commons.JnAsyncCommitAndAudit;
@@ -16,8 +16,7 @@ import com.ccp.json.transformers.CcpTransformers;
 import com.jn.commons.entities.JnEntityLoginAnswers;
 import com.jn.commons.entities.JnEntityLoginEmail;
 import com.jn.commons.entities.JnEntityLoginPassword;
-import com.jn.commons.entities.JnEntityLoginSessionCurrent;
-import com.jn.commons.entities.JnEntityLoginSessionToken;
+import com.jn.commons.entities.JnEntityLoginSessionValidation;
 import com.jn.commons.entities.JnEntityLoginToken;
 import com.vis.commons.entities.VisEntityResume;
 
@@ -126,7 +125,7 @@ public enum ResumeTransformations implements CcpTransformers{
 		
 		private CcpJsonRepresentation createLogin(String email) {
 			CcpJsonRepresentation transformed = CcpOtherConstants.EMPTY_JSON
-			.put(JnEntityLoginSessionToken.Fields.userAgent.name(), "Apache-HttpClient/4.5.4 (Java/17.0.9)")
+			.put(JnEntityLoginSessionValidation.Fields.userAgent.name(), "Apache-HttpClient/4.5.4 (Java/17.0.9)")
 			.put(JnEntityLoginPassword.Fields.password.name(), "Jobsnow1!")
 			.put(JnEntityLoginToken.Fields.ip.name(), "localhost:8080")
 			.put(JnEntityLoginAnswers.Fields.channel.name(), "linkedin")
@@ -134,14 +133,14 @@ public enum ResumeTransformations implements CcpTransformers{
 			.put(JnEntityLoginAnswers.Fields.email.name(), email)
 			;
 			
-			JnAsyncCommitAndAudit.INSTANCE.executeBulk(transformed, CcpEntityOperationType.create, 
+			JnAsyncCommitAndAudit.INSTANCE.executeBulk(transformed, CcpEntityBulkOperationType.create, 
 					JnEntityLoginPassword.ENTITY,
 					JnEntityLoginAnswers.ENTITY,
 					JnEntityLoginToken.ENTITY,
 					JnEntityLoginEmail.ENTITY
 					);
 			
-			JnEntityLoginSessionCurrent.ENTITY.delete(transformed);
+			JnEntityLoginSessionValidation.ENTITY.delete(transformed);
 			
 			CcpJsonRepresentation renameField = transformed.renameField("originalEmail", "email");
 			return renameField;

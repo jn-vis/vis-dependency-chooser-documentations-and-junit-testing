@@ -9,7 +9,7 @@ import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.dependency.injection.CcpDependencyInjection;
 import com.ccp.especifications.db.query.CcpDbQueryOptions;
 import com.ccp.especifications.db.query.CcpQueryExecutor;
-import com.jn.commons.utils.JnValidateSession;
+import com.ccp.jn.sync.service.JnValidateSession;
 import com.vis.commons.entities.VisEntityResume;
 
 public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentation>{
