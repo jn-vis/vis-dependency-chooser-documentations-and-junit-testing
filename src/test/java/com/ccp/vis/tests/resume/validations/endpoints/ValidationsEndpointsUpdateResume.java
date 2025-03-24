@@ -3,6 +3,7 @@ package com.ccp.vis.tests.resume.validations.endpoints;
 import org.junit.Test;
 
 import com.ccp.decorators.CcpJsonRepresentation;
+import com.ccp.http.CcpHttpMethods;
 import com.ccp.process.CcpDefaultProcessStatus;
 import com.ccp.vis.tests.commons.VisTemplateDeTestes;
 
@@ -18,8 +19,8 @@ public class ValidationsEndpointsUpdateResume  extends VisTemplateDeTestes{
 		System.out.println(jsonDeRetornoDoTeste);
 	}
 
-	protected String getMethod() {
-		return "PATCH";
+	protected CcpHttpMethods getMethod() {
+		return CcpHttpMethods.PATCH;
 	}
 
 	protected String getUri() {

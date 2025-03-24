@@ -16,6 +16,7 @@ import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.especifications.http.CcpHttpResponseType;
 import com.ccp.exceptions.process.CcpFlowDisturb;
 import com.ccp.flow.CcpTreeFlow;
+import com.ccp.http.CcpHttpMethods;
 import com.ccp.implementations.db.bulk.elasticsearch.CcpElasticSerchDbBulk;
 import com.ccp.implementations.db.crud.elasticsearch.CcpElasticSearchCrud;
 import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
@@ -68,7 +69,7 @@ public abstract class VisTemplateDeTestes {
 	}
 	
 	
-	protected abstract String getMethod();
+	protected abstract CcpHttpMethods getMethod();
 
 	protected CcpJsonRepresentation getHeaders() {
 		return CcpOtherConstants.EMPTY_JSON;
@@ -91,7 +92,7 @@ public abstract class VisTemplateDeTestes {
 
 	protected CcpJsonRepresentation getJsonResponseFromEndpoint(CcpProcessStatus status, String scenarioName, CcpJsonRepresentation body, String uri,
 			CcpJsonRepresentation headers) {
-		String method = this.getMethod();
+		CcpHttpMethods method = this.getMethod();
 		int expectedStatus = status.asNumber();
 		CcpHttpHandler http = new CcpHttpHandler(expectedStatus, CcpOtherConstants.DO_NOTHING);
 		String path = this.ENDPOINT_URL + uri;
@@ -110,7 +111,7 @@ public abstract class VisTemplateDeTestes {
 		return executeHttpRequest;
 	}
 
-	private <V> void logRequestAndResponse(String url, String method, CcpProcessStatus status, String scenarioName, int actualStatus,
+	private <V> void logRequestAndResponse(String url, CcpHttpMethods method, CcpProcessStatus status, String scenarioName, int actualStatus,
 			CcpJsonRepresentation body, CcpJsonRepresentation headers, V executeHttpRequest) {
 
 		CcpJsonRepresentation md = CcpOtherConstants.EMPTY_JSON.put("x", executeHttpRequest);

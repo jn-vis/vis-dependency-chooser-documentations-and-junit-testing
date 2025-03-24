@@ -6,6 +6,7 @@ import com.ccp.constantes.CcpOtherConstants;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.especifications.db.crud.CcpGetEntityId;
 import com.ccp.especifications.db.utils.CcpEntityCrudOperationType;
+import com.ccp.http.CcpHttpMethods;
 import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
 import com.ccp.process.CcpDefaultProcessStatus;
 import com.ccp.vis.tests.commons.VisTemplateDeTestes;
@@ -133,8 +134,8 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 
 	}
 	
-	protected String getMethod() {
-		return "POST";
+	protected CcpHttpMethods getMethod() {
+		return CcpHttpMethods.POST;
 	}
 	
 }

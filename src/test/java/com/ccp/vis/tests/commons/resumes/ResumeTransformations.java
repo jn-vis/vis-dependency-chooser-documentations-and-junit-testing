@@ -11,6 +11,7 @@ import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.especifications.db.bulk.CcpEntityBulkOperationType;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
+import com.ccp.http.CcpHttpMethods;
 import com.ccp.jn.async.commons.JnAsyncCommitAndAudit;
 import com.ccp.json.transformers.CcpTransformers;
 import com.jn.commons.entities.JnEntityLoginAnswers;
@@ -117,7 +118,7 @@ public enum ResumeTransformations implements CcpTransformers{
 
 			CcpHttpHandler http = new CcpHttpHandler(200, CcpOtherConstants.DO_NOTHING);
 			
-			CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, "POST", CcpOtherConstants.EMPTY_JSON, asUgglyJson, 200);
+			CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, CcpHttpMethods.POST, CcpOtherConstants.EMPTY_JSON, asUgglyJson, 200);
 			
 			CcpJsonRepresentation asSingleJson = response.asSingleJson();
 			return asSingleJson;

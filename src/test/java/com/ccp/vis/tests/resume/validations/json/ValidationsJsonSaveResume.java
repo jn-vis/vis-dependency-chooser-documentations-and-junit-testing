@@ -17,6 +17,7 @@ import com.ccp.especifications.db.query.CcpDbQueryOptions;
 import com.ccp.especifications.db.query.CcpQueryExecutor;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
+import com.ccp.http.CcpHttpMethods;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.async.business.resume.VisAsyncBusinessResumeSave;
 import com.ccp.vis.tests.commons.BaseTest;
@@ -54,7 +55,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		String path = "http://localhost:9200/profissionais2/_doc/onias85@gmail.com/_source";
 		String asUgglyJson = "";
 
-		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, "GET", CcpOtherConstants.EMPTY_JSON, asUgglyJson);
+		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(path, CcpHttpMethods.GET, CcpOtherConstants.EMPTY_JSON, asUgglyJson);
 			
 		CcpJsonRepresentation asSingleJson = response.asSingleJson();
 		
@@ -292,7 +293,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		
 		CcpHttpHandler http = new CcpHttpHandler(200, CcpOtherConstants.DO_NOTHING);
 		
-		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(url, "GET", CcpOtherConstants.EMPTY_JSON, CcpOtherConstants.EMPTY_JSON.asUgglyJson(), 200);
+		CcpHttpResponse response = http.ccpHttp.executeHttpRequest(url, CcpHttpMethods.GET, CcpOtherConstants.EMPTY_JSON, CcpOtherConstants.EMPTY_JSON.asUgglyJson(), 200);
 		
 		CcpJsonRepresentation resume = response.asSingleJson();
 		return resume;

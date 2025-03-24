@@ -7,7 +7,7 @@ import java.util.function.Function;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.exceptions.process.CcpFlowDisturb;
-import com.ccp.jn.sync.service.SyncServiceJnLogin;
+import com.ccp.jn.sync.service.JnSyncServiceLogin;
 import com.jn.commons.utils.JnAsyncBusiness;
 
 public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepresentation> {
@@ -30,9 +30,9 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 
 	public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
 		try {
-			Class<? extends SyncServiceJnLogin> clazz = SyncServiceJnLogin.INSTANCE.getClass();
+			Class<? extends JnSyncServiceLogin> clazz = JnSyncServiceLogin.INSTANCE.getClass();
 			Method declaredMethod = clazz.getDeclaredMethod(this.name(), CcpJsonRepresentation.class);
-			Object invoke = declaredMethod.invoke(SyncServiceJnLogin.INSTANCE, json);
+			Object invoke = declaredMethod.invoke(JnSyncServiceLogin.INSTANCE, json);
 			CcpJsonRepresentation jsn = (CcpJsonRepresentation)invoke;
 			return jsn;
 		}catch(InvocationTargetException e) {
