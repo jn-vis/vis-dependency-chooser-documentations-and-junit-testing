@@ -17,6 +17,12 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 	executeLogout,
 	createLoginToken,
 	createLoginEmail,
+	renameTokenField{
+		public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
+			CcpJsonRepresentation renameField = json.renameField("sessionToken", "token");
+			return renameField;
+		}
+	},
 	readTokenFromReceivedEmail{
 		public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
 			String originalToken = new CcpStringDecorator("c:\\logs\\email\\"+ JnAsyncBusiness.sendUserToken.name() + ".json")

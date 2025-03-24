@@ -189,7 +189,7 @@ public abstract class VisTemplateDeTestes {
 				 ).and()
 		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(
 				LoginActions.saveAnswers, LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, 
-				LoginActions.savePassword, LoginActions.executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
+				LoginActions.savePassword, LoginActions.renameTokenField, LoginActions.executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
 		.and()// e
 		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSaveAnswers).thenExecuteTheGivenProcesses(LoginActions.saveAnswers)
 		.and()
@@ -204,10 +204,11 @@ public abstract class VisTemplateDeTestes {
 			String pathToJsonFile, Function<CcpJsonRepresentation, CcpJsonRepresentation>... whatToNext) {
 		CcpJsonRepresentation jsonFile = this.getJsonFile(pathToJsonFile);
 		CcpJsonRepresentation loginData = this.createLogin(whatToNext);
-		CcpJsonRepresentation body = jsonFile.putAll(loginData);
+		CcpJsonRepresentation body = jsonFile;
+		CcpJsonRepresentation headers = loginData;
 		
 		String uri = this.getUri();
-		CcpJsonRepresentation responseFromEndpoint = this.getJsonResponseFromEndpoint(processStatus, scenarioName, body, uri);
+		CcpJsonRepresentation responseFromEndpoint = this.getJsonResponseFromEndpoint(processStatus, scenarioName, body, uri, headers);
 		JnEntityLoginEmail.ENTITY.delete(body);
 		JnEntityLoginPassword.ENTITY.delete(body);
 		JnEntityLoginPasswordAttempts.ENTITY.delete(body);
@@ -225,9 +226,9 @@ public abstract class VisTemplateDeTestes {
 	protected final CcpJsonRepresentation getSessionValuesToTest() {
 		CcpJsonRepresentation json = CcpOtherConstants.EMPTY_JSON
 				.put(JnEntityLoginToken.Fields.email.name(), "onias85@gmail.com")
-				.put(JnEntityLoginToken.Fields.userAgent.name(), "teste")
+				.put(JnEntityLoginToken.Fields.userAgent.name(), "Apache-HttpClient/4.5.4 (Java/17.0.9)")
 				.put(CcpStringConstants.LANGUAGE.value, "portuguese")
-				.put(JnEntityLoginToken.Fields.ip.name(), "teste")
+				.put(JnEntityLoginToken.Fields.ip.name(), "localhost")
 				;
 
 		return json;

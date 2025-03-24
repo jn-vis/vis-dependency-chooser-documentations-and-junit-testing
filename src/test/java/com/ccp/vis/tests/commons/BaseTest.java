@@ -29,7 +29,6 @@ public class BaseTest {
 	//FIXME faltando validações do SimpleArray
 	public final static CcpJsonRepresentation REQUEST_TO_LOGIN = CcpOtherConstants.EMPTY_JSON
 			.put(JnEntityLoginSessionValidation.Fields.userAgent.name(), "Apache-HttpClient/4.5.4 (Java/17.0.9)")
-//			.put("sessionToken", SESSION_TOKEN)
 			.put(JnEntityLoginToken.Fields.ip.name(), "localhost:8080")
 			;
 
