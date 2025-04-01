@@ -9,8 +9,8 @@ import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.decorators.CcpTimeDecorator;
 import com.ccp.dependency.injection.CcpDependencyInjection;
+import com.ccp.especifications.db.bulk.CcpEntityBulkOperationType;
 import com.ccp.especifications.db.utils.CcpDbRequester;
-import com.ccp.especifications.db.utils.CcpEntityCrudOperationType;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.especifications.http.CcpHttpResponseType;
@@ -24,17 +24,21 @@ import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.password.mindrot.CcpMindrotPasswordHandler;
 import com.ccp.jn.async.business.factory.CcpJnAsyncBusinessFactory;
+import com.ccp.jn.async.commons.JnAsyncCommitAndAudit;
 import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
 import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.process.CcpProcessStatus;
+import com.jn.commons.entities.JnEntityEmailMessageSent;
 import com.jn.commons.entities.JnEntityLoginAnswers;
 import com.jn.commons.entities.JnEntityLoginEmail;
 import com.jn.commons.entities.JnEntityLoginPassword;
 import com.jn.commons.entities.JnEntityLoginPasswordAttempts;
+import com.jn.commons.entities.JnEntityLoginSessionConflict;
 import com.jn.commons.entities.JnEntityLoginToken;
 import com.jn.commons.entities.JnEntityLoginTokenAttempts;
 import com.jn.commons.status.StatusExecuteLogin;
+import com.jn.commons.utils.JnAsyncBusiness;
 
 public abstract class VisTemplateDeTestes {
 	protected final String ENDPOINT_URL = "http://localhost:8081/";
@@ -169,28 +173,32 @@ public abstract class VisTemplateDeTestes {
 		
 		CcpJsonRepresentation sessionValuesToTest = this.getSessionValuesToTest();
 		
-		CcpJsonRepresentation endThisStatement = CcpTreeFlow// fluxo de arvore
-		.beginThisStatement()//iniciando comando
-		.tryToExecuteTheGivenFinalTargetProcess(LoginActions.executeLogin).usingTheGivenJson(sessionValuesToTest)// executar um processo alvo, usando um json fornecido
-		.butIfThisExecutionReturns(StatusExecuteLogin.missingSavingEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)// se esta execução retornar que o e-mail está faltando, entao ele vai executar o processo de criação de e-mail
-		.and()//e
-		.ifThisExecutionReturns(StatusCreateLoginEmail.loginConflict)
-		.thenExecuteTheGivenProcesses(
-				LoginActions.executeLogout,
-				JnEntityLoginEmail.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
-				JnEntityLoginPassword.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
-				JnEntityLoginPasswordAttempts.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
-				JnEntityLoginAnswers.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
-				JnEntityLoginPassword.ENTITY.getTwinEntity().getOperationCallback(CcpEntityCrudOperationType.delete),
-				JnEntityLoginToken.ENTITY.getTwinEntity().getOperationCallback(CcpEntityCrudOperationType.delete),
-				JnEntityLoginTokenAttempts.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete),
-				JnEntityLoginToken.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete)
-
-				 ).and()
+		CcpJsonRepresentation jsonWithSubjectType = sessionValuesToTest.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusiness.sendUserToken.name());
+		JnAsyncCommitAndAudit.INSTANCE.executeBulk(
+				jsonWithSubjectType, 
+				CcpEntityBulkOperationType.delete, 
+				JnEntityEmailMessageSent.ENTITY,
+				//LATER salvar tipo de formato temporal escolhido como coluna na expurgable
+				JnEntityLoginSessionConflict.ENTITY
+				,JnEntityLoginToken.ENTITY
+				,JnEntityLoginEmail.ENTITY
+				,JnEntityLoginPassword.ENTITY
+				,JnEntityLoginPasswordAttempts.ENTITY
+				,JnEntityLoginAnswers.ENTITY
+				,JnEntityLoginPassword.ENTITY.getTwinEntity()
+				,JnEntityLoginToken.ENTITY.getTwinEntity()
+				,JnEntityLoginTokenAttempts.ENTITY
+				);
+		
+		CcpJsonRepresentation endThisStatement = CcpTreeFlow
+		.beginThisStatement()
+		.tryToExecuteTheGivenFinalTargetProcess(LoginActions.executeLogin).usingTheGivenJson(sessionValuesToTest)
+		.butIfThisExecutionReturns(StatusExecuteLogin.missingSavingEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)
+		.and()
 		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(
 				LoginActions.saveAnswers, LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, 
-				LoginActions.savePassword, LoginActions.renameTokenField, LoginActions.executeLogout)// se ele retornar que está faltando a senha, vai executar os processos de 
-		.and()// e
+				LoginActions.savePassword, LoginActions.renameTokenField, LoginActions.executeLogout)
+		.and()
 		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSaveAnswers).thenExecuteTheGivenProcesses(LoginActions.saveAnswers)
 		.and()
 		.endThisStatement(whatToNext);
