@@ -24,7 +24,6 @@ import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.password.mindrot.CcpMindrotPasswordHandler;
 import com.ccp.jn.async.business.factory.CcpJnAsyncBusinessFactory;
-import com.ccp.jn.async.commons.JnAsyncCommitAndAudit;
 import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
 import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
@@ -39,6 +38,7 @@ import com.jn.commons.entities.JnEntityLoginToken;
 import com.jn.commons.entities.JnEntityLoginTokenAttempts;
 import com.jn.commons.status.StatusExecuteLogin;
 import com.jn.commons.utils.JnAsyncBusiness;
+import com.jn.commons.utils.JnCommonsExecuteBulkOperation;
 
 public abstract class VisTemplateDeTestes {
 	protected final String ENDPOINT_URL = "http://localhost:8081/";
@@ -174,7 +174,7 @@ public abstract class VisTemplateDeTestes {
 		CcpJsonRepresentation sessionValuesToTest = this.getSessionValuesToTest();
 		
 		CcpJsonRepresentation jsonWithSubjectType = sessionValuesToTest.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusiness.sendUserToken.name());
-		JnAsyncCommitAndAudit.INSTANCE.executeBulk(
+		JnCommonsExecuteBulkOperation.INSTANCE.executeBulk(
 				jsonWithSubjectType, 
 				CcpEntityBulkOperationType.delete, 
 				JnEntityEmailMessageSent.ENTITY,

@@ -12,13 +12,13 @@ import com.ccp.especifications.db.bulk.CcpEntityBulkOperationType;
 import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.http.CcpHttpMethods;
-import com.ccp.jn.async.commons.JnAsyncCommitAndAudit;
 import com.ccp.json.transformers.CcpTransformers;
 import com.jn.commons.entities.JnEntityLoginAnswers;
 import com.jn.commons.entities.JnEntityLoginEmail;
 import com.jn.commons.entities.JnEntityLoginPassword;
 import com.jn.commons.entities.JnEntityLoginSessionValidation;
 import com.jn.commons.entities.JnEntityLoginToken;
+import com.jn.commons.utils.JnCommonsExecuteBulkOperation;
 import com.vis.commons.entities.VisEntityResume;
 
 public enum ResumeTransformations implements CcpTransformers{
@@ -134,7 +134,7 @@ public enum ResumeTransformations implements CcpTransformers{
 			.put(JnEntityLoginAnswers.Fields.email.name(), email)
 			;
 			
-			JnAsyncCommitAndAudit.INSTANCE.executeBulk(transformed, CcpEntityBulkOperationType.create, 
+			JnCommonsExecuteBulkOperation.INSTANCE.executeBulk(transformed, CcpEntityBulkOperationType.create, 
 					JnEntityLoginPassword.ENTITY,
 					JnEntityLoginAnswers.ENTITY,
 					JnEntityLoginToken.ENTITY,
