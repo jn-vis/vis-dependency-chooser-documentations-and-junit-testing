@@ -65,7 +65,8 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 				if(loginActions.entities.length == 0) {
 					continue;
 				}
-				loginActions.printAllStatus(json);
+				CcpJsonRepresentation jsonWithSubjectType = json.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusiness.sendUserToken.name());
+				loginActions.printAllStatus(jsonWithSubjectType);
 			}
 			System.out.println("-----------------------------------------");
 			

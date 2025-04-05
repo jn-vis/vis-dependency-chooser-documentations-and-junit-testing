@@ -174,15 +174,16 @@ public abstract class VisTemplateDeTestes {
 		CcpJsonRepresentation sessionValuesToTest = this.getSessionValuesToTest();
 		
 		CcpJsonRepresentation jsonWithSubjectType = sessionValuesToTest.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusiness.sendUserToken.name());
+		
 		JnCommonsExecuteBulkOperation.INSTANCE.executeBulk(
-				jsonWithSubjectType, 
-				CcpEntityBulkOperationType.delete, 
-				JnEntityEmailMessageSent.ENTITY,
+				jsonWithSubjectType 
+				,CcpEntityBulkOperationType.delete 
+				,JnEntityEmailMessageSent.ENTITY
+				,JnEntityLoginPassword.ENTITY
 				//LATER salvar tipo de formato temporal escolhido como coluna na expurgable
-				JnEntityLoginSessionConflict.ENTITY
+				,JnEntityLoginSessionConflict.ENTITY
 				,JnEntityLoginToken.ENTITY
 				,JnEntityLoginEmail.ENTITY
-				,JnEntityLoginPassword.ENTITY
 				,JnEntityLoginPasswordAttempts.ENTITY
 				,JnEntityLoginAnswers.ENTITY
 				,JnEntityLoginPassword.ENTITY.getTwinEntity()
