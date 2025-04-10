@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 import com.ccp.decorators.CcpJsonRepresentation;
+import com.ccp.especifications.db.utils.CcpEntityCrudOperationType;
+import com.ccp.jn.commons.mensageria.JnMensageriaSender;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.tests.commons.BaseTest;
-import com.jn.sync.mensageria.JnSyncMensageriaSender;
 import com.vis.commons.entities.VisEntityResume;
-import com.vis.commons.utils.VisAsyncBusiness;
 
 public class ValidationsJsonSavePosition extends BaseTest {
 	
@@ -43,7 +43,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 //													  .removeFields("resumeText") 
 													  ;
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -81,7 +81,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("companiesNotAllowed");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -104,7 +104,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("ddd");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -128,7 +128,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("desiredJob");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -151,7 +151,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("disponibility");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -174,7 +174,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("disabilities");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -197,7 +197,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("experience");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -220,7 +220,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("lastJob");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -243,7 +243,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("name");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -266,7 +266,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("fileName");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -289,7 +289,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume .removeFields("observations");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -312,7 +312,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("resumeBase64");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -335,7 +335,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("originalEmail", "ddd");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -358,7 +358,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("email");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -385,7 +385,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 													  .removeFields(VisEntityResume.Fields.pj.name())
 													  ;
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);			
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -410,7 +410,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation removeField = resume.removeFields("resumeText");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(removeField);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(removeField);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -440,7 +440,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.put("companiesNotAllowed","VW");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 				assertTrue(false);
 			} catch (CcpJsonInvalid e) {
@@ -465,7 +465,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.put("ddd","a");
 				System.out.println("resume.fieldSet: " + resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println("appply: " + apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -492,7 +492,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 				System.out.println("antes do fieldSet");
 				System.out.println(resume.fieldSet());
 				System.out.println("antes do apply");
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println("depois do apply");
 				System.out.println("error..." + apply);
 			} catch (CcpJsonInvalid e) {
@@ -518,7 +518,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.removeFields("disponibility");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -541,7 +541,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.removeFields("disabilities");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -564,7 +564,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.removeFields("experience");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -587,7 +587,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.removeFields("lastJob");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -610,7 +610,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.removeFields("name");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -633,7 +633,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.removeFields("fileName");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -656,7 +656,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume .removeFields("observations");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -679,7 +679,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.removeFields("resumeBase64");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -702,7 +702,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.removeFields("originalEmail");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -725,7 +725,7 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation resume = super.getJson(filePath);
 			CcpJsonRepresentation insertValue = resume.removeFields("email");
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);
@@ -749,7 +749,8 @@ public class ValidationsJsonSavePosition extends BaseTest {
 			CcpJsonRepresentation insertValue = resume.put(VisEntityResume.Fields.clt.name(), "2")
 													  ;
 				System.out.println(resume.fieldSet());
-			CcpJsonRepresentation apply = new JnSyncMensageriaSender(VisAsyncBusiness.resume).apply(insertValue);
+			
+				CcpJsonRepresentation apply = new JnMensageriaSender(VisEntityResume.ENTITY, CcpEntityCrudOperationType.save).apply(insertValue);
 				System.out.println(apply);			
 			} catch (CcpJsonInvalid e) {
 				super.saveErrors(filePath, e);

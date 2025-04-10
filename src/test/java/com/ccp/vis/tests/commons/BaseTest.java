@@ -20,7 +20,6 @@ import com.ccp.implementations.text.extractor.apache.tika.CcpApacheTikaTextExtra
 import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.validation.CcpJsonInvalid;
-import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
 import com.jn.commons.entities.JnEntityLoginAnswers;
 import com.jn.commons.entities.JnEntityLoginSessionValidation;
 import com.jn.commons.entities.JnEntityLoginToken;
@@ -37,7 +36,6 @@ public class BaseTest {
 	static {
 		boolean localEnviroment = new CcpStringDecorator("c:\\rh").file().exists();
 
-		CcpVisAsyncBusinessFactory businessInstanceProvider = new CcpVisAsyncBusinessFactory();
 		
 		CcpDependencyInjection.loadAllDependencies(
 				new CcpApacheMimeHttp(), 
@@ -46,10 +44,10 @@ public class BaseTest {
 				new CcpMindrotPasswordHandler(),
 				new CcpElasticSearchDbRequest(),
 				new CcpApacheTikaTextExtractor(),
-				localEnviroment ? CcpLocalInstances.bucket.getLocalImplementation(businessInstanceProvider) : new CcpGcpFileBucket(),
-			    localEnviroment ? CcpLocalCacheInstances.map.getLocalImplementation(businessInstanceProvider) : new CcpGcpMemCache(),
-	    		localEnviroment ? CcpLocalInstances.email.getLocalImplementation(businessInstanceProvider) : new CcpSendGridEmailSender(),
-				localEnviroment ? CcpLocalInstances.mensageriaSender.getLocalImplementation(businessInstanceProvider) : new CcpGcpPubSubMensageriaSender()
+				localEnviroment ? CcpLocalInstances.bucket.getLocalImplementation() : new CcpGcpFileBucket(),
+			    localEnviroment ? CcpLocalCacheInstances.map.getLocalImplementation() : new CcpGcpMemCache(),
+	    		localEnviroment ? CcpLocalInstances.email.getLocalImplementation() : new CcpSendGridEmailSender(),
+				localEnviroment ? CcpLocalInstances.mensageriaSender.getLocalImplementation() : new CcpGcpPubSubMensageriaSender()
 				);	
 		
 		CcpDependencyInjection.loadAllDependencies(new CcpGsonJsonHandler(), new CcpElasticSearchCrud(),

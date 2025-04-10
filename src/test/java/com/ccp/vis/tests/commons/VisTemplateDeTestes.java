@@ -23,8 +23,8 @@ import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.password.mindrot.CcpMindrotPasswordHandler;
-import com.ccp.jn.async.business.factory.CcpJnAsyncBusinessFactory;
-import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
+import com.ccp.jn.commons.business.JnAsyncBusinessSendUserToken;
+import com.ccp.jn.commons.status.login.StatusCreateLoginEmail;
 import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.process.CcpProcessStatus;
@@ -37,16 +37,14 @@ import com.jn.commons.entities.JnEntityLoginSessionConflict;
 import com.jn.commons.entities.JnEntityLoginToken;
 import com.jn.commons.entities.JnEntityLoginTokenAttempts;
 import com.jn.commons.status.StatusExecuteLogin;
-import com.jn.commons.utils.JnAsyncBusiness;
 import com.jn.commons.utils.JnCommonsExecuteBulkOperation;
 
 public abstract class VisTemplateDeTestes {
 	protected final String ENDPOINT_URL = "http://localhost:8081/";
 
 	static {
-		CcpJnAsyncBusinessFactory asyncBusiness = new CcpJnAsyncBusinessFactory();
 		CcpDependencyInjection.loadAllDependencies(
-				CcpLocalInstances.mensageriaSender.getLocalImplementation(asyncBusiness),
+				CcpLocalInstances.mensageriaSender.getLocalImplementation(),
 				new CcpElasticSearchDbRequest(), 
 				new CcpMindrotPasswordHandler(),
 				CcpLocalCacheInstances.mock,
@@ -173,7 +171,7 @@ public abstract class VisTemplateDeTestes {
 		
 		CcpJsonRepresentation sessionValuesToTest = this.getSessionValuesToTest();
 		
-		CcpJsonRepresentation jsonWithSubjectType = sessionValuesToTest.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusiness.sendUserToken.name());
+		CcpJsonRepresentation jsonWithSubjectType = sessionValuesToTest.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusinessSendUserToken.class.getName());
 		
 		JnCommonsExecuteBulkOperation.INSTANCE.executeBulk(
 				jsonWithSubjectType 

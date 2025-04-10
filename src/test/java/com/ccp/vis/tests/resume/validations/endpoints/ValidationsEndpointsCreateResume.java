@@ -7,7 +7,7 @@ import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.especifications.db.crud.CcpGetEntityId;
 import com.ccp.especifications.db.utils.CcpEntityCrudOperationType;
 import com.ccp.http.CcpHttpMethods;
-import com.ccp.jn.sync.status.login.StatusCreateLoginEmail;
+import com.ccp.jn.commons.status.login.StatusCreateLoginEmail;
 import com.ccp.process.CcpDefaultProcessStatus;
 import com.ccp.vis.tests.commons.VisTemplateDeTestes;
 import com.jn.commons.entities.JnEntityAsyncTask;

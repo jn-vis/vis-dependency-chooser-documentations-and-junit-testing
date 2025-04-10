@@ -9,7 +9,7 @@ import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.dependency.injection.CcpDependencyInjection;
 import com.ccp.especifications.db.query.CcpDbQueryOptions;
 import com.ccp.especifications.db.query.CcpQueryExecutor;
-import com.ccp.jn.sync.service.JnValidateSession;
+import com.ccp.jn.commons.business.JnValidateSession;
 import com.vis.commons.entities.VisEntityResume;
 
 public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentation>{
@@ -93,6 +93,8 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 				,"name"
 				);
 	
+		System.out.println(resume);
+		
 //		SyncServiceVisResume.INSTANCE.save(resume);
 		
 		Integer status = candidate.getAsIntegerNumber("status");

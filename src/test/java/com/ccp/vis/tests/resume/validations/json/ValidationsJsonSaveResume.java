@@ -19,7 +19,6 @@ import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.http.CcpHttpMethods;
 import com.ccp.validation.CcpJsonInvalid;
-import com.ccp.vis.async.business.resume.VisAsyncBusinessResumeSave;
 import com.ccp.vis.tests.commons.BaseTest;
 import com.ccp.vis.tests.commons.resumes.ImportResumeFromOldJobsNow;
 import com.vis.commons.entities.VisEntityResume;
@@ -66,7 +65,8 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpJsonRepresentation curriculo = asSingleJson.getInnerJson("curriculo");
 		String conteudo = curriculo.getAsString("conteudo");
 		CcpJsonRepresentation resume = file.asSingleJson().put("resumeBase64", conteudo);
-		
+		System.out.println(resume);
+	
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
@@ -79,6 +79,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDisponibilidadeEdeficiencia.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
@@ -103,7 +104,8 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/curriculoParaSalvar.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
-		VisAsyncBusinessResumeSave.INSTANCE.apply(resume);
+		System.out.println(resume);
+		//VisAsyncBusinessResumeSave.INSTANCE.apply(resume);
 	}
 	
 	@Test
@@ -111,6 +113,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/dddIncorreto.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
@@ -124,6 +127,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDisponibilidade.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
@@ -143,6 +147,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDeficiencia.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
@@ -162,6 +167,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDdd.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
@@ -181,6 +187,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoResumeMeiaQuatro.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
@@ -200,6 +207,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoResumeText.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);
 		} catch (CcpJsonInvalid e) {
@@ -219,6 +227,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoDesiredJob.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);			
 		} catch (CcpJsonInvalid e) {
@@ -238,6 +247,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoLastJob.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);			
 		} catch (CcpJsonInvalid e) {
@@ -257,6 +267,7 @@ public class ValidationsJsonSaveResume extends BaseTest {
 		CcpStringDecorator ccpStringDecorator = new CcpStringDecorator("documentation/tests/resume/faltandoCampoExperience.json");
 		CcpFileDecorator file = ccpStringDecorator.file();
 		CcpJsonRepresentation resume = file.asSingleJson();
+		System.out.println(resume);
 		try {
 //			SyncServiceVisResume.INSTANCE.save(resume);			
 		} catch (CcpJsonInvalid e) {

@@ -10,7 +10,8 @@ import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.especifications.db.utils.CcpEntity;
 import com.ccp.exceptions.db.utils.CcpEntityPrimaryKeyIsMissing;
 import com.ccp.exceptions.process.CcpFlowDisturb;
-import com.ccp.jn.sync.service.JnSyncServiceLogin;
+import com.ccp.jn.commons.business.JnAsyncBusinessSendUserToken;
+import com.ccp.jn.commons.business.JnSyncServiceLogin;
 import com.jn.commons.entities.JnEntityEmailMessageSent;
 import com.jn.commons.entities.JnEntityLoginAnswers;
 import com.jn.commons.entities.JnEntityLoginEmail;
@@ -18,7 +19,6 @@ import com.jn.commons.entities.JnEntityLoginPassword;
 import com.jn.commons.entities.JnEntityLoginSessionConflict;
 import com.jn.commons.entities.JnEntityLoginSessionValidation;
 import com.jn.commons.entities.JnEntityLoginToken;
-import com.jn.commons.utils.JnAsyncBusiness;
 
 public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepresentation> {
 	saveAnswers(JnEntityLoginAnswers.ENTITY),
@@ -35,7 +35,7 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 	},
 	readTokenFromReceivedEmail{
 		public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
-			String originalToken = new CcpStringDecorator("c:\\logs\\email\\"+ JnAsyncBusiness.sendUserToken.name() + ".json")
+			String originalToken = new CcpStringDecorator("c:\\logs\\email\\"+ JnAsyncBusinessSendUserToken.class.getName() + ".json")
 			.file().asSingleJson().getAsString("originalToken");
 			CcpJsonRepresentation put = json.put("token", originalToken);
 			return put;
@@ -65,7 +65,7 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 				if(loginActions.entities.length == 0) {
 					continue;
 				}
-				CcpJsonRepresentation jsonWithSubjectType = json.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusiness.sendUserToken.name());
+				CcpJsonRepresentation jsonWithSubjectType = json.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusinessSendUserToken.class.getName());
 				loginActions.printAllStatus(jsonWithSubjectType);
 			}
 			System.out.println("-----------------------------------------");
