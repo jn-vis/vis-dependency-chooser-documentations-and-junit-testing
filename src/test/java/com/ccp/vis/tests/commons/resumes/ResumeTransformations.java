@@ -18,7 +18,7 @@ import com.jn.commons.entities.JnEntityLoginEmail;
 import com.jn.commons.entities.JnEntityLoginPassword;
 import com.jn.commons.entities.JnEntityLoginSessionValidation;
 import com.jn.commons.entities.JnEntityLoginToken;
-import com.jn.commons.utils.JnCommonsExecuteBulkOperation;
+import com.jn.commons.utils.JnExecuteBulkOperation;
 import com.vis.commons.entities.VisEntityResume;
 
 public enum ResumeTransformations implements CcpTransformers{
@@ -134,7 +134,7 @@ public enum ResumeTransformations implements CcpTransformers{
 			.put(JnEntityLoginAnswers.Fields.email.name(), email)
 			;
 			
-			JnCommonsExecuteBulkOperation.INSTANCE.executeBulk(transformed, CcpEntityBulkOperationType.create, 
+			JnExecuteBulkOperation.INSTANCE.executeBulk(transformed, CcpEntityBulkOperationType.create, 
 					JnEntityLoginPassword.ENTITY,
 					JnEntityLoginAnswers.ENTITY,
 					JnEntityLoginToken.ENTITY,

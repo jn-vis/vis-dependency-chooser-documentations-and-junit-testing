@@ -37,7 +37,7 @@ import com.jn.commons.entities.JnEntityLoginSessionConflict;
 import com.jn.commons.entities.JnEntityLoginToken;
 import com.jn.commons.entities.JnEntityLoginTokenAttempts;
 import com.jn.commons.status.StatusExecuteLogin;
-import com.jn.commons.utils.JnCommonsExecuteBulkOperation;
+import com.jn.commons.utils.JnExecuteBulkOperation;
 
 public abstract class VisTemplateDeTestes {
 	protected final String ENDPOINT_URL = "http://localhost:8081/";
@@ -173,7 +173,7 @@ public abstract class VisTemplateDeTestes {
 		
 		CcpJsonRepresentation jsonWithSubjectType = sessionValuesToTest.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusinessSendUserToken.class.getName());
 		
-		JnCommonsExecuteBulkOperation.INSTANCE.executeBulk(
+		JnExecuteBulkOperation.INSTANCE.executeBulk(
 				jsonWithSubjectType 
 				,CcpEntityBulkOperationType.delete 
 				,JnEntityEmailMessageSent.ENTITY
