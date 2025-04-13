@@ -10,15 +10,15 @@ import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.especifications.db.utils.CcpEntity;
 import com.ccp.exceptions.db.utils.CcpEntityPrimaryKeyIsMissing;
 import com.ccp.exceptions.process.CcpFlowDisturb;
-import com.ccp.jn.commons.business.JnAsyncBusinessSendUserToken;
-import com.ccp.jn.commons.business.JnSyncServiceLogin;
-import com.jn.commons.entities.JnEntityEmailMessageSent;
-import com.jn.commons.entities.JnEntityLoginAnswers;
-import com.jn.commons.entities.JnEntityLoginEmail;
-import com.jn.commons.entities.JnEntityLoginPassword;
-import com.jn.commons.entities.JnEntityLoginSessionConflict;
-import com.jn.commons.entities.JnEntityLoginSessionValidation;
-import com.jn.commons.entities.JnEntityLoginToken;
+import com.jn.business.JnBusinessSendUserToken;
+import com.jn.entities.JnEntityEmailMessageSent;
+import com.jn.entities.JnEntityLoginAnswers;
+import com.jn.entities.JnEntityLoginEmail;
+import com.jn.entities.JnEntityLoginPassword;
+import com.jn.entities.JnEntityLoginSessionConflict;
+import com.jn.entities.JnEntityLoginSessionValidation;
+import com.jn.entities.JnEntityLoginToken;
+import com.jn.services.JnServiceLogin;
 
 public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepresentation> {
 	saveAnswers(JnEntityLoginAnswers.ENTITY),
@@ -35,7 +35,7 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 	},
 	readTokenFromReceivedEmail{
 		public CcpJsonRepresentation apply(CcpJsonRepresentation json) {
-			String originalToken = new CcpStringDecorator("c:\\logs\\email\\"+ JnAsyncBusinessSendUserToken.class.getName() + ".json")
+			String originalToken = new CcpStringDecorator("c:\\logs\\email\\"+ JnBusinessSendUserToken.class.getName() + ".json")
 			.file().asSingleJson().getAsString("originalToken");
 			CcpJsonRepresentation put = json.put("token", originalToken);
 			return put;
@@ -65,7 +65,7 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 				if(loginActions.entities.length == 0) {
 					continue;
 				}
-				CcpJsonRepresentation jsonWithSubjectType = json.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusinessSendUserToken.class.getName());
+				CcpJsonRepresentation jsonWithSubjectType = json.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnBusinessSendUserToken.class.getName());
 				loginActions.printAllStatus(jsonWithSubjectType);
 			}
 			System.out.println("-----------------------------------------");
@@ -74,10 +74,10 @@ public enum LoginActions implements Function<CcpJsonRepresentation, CcpJsonRepre
 			if(equals) {
 //				System.out.println();
 			}
-			Class<? extends JnSyncServiceLogin> clazz = JnSyncServiceLogin.INSTANCE.getClass();
+			Class<? extends JnServiceLogin> clazz = JnServiceLogin.INSTANCE.getClass();
 			Method declaredMethod = clazz.getDeclaredMethod(this.name(), CcpJsonRepresentation.class);
 //			System.out.println("tentando executar: " + this);
-			Object invoke = declaredMethod.invoke(JnSyncServiceLogin.INSTANCE, json);
+			Object invoke = declaredMethod.invoke(JnServiceLogin.INSTANCE, json);
 			CcpJsonRepresentation jsn = (CcpJsonRepresentation)invoke;
 			return jsn;
 		}catch(InvocationTargetException e) {

@@ -7,17 +7,17 @@ import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.especifications.db.crud.CcpGetEntityId;
 import com.ccp.especifications.db.utils.CcpEntityCrudOperationType;
 import com.ccp.http.CcpHttpMethods;
-import com.ccp.jn.commons.status.login.StatusCreateLoginEmail;
 import com.ccp.process.CcpDefaultProcessStatus;
 import com.ccp.vis.tests.commons.VisTemplateDeTestes;
-import com.jn.commons.entities.JnEntityAsyncTask;
-import com.jn.commons.entities.JnEntityEmailMessageSent;
-import com.jn.commons.entities.JnEntityLoginAnswers;
-import com.jn.commons.entities.JnEntityLoginEmail;
-import com.jn.commons.entities.JnEntityLoginPassword;
-import com.jn.commons.entities.JnEntityLoginToken;
-import com.jn.commons.status.StatusExecuteLogin;
-import com.jn.commons.utils.JnDeleteKeysFromCache;
+import com.jn.entities.JnEntityAsyncTask;
+import com.jn.entities.JnEntityEmailMessageSent;
+import com.jn.entities.JnEntityLoginAnswers;
+import com.jn.entities.JnEntityLoginEmail;
+import com.jn.entities.JnEntityLoginPassword;
+import com.jn.entities.JnEntityLoginToken;
+import com.jn.status.login.JnStatusCreateLoginEmail;
+import com.jn.status.login.JnStatusExecuteLogin;
+import com.jn.utils.JnDeleteKeysFromCache;
 
 public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 
@@ -39,7 +39,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	public void testarRequisicaoSemTokenDeSessao() {
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
 		CcpJsonRepresentation body = super.getJsonFile("documentation/tests/resume/curriculoComArquivoInvalido.json");
-		super.getJsonResponseFromEndpoint(StatusExecuteLogin.missingSessionToken, scenarioName, body, this.uri, CcpOtherConstants.EMPTY_JSON);
+		super.getJsonResponseFromEndpoint(JnStatusExecuteLogin.missingSessionToken, scenarioName, body, this.uri, CcpOtherConstants.EMPTY_JSON);
 	}
 	
 	
@@ -48,7 +48,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
 		CcpJsonRepresentation body = super.getJsonFile("documentation/tests/resume/curriculoComArquivoInvalido.json");
 		CcpJsonRepresentation bodyWithFakeSessionToken = body.put("sessionToken", "tokenFalsoSafadoQualquer");
-		super.getJsonResponseFromEndpoint(StatusExecuteLogin.invalidSession, scenarioName, bodyWithFakeSessionToken, this.uri);
+		super.getJsonResponseFromEndpoint(JnStatusExecuteLogin.invalidSession, scenarioName, bodyWithFakeSessionToken, this.uri);
 
 	}
 
@@ -60,7 +60,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	@Test
 	public void faltandoCadastrarSenha() {
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
-		this.getJsonResponseFromEndpoint(StatusExecuteLogin.missingSavePassword, scenarioName, this.pathToJsonFile, JnEntityLoginPassword.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete));
+		this.getJsonResponseFromEndpoint(JnStatusExecuteLogin.missingSavePassword, scenarioName, this.pathToJsonFile, JnEntityLoginPassword.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -104,7 +104,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	@Test
 	public void faltandoCadastrarPreRegistro() {
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
-		this.getJsonResponseFromEndpoint(StatusCreateLoginEmail.missingSaveAnswers, scenarioName, this.pathToJsonFile, 
+		this.getJsonResponseFromEndpoint(JnStatusCreateLoginEmail.missingSaveAnswers, scenarioName, this.pathToJsonFile, 
 				JnEntityLoginAnswers.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete)
 				);
 		
@@ -114,7 +114,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	@Test
 	public void senhaBloqueada() {
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
-		this.getJsonResponseFromEndpoint(StatusExecuteLogin.lockedPassword, scenarioName, this.pathToJsonFile, JnEntityLoginPassword.ENTITY.getTwinEntity().getOperationCallback(CcpEntityCrudOperationType.save));
+		this.getJsonResponseFromEndpoint(JnStatusExecuteLogin.lockedPassword, scenarioName, this.pathToJsonFile, JnEntityLoginPassword.ENTITY.getTwinEntity().getOperationCallback(CcpEntityCrudOperationType.save));
 		
 	}
 
@@ -122,7 +122,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	@Test
 	public void tokenBloqueado() {
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
-		this.getJsonResponseFromEndpoint(StatusExecuteLogin.lockedToken, scenarioName, this.pathToJsonFile, JnEntityLoginToken.ENTITY.getTwinEntity().getOperationCallback(CcpEntityCrudOperationType.save));
+		this.getJsonResponseFromEndpoint(JnStatusExecuteLogin.lockedToken, scenarioName, this.pathToJsonFile, JnEntityLoginToken.ENTITY.getTwinEntity().getOperationCallback(CcpEntityCrudOperationType.save));
 		
 	}
 
@@ -130,7 +130,7 @@ public class ValidationsEndpointsCreateResume  extends VisTemplateDeTestes{
 	@Test
 	public void faltandoCadastrarEmail() {
 		String scenarioName = new Object() {}.getClass().getEnclosingMethod().getName();
-		this.getJsonResponseFromEndpoint(StatusExecuteLogin.missingSavingEmail, scenarioName, this.pathToJsonFile, JnEntityLoginEmail.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete));
+		this.getJsonResponseFromEndpoint(JnStatusExecuteLogin.missingSavingEmail, scenarioName, this.pathToJsonFile, JnEntityLoginEmail.ENTITY.getOperationCallback(CcpEntityCrudOperationType.delete));
 
 	}
 	

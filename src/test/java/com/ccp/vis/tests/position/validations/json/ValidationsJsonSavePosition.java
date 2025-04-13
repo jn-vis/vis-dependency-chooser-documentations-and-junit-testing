@@ -12,9 +12,9 @@ import org.junit.Test;
 
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.especifications.db.utils.CcpEntityCrudOperationType;
-import com.ccp.jn.commons.mensageria.JnMensageriaSender;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.vis.tests.commons.BaseTest;
+import com.jn.mensageria.JnMensageriaSender;
 import com.vis.commons.entities.VisEntityResume;
 
 public class ValidationsJsonSavePosition extends BaseTest {

@@ -13,12 +13,12 @@ import com.ccp.especifications.http.CcpHttpHandler;
 import com.ccp.especifications.http.CcpHttpResponse;
 import com.ccp.http.CcpHttpMethods;
 import com.ccp.json.transformers.CcpTransformers;
-import com.jn.commons.entities.JnEntityLoginAnswers;
-import com.jn.commons.entities.JnEntityLoginEmail;
-import com.jn.commons.entities.JnEntityLoginPassword;
-import com.jn.commons.entities.JnEntityLoginSessionValidation;
-import com.jn.commons.entities.JnEntityLoginToken;
-import com.jn.commons.utils.JnExecuteBulkOperation;
+import com.jn.db.bulk.JnExecuteBulkOperation;
+import com.jn.entities.JnEntityLoginAnswers;
+import com.jn.entities.JnEntityLoginEmail;
+import com.jn.entities.JnEntityLoginPassword;
+import com.jn.entities.JnEntityLoginSessionValidation;
+import com.jn.entities.JnEntityLoginToken;
 import com.vis.commons.entities.VisEntityResume;
 
 public enum ResumeTransformations implements CcpTransformers{

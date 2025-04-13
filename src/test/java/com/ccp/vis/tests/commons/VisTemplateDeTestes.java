@@ -23,21 +23,21 @@ import com.ccp.implementations.db.utils.elasticsearch.CcpElasticSearchDbRequest;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.password.mindrot.CcpMindrotPasswordHandler;
-import com.ccp.jn.commons.business.JnAsyncBusinessSendUserToken;
-import com.ccp.jn.commons.status.login.StatusCreateLoginEmail;
 import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.process.CcpProcessStatus;
-import com.jn.commons.entities.JnEntityEmailMessageSent;
-import com.jn.commons.entities.JnEntityLoginAnswers;
-import com.jn.commons.entities.JnEntityLoginEmail;
-import com.jn.commons.entities.JnEntityLoginPassword;
-import com.jn.commons.entities.JnEntityLoginPasswordAttempts;
-import com.jn.commons.entities.JnEntityLoginSessionConflict;
-import com.jn.commons.entities.JnEntityLoginToken;
-import com.jn.commons.entities.JnEntityLoginTokenAttempts;
-import com.jn.commons.status.StatusExecuteLogin;
-import com.jn.commons.utils.JnExecuteBulkOperation;
+import com.jn.business.JnBusinessSendUserToken;
+import com.jn.db.bulk.JnExecuteBulkOperation;
+import com.jn.entities.JnEntityEmailMessageSent;
+import com.jn.entities.JnEntityLoginAnswers;
+import com.jn.entities.JnEntityLoginEmail;
+import com.jn.entities.JnEntityLoginPassword;
+import com.jn.entities.JnEntityLoginPasswordAttempts;
+import com.jn.entities.JnEntityLoginSessionConflict;
+import com.jn.entities.JnEntityLoginToken;
+import com.jn.entities.JnEntityLoginTokenAttempts;
+import com.jn.status.login.JnStatusCreateLoginEmail;
+import com.jn.status.login.JnStatusExecuteLogin;
 
 public abstract class VisTemplateDeTestes {
 	protected final String ENDPOINT_URL = "http://localhost:8081/";
@@ -171,7 +171,7 @@ public abstract class VisTemplateDeTestes {
 		
 		CcpJsonRepresentation sessionValuesToTest = this.getSessionValuesToTest();
 		
-		CcpJsonRepresentation jsonWithSubjectType = sessionValuesToTest.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnAsyncBusinessSendUserToken.class.getName());
+		CcpJsonRepresentation jsonWithSubjectType = sessionValuesToTest.put(JnEntityEmailMessageSent.Fields.subjectType.name(), JnBusinessSendUserToken.class.getName());
 		
 		JnExecuteBulkOperation.INSTANCE.executeBulk(
 				jsonWithSubjectType 
@@ -192,13 +192,13 @@ public abstract class VisTemplateDeTestes {
 		CcpJsonRepresentation endThisStatement = CcpTreeFlow
 		.beginThisStatement()
 		.tryToExecuteTheGivenFinalTargetProcess(LoginActions.executeLogin).usingTheGivenJson(sessionValuesToTest)
-		.butIfThisExecutionReturns(StatusExecuteLogin.missingSavingEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)
+		.butIfThisExecutionReturns(JnStatusExecuteLogin.missingSavingEmail).thenExecuteTheGivenProcesses(LoginActions.createLoginEmail)
 		.and()
-		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(
+		.ifThisExecutionReturns(JnStatusCreateLoginEmail.missingSavePassword).thenExecuteTheGivenProcesses(
 				LoginActions.saveAnswers, LoginActions.createLoginToken, LoginActions.readTokenFromReceivedEmail, 
 				LoginActions.savePassword, LoginActions.renameTokenField, LoginActions.executeLogout)
 		.and()
-		.ifThisExecutionReturns(StatusCreateLoginEmail.missingSaveAnswers).thenExecuteTheGivenProcesses(LoginActions.saveAnswers)
+		.ifThisExecutionReturns(JnStatusCreateLoginEmail.missingSaveAnswers).thenExecuteTheGivenProcesses(LoginActions.saveAnswers)
 		.and()
 		.endThisStatement(whatToNext);
 		

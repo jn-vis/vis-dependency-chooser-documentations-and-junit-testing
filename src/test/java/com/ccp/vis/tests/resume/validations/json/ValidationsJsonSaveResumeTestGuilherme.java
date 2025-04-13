@@ -13,10 +13,10 @@ import org.junit.Test;
 
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.especifications.db.utils.CcpEntityCrudOperationType;
-import com.ccp.jn.commons.mensageria.JnMensageriaSender;
 import com.ccp.validation.CcpJsonInvalid;
 import com.ccp.validation.annotations.CcpJsonFieldsValidation;
 import com.ccp.vis.tests.commons.BaseTest;
+import com.jn.mensageria.JnMensageriaSender;
 import com.vis.commons.entities.VisEntityResume;
 import com.vis.commons.json.validations.VisJsonValidationResume;
 

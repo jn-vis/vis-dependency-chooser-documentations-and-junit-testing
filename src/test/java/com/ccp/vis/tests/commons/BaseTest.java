@@ -20,9 +20,9 @@ import com.ccp.implementations.text.extractor.apache.tika.CcpApacheTikaTextExtra
 import com.ccp.local.testings.implementations.CcpLocalInstances;
 import com.ccp.local.testings.implementations.cache.CcpLocalCacheInstances;
 import com.ccp.validation.CcpJsonInvalid;
-import com.jn.commons.entities.JnEntityLoginAnswers;
-import com.jn.commons.entities.JnEntityLoginSessionValidation;
-import com.jn.commons.entities.JnEntityLoginToken;
+import com.jn.entities.JnEntityLoginAnswers;
+import com.jn.entities.JnEntityLoginSessionValidation;
+import com.jn.entities.JnEntityLoginToken;
 
 public class BaseTest {
 	//FIXME faltando validações do SimpleArray

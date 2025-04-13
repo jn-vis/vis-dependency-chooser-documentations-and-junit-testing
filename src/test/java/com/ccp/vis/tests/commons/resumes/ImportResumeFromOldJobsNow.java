@@ -9,7 +9,7 @@ import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.dependency.injection.CcpDependencyInjection;
 import com.ccp.especifications.db.query.CcpDbQueryOptions;
 import com.ccp.especifications.db.query.CcpQueryExecutor;
-import com.ccp.jn.commons.business.JnValidateSession;
+import com.jn.business.JnBusinessValidateSession;
 import com.vis.commons.entities.VisEntityResume;
 
 public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentation>{
@@ -72,7 +72,7 @@ public class ImportResumeFromOldJobsNow implements Consumer<CcpJsonRepresentatio
 				ResumeTransformations.AddMinPjValue,
 				ResumeTransformations.AddObservations,
 				ResumeTransformations.CreateLoginAndSession,
-				JnValidateSession.INSTANCE
+				JnBusinessValidateSession.INSTANCE
 				)
 		.getJsonPiece(
 				VisEntityResume.Fields.companiesNotAllowed.name()
