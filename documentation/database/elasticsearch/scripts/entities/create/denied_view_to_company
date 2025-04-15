@@ -5,6 +5,15 @@
 			"domain": {
 				"type": "keyword"
 			},
+			"reasonType": {
+				"type": "keyword"
+			},
+			"reasonText": {
+				"type": "text"
+			},
+			"domain": {
+				"type": "keyword"
+			},
 			"email": {
 				"type": "keyword"
 			}

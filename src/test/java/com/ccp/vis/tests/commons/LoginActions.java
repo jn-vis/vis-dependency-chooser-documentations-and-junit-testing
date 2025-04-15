@@ -10,7 +10,7 @@ import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.especifications.db.utils.CcpEntity;
 import com.ccp.exceptions.db.utils.CcpEntityPrimaryKeyIsMissing;
 import com.ccp.exceptions.process.CcpFlowDisturb;
-import com.jn.business.JnBusinessSendUserToken;
+import com.jn.business.login.JnBusinessSendUserToken;
 import com.jn.entities.JnEntityEmailMessageSent;
 import com.jn.entities.JnEntityLoginAnswers;
 import com.jn.entities.JnEntityLoginEmail;
